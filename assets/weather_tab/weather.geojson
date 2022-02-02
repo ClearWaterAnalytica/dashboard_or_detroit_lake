@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "ws",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "site": "PRISM Point Location", "lat": "44.70953610008074", "lon": "-122.19268929773644" }, "geometry": { "type": "Point", "coordinates": [ -122.19268929773644, 44.70953610008074 ] } }
+]
+}

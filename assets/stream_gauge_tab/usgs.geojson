@@ -1,0 +1,11 @@
+{
+"type": "FeatureCollection",
+"name": "usgs",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "usgs_site": "14179000", "lat": "44.75277778", "lon": "-122.1277778", "site_name": "BREITENBUSH R ABV FRENCH CR NR DETROIT, OR." }, "geometry": { "type": "Point", "coordinates": [ -122.1277778, 44.75277778 ] } },
+{ "type": "Feature", "properties": { "usgs_site": "14178000", "lat": "44.70694444", "lon": "-122.1", "site_name": "NO SANTIAM R BLW BOULDER CRK, NR DETROIT, OR" }, "geometry": { "type": "Point", "coordinates": [ -122.1, 44.70694444 ] } },
+{ "type": "Feature", "properties": { "usgs_site": "14180300", "lat": "44.65305556", "lon": "-122.1297222", "site_name": "BLOWOUT CREEK NEAR DETROIT, OR" }, "geometry": { "type": "Point", "coordinates": [ -122.1297222, 44.65305556 ] } },
+{ "type": "Feature", "properties": { "usgs_site": "14181500", "lat": "44.75377778", "lon": "-122.2975", "site_name": "NORTH SANTIAM RIVER AT NIAGARA, OR" }, "geometry": { "type": "Point", "coordinates": [ -122.2975, 44.75377778 ] } }
+]
+}
