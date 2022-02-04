@@ -1,0 +1,91 @@
+proc_dashboard_data/satellite_map/
+----------------------------------------------
+date: date of observation (Unit: year-month-day)
+lat: date of observation (Unit: degree latitude)
+lon: date of observation (Unit: degree longitude)
+Chlorophyll: proportional to NIR/Red (10-day rolling max) from Sentinel (Unit: nanometers -- nm)
+Chlorophyll limits: min = 0.53 --- max = 1.22
+
+
+
+
+proc_dashboard_data/stream_gage_tab/
+----------------------------------------------
+date: date of observation (Unit: year-month-day)
+lat: date of observation (Unit: degree latitude)
+lon: date of observation (Unit: degree longitude)
+usgs_site: specific site location (Unit: categorical integer)
+Water_Temp_mean: mean water temperature recorded (Unit: Celsius -- C)
+Discharge_mean: mean water discharge from streamgage (Unit: cubic-feet per second -- cu/sec)
+Water_Temp_cumsum: cumulative sum water temperature recorded (Unit: Celsius -- C)
+Discharge_cumsum: cumulative sum water discharge from streamgage (Unit: cubic-feet per second -- cu/sec)
+
+
+
+
+proc_dashboard_data/water_sample_tab/
+----------------------------------------------
+date: date of observation (Unit: year-month-day hour:minute:second)
+lat: date of observation (Unit: degree latitude hour:minute:second)
+lon: date of observation (Unit: degree longitude hour:minute:second)
+site: specific site location; LBS is Log Bloom; HT is Heater; BO is Blowout (Unit: categorical character)
+Algae: Total biovolume of Dolichospermum Cyanobacteria (Unit: cubic micrometer per milliliter  -- um3/mL)
+Toxin: microcystin observed (Unit: parts per billion -- ppb)
+Nitrates: total nitrates observed (Unit: milligram per liter -- mg/L)
+
+
+
+
+proc_dashboard_data/weather_tab/
+----------------------------------------------
+date: date of observation (Unit: year-month-day)
+lat: date of observation (Unit: degree latitude)
+lon: date of observation (Unit: degree longitude)
+Precip_mean: mean of precipitation grids (Unit: millimeters -- mL)
+Air_Temp_mean: mean of air temperature grids (Unit: Celsius -- C)
+Surf_Radiation_mean: mean of surface downward shortwave radiation (Unit: Watt/meter sq. -- W/m^2)
+Wind_Velocity_mean: mean of wind velocity grids (Unit: Meters per second -- m/s)
+Precip_cumsum: cumulative sum of precipitation observed (Unit: millimeters -- mL)
+Air_Temp_cumsum: cumulative sum of air temperature (Unit: Celsius -- C)
+Surf_Radiation_cumsum: cumulative sum of surface downward shortwave radiation (Unit: Watt/meter sq. -- W/m^2)
+Wind_Velocity_cumsum: cumulative sum of wind velocity (Unit: Meters per second -- m/s)
+
+
+
+
+proc_dashboard_data/cyan_map/
+----------------------------------------------
+date: date of observation (Unit: year-month-day)
+lat: date of observation (Unit: degree latitude)
+lon: date of observation (Unit: degree longitude)
+log_CI_cells_mL: log Cyanobacteria Index (10-day rolling max) of CI to cell abundance count per mL (Unit: milliliters -- mL)
+bloom: binary for bloom (1) threshold met at 8.777454374493301 and no bloom (0) (Unit: int)
+log_CI_cells_mL limits: min = 2.17 --- max = 8.75
+
+
+
+
+proc_dashboard_data/nowcast_tab/
+----------------------------------------------
+detroit_lake_nowcast_predictions.csv
+date: date of observation (Unit: year-month-day)
+bloom_p: probability of bloom (Unit: float as percentage)
+bloom_p_1: probability of no bloom (Unit: float as percentage)
+model_accuracy: accuracy of the now-cast model (Unit: float as percentage)
+
+
+date: date of observation (Unit: year-month-day)
+exp_prob: 2-week rolling long-run mean probability of bloom (Unit: float as percentage)
+
+
+
+
+proc_dashboard_data/exp_cyan_tab/
+----------------------------------------------
+month: average month observed (Unit: integer month)
+log_CI_cells_mL: average log Cyanobacteria Index (10-day rolling max) of CI to cell abundance count per mL (Unit: milliliters -- mL)
+bloom: binary for bloom (1) threshold met at 8.777454374493301 and no bloom (0) (Unit: int)
+
+
+
+
