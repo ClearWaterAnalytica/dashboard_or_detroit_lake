@@ -435,7 +435,7 @@ Promise.all([
       bloom_1_p.push(nowCastData[i].bloom_1_p);
       model_accuracy.push(nowCastData[i].model_accuracy);
       if (i == nowCastData.length - 1) {
-        nctCurrentDate.push(nowCastData[i].bloom_p)
+        nctCurrentDate.push(1)
       } else if (i !== nowCastData.length) {
         nctCurrentDate.push('null')
       }
@@ -568,16 +568,23 @@ Promise.all([
 
   function varsCounts(i) {
     let weatherData = datasets[27];
-
     for (let i = 0; i < weatherData.length; i++) {
       yearConversion = new Date(weatherData[i].date);
       yearWeather = yearConversion.getFullYear();
       switch (yearWeather) {
         case 2022:
-          weatherData2022pcMean.push(weatherData[i].Precip_mean);
+        weatherData2022pcMean.push(weatherData[i].Precip_mean);
+        if (weatherData[i].Precip_cumsum == "") {
+          weatherData2022pcSum.push("null");
+        } else {
           weatherData2022pcSum.push(weatherData[i].Precip_cumsum);
-          weatherData2022atempMean.push(weatherData[i].Air_Temp_mean);
+        };
+        weatherData2022atempMean.push(weatherData[i].Air_Temp_mean);
+        if (weatherData[i].Air_Temp_cumsum == "") {
+          weatherData2022atempSum.push("null");
+        } else {
           weatherData2022atempSum.push(weatherData[i].Air_Temp_cumsum);
+        };
           break;
         case 2021:
           weatherData2021pcMean.push(weatherData[i].Precip_mean);
@@ -587,63 +594,139 @@ Promise.all([
             weatherData2021pcSum.push(weatherData[i].Precip_cumsum);
           };
           weatherData2021atempMean.push(weatherData[i].Air_Temp_mean);
-          weatherData2021atempSum.push(weatherData[i].Air_Temp_cumsum);
+          if (weatherData[i].Air_Temp_cumsum == "") {
+            weatherData2021atempSum.push("null");
+          } else {
+            weatherData2021atempSum.push(weatherData[i].Air_Temp_cumsum);
+          };
           break;
         case 2020:
-          weatherData2020pcMean.push(weatherData[i].Precip_mean);
+        weatherData2020pcMean.push(weatherData[i].Precip_mean);
+        if (weatherData[i].Precip_cumsum == "") {
+          weatherData2020pcSum.push("null");
+        } else {
           weatherData2020pcSum.push(weatherData[i].Precip_cumsum);
-          weatherData2020atempMean.push(weatherData[i].Air_Temp_mean);
+        };
+        weatherData2020atempMean.push(weatherData[i].Air_Temp_mean);
+        if (weatherData[i].Air_Temp_cumsum == "") {
+          weatherData2020atempSum.push("null");
+        } else {
           weatherData2020atempSum.push(weatherData[i].Air_Temp_cumsum);
+        };
           break;
         case 2019:
-          weatherData2019pcMean.push(weatherData[i].Precip_mean);
+        weatherData2019pcMean.push(weatherData[i].Precip_mean);
+        if (weatherData[i].Precip_cumsum == "") {
+          weatherData2019pcSum.push("null");
+        } else {
           weatherData2019pcSum.push(weatherData[i].Precip_cumsum);
-          weatherData2019atempMean.push(weatherData[i].Air_Temp_mean);
+        };
+        weatherData2019atempMean.push(weatherData[i].Air_Temp_mean);
+        if (weatherData[i].Air_Temp_cumsum == "") {
+          weatherData2019atempSum.push("null");
+        } else {
           weatherData2019atempSum.push(weatherData[i].Air_Temp_cumsum);
+        };
           break;
         case 2018:
-          weatherData2018pcMean.push(weatherData[i].Precip_mean);
+        weatherData2018pcMean.push(weatherData[i].Precip_mean);
+        if (weatherData[i].Precip_cumsum == "") {
+          weatherData2018pcSum.push("null");
+        } else {
           weatherData2018pcSum.push(weatherData[i].Precip_cumsum);
-          weatherData2018atempMean.push(weatherData[i].Air_Temp_mean);
+        };
+        weatherData2018atempMean.push(weatherData[i].Air_Temp_mean);
+        if (weatherData[i].Air_Temp_cumsum == "") {
+          weatherData2018atempSum.push("null");
+        } else {
           weatherData2018atempSum.push(weatherData[i].Air_Temp_cumsum);
+        };
           break;
         case 2017:
-          weatherData2017pcMean.push(weatherData[i].Precip_mean);
+        weatherData2017pcMean.push(weatherData[i].Precip_mean);
+        if (weatherData[i].Precip_cumsum == "") {
+          weatherData2017pcSum.push("null");
+        } else {
           weatherData2017pcSum.push(weatherData[i].Precip_cumsum);
-          weatherData2017atempMean.push(weatherData[i].Air_Temp_mean);
+        };
+        weatherData2017atempMean.push(weatherData[i].Air_Temp_mean);
+        if (weatherData[i].Air_Temp_cumsum == "") {
+          weatherData2017atempSum.push("null");
+        } else {
           weatherData2017atempSum.push(weatherData[i].Air_Temp_cumsum);
+        };
           break;
         case 2016:
-          weatherData2016pcMean.push(weatherData[i].Precip_mean);
+        weatherData2016pcMean.push(weatherData[i].Precip_mean);
+        if (weatherData[i].Precip_cumsum == "") {
+          weatherData2016pcSum.push("null");
+        } else {
           weatherData2016pcSum.push(weatherData[i].Precip_cumsum);
-          weatherData2016atempMean.push(weatherData[i].Air_Temp_mean);
+        };
+        weatherData2016atempMean.push(weatherData[i].Air_Temp_mean);
+        if (weatherData[i].Air_Temp_cumsum == "") {
+          weatherData2016atempSum.push("null");
+        } else {
           weatherData2016atempSum.push(weatherData[i].Air_Temp_cumsum);
+        };
           break;
         case 2015:
-          weatherData2015pcMean.push(weatherData[i].Precip_mean);
+        weatherData2015pcMean.push(weatherData[i].Precip_mean);
+        if (weatherData[i].Precip_cumsum == "") {
+          weatherData2015pcSum.push("null");
+        } else {
           weatherData2015pcSum.push(weatherData[i].Precip_cumsum);
-          weatherData2015atempMean.push(weatherData[i].Air_Temp_mean);
+        };
+        weatherData2015atempMean.push(weatherData[i].Air_Temp_mean);
+        if (weatherData[i].Air_Temp_cumsum == "") {
+          weatherData2015atempSum.push("null");
+        } else {
           weatherData2015atempSum.push(weatherData[i].Air_Temp_cumsum);
+        };
           break;
         case 2014:
-          weatherData2014pcMean.push(weatherData[i].Precip_mean);
+        weatherData2014pcMean.push(weatherData[i].Precip_mean);
+        if (weatherData[i].Precip_cumsum == "") {
+          weatherData2014pcSum.push("null");
+        } else {
           weatherData2014pcSum.push(weatherData[i].Precip_cumsum);
-          weatherData2014atempMean.push(weatherData[i].Air_Temp_mean);
+        };
+        weatherData2014atempMean.push(weatherData[i].Air_Temp_mean);
+        if (weatherData[i].Air_Temp_cumsum == "") {
+          weatherData2014atempSum.push("null");
+        } else {
           weatherData2014atempSum.push(weatherData[i].Air_Temp_cumsum);
+        };
           break;
         case 2013:
-          weatherData2013pcMean.push(weatherData[i].Precip_mean);
+        weatherData2013pcMean.push(weatherData[i].Precip_mean);
+        if (weatherData[i].Precip_cumsum == "") {
+          weatherData2013pcSum.push("null");
+        } else {
           weatherData2013pcSum.push(weatherData[i].Precip_cumsum);
-          weatherData2013atempMean.push(weatherData[i].Air_Temp_mean);
+        };
+        weatherData2013atempMean.push(weatherData[i].Air_Temp_mean);
+        if (weatherData[i].Air_Temp_cumsum == "") {
+          weatherData2013atempSum.push("null");
+        } else {
           weatherData2013atempSum.push(weatherData[i].Air_Temp_cumsum);
+        };
           break;
         case 2012:
           var USTd = new Date(yearConversion)
           wt.push(USTd.setHours(USTd.getHours() + 8));
           weatherData2012pcMean.push(weatherData[i].Precip_mean);
-          weatherData2012pcSum.push(weatherData[i].Precip_cumsum);
+          if (weatherData[i].Precip_cumsum == "") {
+            weatherData2012pcSum.push("null");
+          } else {
+            weatherData2012pcSum.push(weatherData[i].Precip_cumsum);
+          };
           weatherData2012atempMean.push(weatherData[i].Air_Temp_mean);
-          weatherData2012atempSum.push(weatherData[i].Air_Temp_cumsum);
+          if (weatherData[i].Air_Temp_cumsum == "") {
+            weatherData2012atempSum.push("null");
+          } else {
+            weatherData2012atempSum.push(weatherData[i].Air_Temp_cumsum);
+          };
           break;
         default:
       }
@@ -2615,29 +2698,28 @@ Promise.all([
 
     chart.load({
       unload: true,
-      columns: [siteSelect.wtM2021, siteSelect.wtM2022],
+      columns: [siteSelect.wtM2022, siteSelect.wtM2021, siteSelect.wtM2020],
     });
     chart2.load({
       unload: true,
-      columns: [siteSelect.wtM2021, siteSelect.wtM2022],
+      columns: [siteSelect.wtM2022, siteSelect.wtM2021, siteSelect.wtM2020],
     });
     h20SumChart.load({
       unload: true,
-      columns: [siteSelect.wtS2021, siteSelect.wtS2022],
+      columns: [siteSelect.wtS2022, siteSelect.wtS2021, siteSelect.wtS2020],
     });
     dchMeanChart.load({
       unload: true,
-      columns: [siteSelect.dchM2021, siteSelect.dchM2022],
+      columns: [siteSelect.dchM2022, siteSelect.dchM2021, siteSelect.dchM2020],
     });
     dchSumChart.load({
       unload: true,
-      columns: [siteSelect.dchS2021, siteSelect.dchS2022],
+      columns: [siteSelect.dchS2022, siteSelect.dchS2021, siteSelect.dchS2020],
     });
     $("#gage-chart > svg > g:nth-child(2)").hide();
     $("#gageDropdown").text(e.target.feature.properties.site_name);
 
     // $("#deck-2 > div.col-lg-2 > center > div:nth-child(4) > label").css('color', 'white');
-    $("#gage2020").css('color', 'white');
     $("#gage2019").css('color', 'white');
     $("#gage2018").css('color', 'white');
     $("#gage2017").css('color', 'white');
@@ -2714,21 +2796,21 @@ Promise.all([
 
     sampleSubChart.load({
       unload: true,
-      columns: [sampleLoc.a2019, sampleLoc.a2018],
+      columns: [sampleLoc.a2019, sampleLoc.a2018, sampleLoc.a2017],
     });
     sampleChart.load({
       unload: true,
-      columns: [sampleLoc.a2019, sampleLoc.a2018],
+      columns: [sampleLoc.a2019, sampleLoc.a2018, sampleLoc.a2017],
     });
     toxinChart.load({
       unload: true,
-      columns: [sampleLoc.t2019, sampleLoc.t2018],
+      columns: [sampleLoc.t2019, sampleLoc.t2018, sampleLoc.t2017],
     });
     nitrateChart.load({
       unload: true,
-      columns: [sampleLoc.n2019, sampleLoc.n2018],
+      columns: [sampleLoc.n2019, sampleLoc.n2018, sampleLoc.n2017],
     });
-    $("#sample2017").css('color', 'white');
+
     $("#sample2016").css('color', 'white');
 
     $("#sampleDropdown").text(e.target.feature.properties.site);
@@ -2851,7 +2933,7 @@ Promise.all([
     data: {
       x: "Date",
       columns: [
-        t, gage1.wtM2022, gage1.wtM2021
+        t, gage1.wtM2022, gage1.wtM2021,gage1.wtM2020
       ],
       onclick: function(d, i) {
         console.log("onclick", d, i);
@@ -2886,8 +2968,8 @@ Promise.all([
     },
     axis: {
       x: {
+        extent :[5,10],
         type: "timeseries",
-        extent: ["04-01-2020", "10-01-2020"],
         tick: {
           format: "%b %d",
           centered: true,
@@ -2900,6 +2982,7 @@ Promise.all([
       // rescale: true,+
       enabled: true,
       type: "scroll",
+      extent: [1580832000000,1603724400000],
       onzoom: function(d) {
         chart2.zoom(chart.zoom());
         h20SumChart.zoom(chart.zoom());
@@ -2922,6 +3005,8 @@ Promise.all([
   $("#gage2022").css('color', stroke2022);
   var stroke2021 = chart.color('2021');
   $("#gage2021").css('color', stroke2021);
+  var stroke2020 = chart.color('2020');
+  $("#gage2020").css('color', stroke2020);
   // mean water temp
   chart2 = c3.generate({
     size: {
@@ -2929,7 +3014,7 @@ Promise.all([
     },
     data: {
       x: "Date",
-      columns: [t, gage1.wtM2022, gage1.wtM2021],
+      columns: [t, gage1.wtM2022, gage1.wtM2021, gage1.wtM2020],
       // onmouseover: annualUpdate,
       type: 'spline',
       onclick: function(d, i) {
@@ -3022,7 +3107,7 @@ Promise.all([
     },
     data: {
       x: "Date",
-      columns: [t, gage1.wtS2022, gage1.wtS2021],
+      columns: [t, gage1.wtS2022, gage1.wtS2021, gage1.wtS2020],
       type: 'spline',
     },
     // color: {
@@ -3091,7 +3176,7 @@ Promise.all([
     },
     data: {
       x: "Date",
-      columns: [t, gage1.dchM2022, gage1.dchM2021],
+      columns: [t, gage1.dchM2022, gage1.dchM2021, gage1.dchM2020],
       type: 'spline',
     },
     // color: {
@@ -3160,7 +3245,7 @@ Promise.all([
     },
     data: {
       x: "Date",
-      columns: [t, gage1.dchS2022, gage1.dchS2021],
+      columns: [t, gage1.dchS2022, gage1.dchS2021, gage1.dchS2020],
       type: 'spline',
     },
     // color: {
@@ -3232,7 +3317,7 @@ Promise.all([
     },
     data: {
       x: "Date",
-      columns: [wst2016, sampleLoc1.a2019, sampleLoc1.a2018],
+      columns: [wst2016, sampleLoc1.a2019, sampleLoc1.a2018, sampleLoc1.a2017],
       type: 'scatter',
     },
     color: {
@@ -3320,6 +3405,8 @@ Promise.all([
   $("#sample2019").css('color', stroke2019);
   var stroke2018 = sampleSubChart.color('2018');
   $("#sample2018").css('color', stroke2018);
+  var stroke2017 = sampleSubChart.color('2017');
+  $("#sample2017").css('color', stroke2017);
   // sample algae chart
   sampleChart = c3.generate({
     size: {
@@ -3328,7 +3415,7 @@ Promise.all([
     },
     data: {
       x: "Date",
-      columns: [wst2016, sampleLoc1.a2019, sampleLoc1.a2018],
+      columns: [wst2016, sampleLoc1.a2019, sampleLoc1.a2018 , sampleLoc1.a2017],
       type: 'scatter',
     },
     color: {
@@ -3417,7 +3504,7 @@ Promise.all([
     },
     data: {
       x: "Date",
-      columns: [wst2016, sampleLoc1.t2019, sampleLoc1.t2018],
+      columns: [wst2016, sampleLoc1.t2019, sampleLoc1.t2018, sampleLoc1.t2017],
       type: 'scatter',
     },
     // color: {
@@ -3484,7 +3571,7 @@ Promise.all([
     },
     data: {
       x: "Date",
-      columns: [wst2016, sampleLoc1.n2019, sampleLoc1.n2018],
+      columns: [wst2016, sampleLoc1.n2019, sampleLoc1.n2018, sampleLoc1.n2017],
       type: 'scatter',
     },
     // color: {
@@ -3552,7 +3639,7 @@ Promise.all([
     },
     data: {
       x: "Date",
-      columns: [wt, weatherVars.pcM2022, weatherVars.pcM2021],
+      columns: [t, weatherVars.pcM2022, weatherVars.pcM2021, weatherVars.pcM2020],
       type: 'spline',
     },
     // color: {
@@ -3644,6 +3731,8 @@ Promise.all([
   $("#weather2022").css('color', stroke2022);
   var stroke2021 = precipSubChart.color('2021');
   $("#weather2021").css('color', stroke2021);
+  var stroke2020 = precipSubChart.color('2020');
+  $("#weather2020").css('color', stroke2020);
   // weather chart
   precipChart = c3.generate({
     size: {
@@ -3652,7 +3741,7 @@ Promise.all([
     },
     data: {
       x: "Date",
-      columns: [wt, weatherVars.pcM2022, weatherVars.pcM2021],
+      columns: [t, weatherVars.pcM2022, weatherVars.pcM2021, weatherVars.pcM2020],
       type: 'spline',
     },
 
@@ -3724,7 +3813,7 @@ Promise.all([
     },
     data: {
       x: "Date",
-      columns: [wt, weatherVars.atempM2022, weatherVars.atempM2021],
+      columns: [t, weatherVars.atempM2022, weatherVars.atempM2021, weatherVars.atempM2020],
       type: 'spline',
     },
     // color: {
@@ -3793,7 +3882,7 @@ Promise.all([
     },
     data: {
       x: "Date",
-      columns: [wt, weatherVars.pcS2022, weatherVars.pcS2021],
+      columns: [t, weatherVars.pcS2022, weatherVars.pcS2021, weatherVars.pcS2020],
       type: 'spline',
     },
     // color: {
@@ -3862,7 +3951,7 @@ Promise.all([
     },
     data: {
       x: "Date",
-      columns: [wt, weatherVars.atempS2022, weatherVars.atempS2021],
+      columns: [t, weatherVars.atempS2022, weatherVars.atempS2021, weatherVars.atempS2020],
       type: 'spline',
     },
     // color: {
@@ -4031,9 +4120,6 @@ Promise.all([
       types: {
         Current: 'bar',
       },
-      bar: {
-        width: 5 // this makes bar width 100px
-      },
       colors: {
         Log_CI_Cells_mL: '#de2d26',
       },
@@ -4047,12 +4133,14 @@ Promise.all([
           nctHistoricalDate = ["Historical"];
           for (let i = 0; i < d.index + 1; i++) {
             if (i == d.index) {
-              nctHistoricalDate.push(parseFloat(d.value))
+              nctHistoricalDate.push(parseFloat(1))
             } else if (i !== d.index) {
               nctHistoricalDate.push('null')
             }
           }
           $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").text(100 * model_accuracy[d.index] + "% Observed Bloom area");
+
+
           var USTdDonut = new Date(d.x);
 
           var monthDonut = USTdDonut.getMonth();
@@ -4092,6 +4180,12 @@ Promise.all([
       top: padTop,
       right: 75,
     },
+    bar: {
+      width: {
+        ratio: .15
+      },
+      maxWidth: .15
+    },
     axis: {
       x: {
         type: "timeseries",
@@ -4114,7 +4208,7 @@ Promise.all([
         tick: {
           format: d3.format(".2%"),
           count: 5,
-          values: [.25,.50,.75,1]
+          values: [.25, .50, .75, 1]
         },
         max: 1,
         min: 0,
@@ -6379,27 +6473,26 @@ Promise.all([
 
     chart.load({
       unload: true,
-      columns: [siteSelect.wtM2020, siteSelect.wtM2021],
+      columns: [siteSelect.wtM2022, siteSelect.wtM2021, siteSelect.wtM2020],
     });
     chart2.load({
       unload: true,
-      columns: [siteSelect.wtM2020, siteSelect.wtM2021],
+      columns: [siteSelect.wtM2022, siteSelect.wtM2021, siteSelect.wtM2020],
     });
     h20SumChart.load({
       unload: true,
-      columns: [siteSelect.wtS2020, siteSelect.wtS2021],
+      columns: [siteSelect.wtS2022, siteSelect.wtS2021, siteSelect.wtS2020],
     });
     dchMeanChart.load({
       unload: true,
-      columns: [siteSelect.dchM2020, siteSelect.dchM2021],
+      columns: [siteSelect.dchM2022, siteSelect.dchM2021, siteSelect.dchM2020],
     });
     dchSumChart.load({
       unload: true,
-      columns: [siteSelect.dchS2020, siteSelect.dchS2021],
+      columns: [siteSelect.dchS2022, siteSelect.dchS2021, siteSelect.dchS2020],
     });
     $("#gage-chart > svg > g:nth-child(2)").hide();
 
-    $("#gage2020").css('color', 'white');
     $("#gage2019").css('color', 'white');
     $("#gage2018").css('color', 'white');
     $("#gage2017").css('color', 'white');
@@ -6552,28 +6645,28 @@ Promise.all([
 
     chart.load({
       unload: true,
-      columns: [siteSelect.wtM2021, siteSelect.wtM2022],
+      columns: [siteSelect.wtM2022, siteSelect.wtM2021, siteSelect.wtM2020],
     });
     chart2.load({
       unload: true,
-      columns: [siteSelect.wtM2021, siteSelect.wtM2022],
+      columns: [siteSelect.wtM2022, siteSelect.wtM2021, siteSelect.wtM2020],
     });
     h20SumChart.load({
       unload: true,
-      columns: [siteSelect.wtS2021, siteSelect.wtS2022],
+      columns: [siteSelect.wtS2022, siteSelect.wtS2021, siteSelect.wtS2020],
     });
     dchMeanChart.load({
       unload: true,
-      columns: [siteSelect.dchM2021, siteSelect.dchM2022],
+      columns: [siteSelect.dchM2022, siteSelect.dchM2021, siteSelect.dchM2020],
     });
     dchSumChart.load({
       unload: true,
-      columns: [siteSelect.dchS2021, siteSelect.dchS2022],
+      columns: [siteSelect.dchS2022, siteSelect.dchS2021, siteSelect.dchS2020],
     });
     $("#gage-chart > svg > g:nth-child(2)").hide();
 
     // $("#deck-2 > div.col-lg-2 > center > div:nth-child(4) > label").css('color', 'white');
-    $("#gage2020").css('color', 'white');
+
     $("#gage2019").css('color', 'white');
     $("#gage2018").css('color', 'white');
     $("#gage2017").css('color', 'white');
@@ -6726,28 +6819,28 @@ Promise.all([
 
     chart.load({
       unload: true,
-      columns: [siteSelect.wtM2021, siteSelect.wtM2022],
+      columns: [siteSelect.wtM2022, siteSelect.wtM2021, siteSelect.wtM2020],
     });
     chart2.load({
       unload: true,
-      columns: [siteSelect.wtM2021, siteSelect.wtM2022],
+      columns: [siteSelect.wtM2022, siteSelect.wtM2021, siteSelect.wtM2020],
     });
     h20SumChart.load({
       unload: true,
-      columns: [siteSelect.wtS2021, siteSelect.wtS2022],
+      columns: [siteSelect.wtS2022, siteSelect.wtS2021, siteSelect.wtS2020],
     });
     dchMeanChart.load({
       unload: true,
-      columns: [siteSelect.dchM2021, siteSelect.dchM2022],
+      columns: [siteSelect.dchM2022, siteSelect.dchM2021, siteSelect.dchM2020],
     });
     dchSumChart.load({
       unload: true,
-      columns: [siteSelect.dchS2021, siteSelect.dchS2022],
+      columns: [siteSelect.dchS2022, siteSelect.dchS2021, siteSelect.dchS2020],
     });
     $("#gage-chart > svg > g:nth-child(2)").hide();
 
     // $("#deck-2 > div.col-lg-2 > center > div:nth-child(4) > label").css('color', 'white');
-    $("#gage2020").css('color', 'white');
+    // $("#gage2020").css('color', 'white');
     $("#gage2019").css('color', 'white');
     $("#gage2018").css('color', 'white');
     $("#gage2017").css('color', 'white');
@@ -6900,28 +6993,28 @@ Promise.all([
 
     chart.load({
       unload: true,
-      columns: [siteSelect.wtM2021, siteSelect.wtM2022],
+      columns: [siteSelect.wtM2022, siteSelect.wtM2021, siteSelect.wtM2020],
     });
     chart2.load({
       unload: true,
-      columns: [siteSelect.wtM2021, siteSelect.wtM2022],
+      columns: [siteSelect.wtM2022, siteSelect.wtM2021, siteSelect.wtM2020],
     });
     h20SumChart.load({
       unload: true,
-      columns: [siteSelect.wtS2021, siteSelect.wtS2022],
+      columns: [siteSelect.wtS2022, siteSelect.wtS2021, siteSelect.wtS2020],
     });
     dchMeanChart.load({
       unload: true,
-      columns: [siteSelect.dchM2021, siteSelect.dchM2022],
+      columns: [siteSelect.dchM2022, siteSelect.dchM2021, siteSelect.dchM2020],
     });
     dchSumChart.load({
       unload: true,
-      columns: [siteSelect.dchS2021, siteSelect.dchS2022],
+      columns: [siteSelect.dchS2022, siteSelect.dchS2021, siteSelect.dchS2020],
     });
     $("#gage-chart > svg > g:nth-child(2)").hide();
 
     // $("#deck-2 > div.col-lg-2 > center > div:nth-child(4) > label").css('color', 'white');
-    $("#gage2020").css('color', 'white');
+    // $("#gage2020").css('color', 'white');
     $("#gage2019").css('color', 'white');
     $("#gage2018").css('color', 'white');
     $("#gage2017").css('color', 'white');
@@ -6993,21 +7086,20 @@ Promise.all([
 
     sampleSubChart.load({
       unload: true,
-      columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018],
+      columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018, sampleSiteSelect.a2017],
     });
     sampleChart.load({
       unload: true,
-      columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018],
+      columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018, sampleSiteSelect.a2017],
     });
     toxinChart.load({
       unload: true,
-      columns: [sampleSiteSelect.t2019, sampleSiteSelect.t2018],
+      columns: [sampleSiteSelect.t2019, sampleSiteSelect.t2018, sampleSiteSelect.t2017],
     });
     nitrateChart.load({
       unload: true,
-      columns: [sampleSiteSelect.n2019, sampleSiteSelect.n2018],
+      columns: [sampleSiteSelect.n2019, sampleSiteSelect.n2018, sampleSiteSelect.n2017],
     });
-    $("#sample2017").css('color', 'white');
     $("#sample2016").css('color', 'white');
   });
   $("#Heater").on("click", function() {
@@ -7068,21 +7160,21 @@ Promise.all([
 
     sampleSubChart.load({
       unload: true,
-      columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018],
+      columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018, sampleSiteSelect.a2017],
     });
     sampleChart.load({
       unload: true,
-      columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018],
+      columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018, sampleSiteSelect.a2017],
     });
     toxinChart.load({
       unload: true,
-      columns: [sampleSiteSelect.t2019, sampleSiteSelect.t2018],
+      columns: [sampleSiteSelect.t2019, sampleSiteSelect.t2018, sampleSiteSelect.t2017],
     });
     nitrateChart.load({
       unload: true,
-      columns: [sampleSiteSelect.n2019, sampleSiteSelect.n2018],
+      columns: [sampleSiteSelect.n2019, sampleSiteSelect.n2018, sampleSiteSelect.n2017],
     });
-    $("#sample2017").css('color', 'white');
+
     $("#sample2016").css('color', 'white');
   });
   $("#Blowout").on("click", function() {
@@ -7143,21 +7235,20 @@ Promise.all([
 
     sampleSubChart.load({
       unload: true,
-      columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018],
+      columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018, sampleSiteSelect.a2017],
     });
     sampleChart.load({
       unload: true,
-      columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018],
+      columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018, sampleSiteSelect.a2017],
     });
     toxinChart.load({
       unload: true,
-      columns: [sampleSiteSelect.t2019, sampleSiteSelect.t2018],
+      columns: [sampleSiteSelect.t2019, sampleSiteSelect.t2018, sampleSiteSelect.t2017],
     });
     nitrateChart.load({
       unload: true,
-      columns: [sampleSiteSelect.n2019, sampleSiteSelect.n2018],
+      columns: [sampleSiteSelect.n2019, sampleSiteSelect.n2018, sampleSiteSelect.n2017],
     });
-    $("#sample2017").css('color', 'white');
     $("#sample2016").css('color', 'white');
   });
 
