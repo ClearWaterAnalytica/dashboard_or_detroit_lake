@@ -20,6 +20,12 @@ html, body, main {
   color: white;
 }
 
+#clickInstruct {
+  font-size: .75rem;
+}
+
+
+
 .radioText {
   font-size: 1.125rem;
 }
@@ -40,6 +46,7 @@ button {
 #deck-3 .c3-chart-lines {
   stroke-width: 5px !important;
 }
+
 .donutRange {
   font-size: 12px;
 }
@@ -348,6 +355,12 @@ span {
 
 text {
   fill: white
+}
+#spline-chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-y > text {
+  fill: #1f77b4;
+}
+#spline-chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-y2 > text {
+  fill: #de2d26;
 }
 
 .tick line {

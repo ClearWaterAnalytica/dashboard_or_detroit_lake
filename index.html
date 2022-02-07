@@ -123,7 +123,7 @@
                 </li>
               </ul>
               <!-- tab content -->
-              <div class="tab-content " id="myTabContent">
+              <div class="tab-content" id="myTabContent">
                 <!-- weather tab -->
                 <div class="tab-pane fade show" id="weather" role="tabpanel" aria-labelledby="weather-tab">
                   <div id="deck-2" class="counts frontSub">
@@ -131,6 +131,7 @@
                       <div class="dropdown no-arrow frontSub locationTab">
                         <span class="ml-3 d-lg-inline text-gray-600 small">Data taken from PRISM</span>
                       </div>
+
                       <!-- Weather tab year dropdown -->
                       <div class="dropdown no-arrow frontSub yearTab">
                         <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -182,10 +183,22 @@
                       <div class="frontSub infoTab infoTab">
                         <a data-toggle="modal" data-target="#prismInfoWindow"><i class="nav fas fa-info-circle"></i></a>
                       </div>
-
                     </div>
-
                   </div>
+                  <!-- tab list -->
+                  <ul class="nav nav-tabs" id="weatherSubTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="mean-tab" data-bs-toggle="tab" href="#mean" data-bs-target="#mean" type="button" role="tab" aria-controls="mean" aria-selected="true">
+                        Mean
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="cumSum-tab" data-bs-toggle="tab" href="#cumSum" data-bs-target="#cumSum" type="button" role="tab" aria-controls="cumSum" aria-selected="false">
+                        Cumulative Sum
+                      </button>
+                    </li>
+                  </ul>
+
                   <!-- SubChart -->
                   <div id="precipSubChartDeck" class="card-deck counts">
                     <br><br>
@@ -525,13 +538,13 @@
 
                   </div>
 
-                  <div id="deck-2" class="card-deck counts">
+
                     <div class="col-lg-12">
                       <!-- Chart -->
                       <div id="deck-2" class="card-deck counts">
                         <div class="card mt-1">
                           <center>
-                            <p class="mb-0">Historical forecast</p>
+                            <p class="mb-0">Previous forecast</p>
                             <div class="donutRange">
                               <span id="dateCyan"></span>
                             </div>
@@ -540,7 +553,7 @@
                         </div>
                         <div class="card mt-1">
                           <center>
-                            <p class="mb-0">Current forecast</p>
+                            <p class="mb-0">Historical expectation</p>
                             <div class="donutRange">
                               <span id="dateCyan2"></span>
                             </div>
@@ -551,14 +564,13 @@
                       <!-- Chart -->
                       <div id="deck-2" class="card-deck counts">
                         <div class="card">
-                          <center>
-                            <p>Click on blue line below to select date <i class="fas fa-arrow-circle-down"></i></p>
-                          </center>
+                            <div id="clickInstruct">
+                              Click on blue line below to select date
+                            </div>
                           <div id="spline-chart"></div>
                         </div>
                       </div>
                     </div>
-                  </div>
                 </div>
 
               </div>
@@ -617,7 +629,6 @@
               </div>
               <div  id="CYANRadio" class="form-check form-check-inline">
                 <div><input class="mr-2 text-gray-600 radioText" type="radio" name="choice" value="cyan" id="choice-cyan">CyAN</input></div>
-
               </div>
 
             </div>
@@ -682,8 +693,14 @@
                 </div>
                 <div class="slidecontainer">
                   <div class="timeTitle mb-1 mt-1">Slide to select date for hexbin layer</div>
-                  <input type="range" min="0" max="1075" value="1075" class="slider" id="myRange">
-                  <input id="d0" class="timeTitle ml-1 mb-1 mt-1 " type="date" min="2018-12-14" max="2021-11-23" value="2021-11-23">
+                  <div id="CHLANDatePicker">
+                  <input type="range" min="0" max="1141" value="1141" class="slider" id="myRange">
+                  <input id="d0" class="timeTitle ml-1 mb-1 mt-1 " type="date" min="2018-12-14" max="2022-01-27" value="2022-01-27">
+                  </div>
+                  <div id="CyANDatePicker">
+                    <input type="range" min="0" max="1986" value="1986" class="slider" id="myCyANRange">
+                    <input id="d0CyAN" class="timeTitle ml-1 mb-1 mt-1 " type="date" min="2016-04-30" max="2021-10-06" value="2021-10-06">
+                  </div>
                 </div>
               </center>
             </div>

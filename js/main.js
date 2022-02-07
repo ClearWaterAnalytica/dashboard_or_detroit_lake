@@ -135,13 +135,21 @@ var optionsCyan = {
   colorRange: [colors[5], colors[4], colors[3], colors[2], colors[1], colors[0]],
   colorScaleExtent: [8, 8.75],
   duration: 500,
-  radiusRange: [11, 20],
+  radiusRange: [11, 11],
 };
 
 // hexbin map layer
 var hexLayer = L.hexbinLayer(options).addTo(mymap);
 var hexCyanLayer = L.hexbinLayer(optionsCyan);
 
+$("#CHARadio").on("click", function() {
+  hexLayer.addTo(mymap);
+});
+
+$("#CYANRadio").on("click", function() {
+  // hexCyanLayer.addTo(mymap);
+  mymap.removeLayer(hexLayer);
+});
 // hexlayer options
 function tooltip_function(d) {
 
@@ -155,6 +163,20 @@ function tooltip_function(d) {
 
   return tooltip_text
 }
+
+function tooltip_functionCyAN(d) {
+
+  var cyan_sum = d.reduce(function(acc, obj) {
+    return (acc + parseFloat(obj["o"][2]));
+  }, 0);
+
+  avgCyan = cyan_sum / d.length;
+  avgcyan = d3.format(".3")(avgCyan);
+  var tooltip_text = `Avg. CyAN: ${String(avgCyan)}`
+
+  return tooltip_text
+}
+
 
 $('#myOpacityRange').on('input', function(value) {
   $('.hexbin').css({
@@ -207,7 +229,7 @@ hexCyanLayer
     handlers: [
       L.HexbinHoverHandler.resizeFill(),
       L.HexbinHoverHandler.tooltip({
-        tooltipContent: tooltip_function
+        tooltipContent: tooltip_functionCyAN
       })
     ]
   }));
@@ -306,6 +328,7 @@ window.onload = function() {
   dateInput.addEventListener('change', date2range, false);
 }
 
+
 var gageID = "14178000";
 
 Promise.all([
@@ -342,6 +365,8 @@ Promise.all([
   d3.csv('assets/cyan_map/detroit_lake_cyan_2021_10_06.csv'), //datasets[30]
   d3.csv('assets/exp_cyan_tab/detroit_lake_exp_cyan.csv'), //datasets[31]
   d3.csv('assets/exp_cyan_tab/detroit_lake_exp_cyan_test.csv'), //datasets[32]
+  d3.csv('assets/now_cast_tab/detroit_lake_nowcast_expected_longrun_predictions.csv'), //datasets[33]
+
 
 ]).then(function(datasets) {
 
@@ -370,15 +395,15 @@ Promise.all([
   dateArray2022 = ["Date"];
   expCyanDate = ["Date"];
   logCICells = ["Log_CI_Cells_mL"];
-  expCyanBloom = ["Bloom"];
+  // expCyanBloom = ["Bloom"];
   var expCyanVars = {
     name: "Expected CyAN",
     lCI: logCICells,
-    ecb: expCyanBloom,
+    // ecb: expCyanBloom,
   }
 
   function expCyanCounts(i) {
-    let expCyanData = datasets[32];
+    let expCyanData = datasets[33];
     for (let i = 0; i < expCyanData.length; i++) {
       dateReformat = expCyanData[i].date.split("-");
       year = dateReformat[0];
@@ -387,19 +412,10 @@ Promise.all([
       reformattedDate = month + "/" + day + "/" + year;
       var USTd = new Date(reformattedDate)
       expCyanDate.push(USTd.setHours(USTd.getHours() + 8));
-      logCICells.push(expCyanData[i].log_CI_cells_mL);
-      expCyanBloom.push(expCyanData[i].bloom);
+      logCICells.push(expCyanData[i].prob_exp);
+      // expCyanBloom.push(expCyanData[i].bloom);
     };
-    // let dates2022Data = datasets[32];
-    // for (let i = 0; i < dates2022Data.length; i++) {
-    //   dateReformat = dates2022Data[i].dates.split("/");
-    //   year = dateReformat[2];
-    //   month = dateReformat[0];
-    //   day = dateReformat[1];
-    //   reformattedDate = month + "/" + day + "/" + year;
-    //   var USTd = new Date(reformattedDate)
-    //   dateArray2022.push(USTd.setHours(USTd.getHours() + 8));
-    // };
+
   };
   expCyanCounts(expCyanVars);
   // Nowcast data
@@ -573,18 +589,18 @@ Promise.all([
       yearWeather = yearConversion.getFullYear();
       switch (yearWeather) {
         case 2022:
-        weatherData2022pcMean.push(weatherData[i].Precip_mean);
-        if (weatherData[i].Precip_cumsum == "") {
-          weatherData2022pcSum.push("null");
-        } else {
-          weatherData2022pcSum.push(weatherData[i].Precip_cumsum);
-        };
-        weatherData2022atempMean.push(weatherData[i].Air_Temp_mean);
-        if (weatherData[i].Air_Temp_cumsum == "") {
-          weatherData2022atempSum.push("null");
-        } else {
-          weatherData2022atempSum.push(weatherData[i].Air_Temp_cumsum);
-        };
+          weatherData2022pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_cumsum == "") {
+            weatherData2022pcSum.push("null");
+          } else {
+            weatherData2022pcSum.push(weatherData[i].Precip_cumsum);
+          };
+          weatherData2022atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_cumsum == "") {
+            weatherData2022atempSum.push("null");
+          } else {
+            weatherData2022atempSum.push(weatherData[i].Air_Temp_cumsum);
+          };
           break;
         case 2021:
           weatherData2021pcMean.push(weatherData[i].Precip_mean);
@@ -601,116 +617,116 @@ Promise.all([
           };
           break;
         case 2020:
-        weatherData2020pcMean.push(weatherData[i].Precip_mean);
-        if (weatherData[i].Precip_cumsum == "") {
-          weatherData2020pcSum.push("null");
-        } else {
-          weatherData2020pcSum.push(weatherData[i].Precip_cumsum);
-        };
-        weatherData2020atempMean.push(weatherData[i].Air_Temp_mean);
-        if (weatherData[i].Air_Temp_cumsum == "") {
-          weatherData2020atempSum.push("null");
-        } else {
-          weatherData2020atempSum.push(weatherData[i].Air_Temp_cumsum);
-        };
+          weatherData2020pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_cumsum == "") {
+            weatherData2020pcSum.push("null");
+          } else {
+            weatherData2020pcSum.push(weatherData[i].Precip_cumsum);
+          };
+          weatherData2020atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_cumsum == "") {
+            weatherData2020atempSum.push("null");
+          } else {
+            weatherData2020atempSum.push(weatherData[i].Air_Temp_cumsum);
+          };
           break;
         case 2019:
-        weatherData2019pcMean.push(weatherData[i].Precip_mean);
-        if (weatherData[i].Precip_cumsum == "") {
-          weatherData2019pcSum.push("null");
-        } else {
-          weatherData2019pcSum.push(weatherData[i].Precip_cumsum);
-        };
-        weatherData2019atempMean.push(weatherData[i].Air_Temp_mean);
-        if (weatherData[i].Air_Temp_cumsum == "") {
-          weatherData2019atempSum.push("null");
-        } else {
-          weatherData2019atempSum.push(weatherData[i].Air_Temp_cumsum);
-        };
+          weatherData2019pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_cumsum == "") {
+            weatherData2019pcSum.push("null");
+          } else {
+            weatherData2019pcSum.push(weatherData[i].Precip_cumsum);
+          };
+          weatherData2019atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_cumsum == "") {
+            weatherData2019atempSum.push("null");
+          } else {
+            weatherData2019atempSum.push(weatherData[i].Air_Temp_cumsum);
+          };
           break;
         case 2018:
-        weatherData2018pcMean.push(weatherData[i].Precip_mean);
-        if (weatherData[i].Precip_cumsum == "") {
-          weatherData2018pcSum.push("null");
-        } else {
-          weatherData2018pcSum.push(weatherData[i].Precip_cumsum);
-        };
-        weatherData2018atempMean.push(weatherData[i].Air_Temp_mean);
-        if (weatherData[i].Air_Temp_cumsum == "") {
-          weatherData2018atempSum.push("null");
-        } else {
-          weatherData2018atempSum.push(weatherData[i].Air_Temp_cumsum);
-        };
+          weatherData2018pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_cumsum == "") {
+            weatherData2018pcSum.push("null");
+          } else {
+            weatherData2018pcSum.push(weatherData[i].Precip_cumsum);
+          };
+          weatherData2018atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_cumsum == "") {
+            weatherData2018atempSum.push("null");
+          } else {
+            weatherData2018atempSum.push(weatherData[i].Air_Temp_cumsum);
+          };
           break;
         case 2017:
-        weatherData2017pcMean.push(weatherData[i].Precip_mean);
-        if (weatherData[i].Precip_cumsum == "") {
-          weatherData2017pcSum.push("null");
-        } else {
-          weatherData2017pcSum.push(weatherData[i].Precip_cumsum);
-        };
-        weatherData2017atempMean.push(weatherData[i].Air_Temp_mean);
-        if (weatherData[i].Air_Temp_cumsum == "") {
-          weatherData2017atempSum.push("null");
-        } else {
-          weatherData2017atempSum.push(weatherData[i].Air_Temp_cumsum);
-        };
+          weatherData2017pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_cumsum == "") {
+            weatherData2017pcSum.push("null");
+          } else {
+            weatherData2017pcSum.push(weatherData[i].Precip_cumsum);
+          };
+          weatherData2017atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_cumsum == "") {
+            weatherData2017atempSum.push("null");
+          } else {
+            weatherData2017atempSum.push(weatherData[i].Air_Temp_cumsum);
+          };
           break;
         case 2016:
-        weatherData2016pcMean.push(weatherData[i].Precip_mean);
-        if (weatherData[i].Precip_cumsum == "") {
-          weatherData2016pcSum.push("null");
-        } else {
-          weatherData2016pcSum.push(weatherData[i].Precip_cumsum);
-        };
-        weatherData2016atempMean.push(weatherData[i].Air_Temp_mean);
-        if (weatherData[i].Air_Temp_cumsum == "") {
-          weatherData2016atempSum.push("null");
-        } else {
-          weatherData2016atempSum.push(weatherData[i].Air_Temp_cumsum);
-        };
+          weatherData2016pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_cumsum == "") {
+            weatherData2016pcSum.push("null");
+          } else {
+            weatherData2016pcSum.push(weatherData[i].Precip_cumsum);
+          };
+          weatherData2016atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_cumsum == "") {
+            weatherData2016atempSum.push("null");
+          } else {
+            weatherData2016atempSum.push(weatherData[i].Air_Temp_cumsum);
+          };
           break;
         case 2015:
-        weatherData2015pcMean.push(weatherData[i].Precip_mean);
-        if (weatherData[i].Precip_cumsum == "") {
-          weatherData2015pcSum.push("null");
-        } else {
-          weatherData2015pcSum.push(weatherData[i].Precip_cumsum);
-        };
-        weatherData2015atempMean.push(weatherData[i].Air_Temp_mean);
-        if (weatherData[i].Air_Temp_cumsum == "") {
-          weatherData2015atempSum.push("null");
-        } else {
-          weatherData2015atempSum.push(weatherData[i].Air_Temp_cumsum);
-        };
+          weatherData2015pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_cumsum == "") {
+            weatherData2015pcSum.push("null");
+          } else {
+            weatherData2015pcSum.push(weatherData[i].Precip_cumsum);
+          };
+          weatherData2015atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_cumsum == "") {
+            weatherData2015atempSum.push("null");
+          } else {
+            weatherData2015atempSum.push(weatherData[i].Air_Temp_cumsum);
+          };
           break;
         case 2014:
-        weatherData2014pcMean.push(weatherData[i].Precip_mean);
-        if (weatherData[i].Precip_cumsum == "") {
-          weatherData2014pcSum.push("null");
-        } else {
-          weatherData2014pcSum.push(weatherData[i].Precip_cumsum);
-        };
-        weatherData2014atempMean.push(weatherData[i].Air_Temp_mean);
-        if (weatherData[i].Air_Temp_cumsum == "") {
-          weatherData2014atempSum.push("null");
-        } else {
-          weatherData2014atempSum.push(weatherData[i].Air_Temp_cumsum);
-        };
+          weatherData2014pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_cumsum == "") {
+            weatherData2014pcSum.push("null");
+          } else {
+            weatherData2014pcSum.push(weatherData[i].Precip_cumsum);
+          };
+          weatherData2014atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_cumsum == "") {
+            weatherData2014atempSum.push("null");
+          } else {
+            weatherData2014atempSum.push(weatherData[i].Air_Temp_cumsum);
+          };
           break;
         case 2013:
-        weatherData2013pcMean.push(weatherData[i].Precip_mean);
-        if (weatherData[i].Precip_cumsum == "") {
-          weatherData2013pcSum.push("null");
-        } else {
-          weatherData2013pcSum.push(weatherData[i].Precip_cumsum);
-        };
-        weatherData2013atempMean.push(weatherData[i].Air_Temp_mean);
-        if (weatherData[i].Air_Temp_cumsum == "") {
-          weatherData2013atempSum.push("null");
-        } else {
-          weatherData2013atempSum.push(weatherData[i].Air_Temp_cumsum);
-        };
+          weatherData2013pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_cumsum == "") {
+            weatherData2013pcSum.push("null");
+          } else {
+            weatherData2013pcSum.push(weatherData[i].Precip_cumsum);
+          };
+          weatherData2013atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_cumsum == "") {
+            weatherData2013atempSum.push("null");
+          } else {
+            weatherData2013atempSum.push(weatherData[i].Air_Temp_cumsum);
+          };
           break;
         case 2012:
           var USTd = new Date(yearConversion)
@@ -2933,7 +2949,7 @@ Promise.all([
     data: {
       x: "Date",
       columns: [
-        t, gage1.wtM2022, gage1.wtM2021,gage1.wtM2020
+        t, gage1.wtM2022, gage1.wtM2021, gage1.wtM2020
       ],
       onclick: function(d, i) {
         console.log("onclick", d, i);
@@ -2968,7 +2984,7 @@ Promise.all([
     },
     axis: {
       x: {
-        extent :[5,10],
+        extent: [5, 10],
         type: "timeseries",
         tick: {
           format: "%b %d",
@@ -2982,7 +2998,7 @@ Promise.all([
       // rescale: true,+
       enabled: true,
       type: "scroll",
-      extent: [1580832000000,1603724400000],
+      extent: [1580832000000, 1603724400000],
       onzoom: function(d) {
         chart2.zoom(chart.zoom());
         h20SumChart.zoom(chart.zoom());
@@ -3415,7 +3431,7 @@ Promise.all([
     },
     data: {
       x: "Date",
-      columns: [wst2016, sampleLoc1.a2019, sampleLoc1.a2018 , sampleLoc1.a2017],
+      columns: [wst2016, sampleLoc1.a2019, sampleLoc1.a2018, sampleLoc1.a2017],
       type: 'scatter',
     },
     color: {
@@ -4103,8 +4119,8 @@ Promise.all([
     data: {
       x: "Date",
       columns: [
-        expCyanDate,
         bloom_p,
+        expCyanDate,
         nctCurrentDate,
         logCICells,
       ],
@@ -4114,7 +4130,7 @@ Promise.all([
       },
       names: {
         Probability_of_bloom: 'Probability of bloom',
-        Log_CI_Cells_mL: 'Log CI Cells (mL)'
+        Log_CI_Cells_mL: '2-week rolling long-run mean probability of bloom'
       },
       type: 'spline',
       types: {
@@ -4123,7 +4139,6 @@ Promise.all([
       colors: {
         Log_CI_Cells_mL: '#de2d26',
       },
-
       // Onclick function for CyAN line chart
       onclick: function(d, i) {
         console.log("onclick", d, i);
@@ -4139,10 +4154,7 @@ Promise.all([
             }
           }
           $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").text(100 * model_accuracy[d.index] + "% Observed Bloom area");
-
-
           var USTdDonut = new Date(d.x);
-
           var monthDonut = USTdDonut.getMonth();
           var dayDonut = USTdDonut.getDate();
           var yearDonut = USTdDonut.getFullYear();
@@ -4178,7 +4190,8 @@ Promise.all([
     // },
     padding: {
       top: padTop,
-      right: 75,
+      right: 80,
+      left: 80,
     },
     bar: {
       width: {
@@ -4198,7 +4211,7 @@ Promise.all([
       },
       y: {
         label: {
-          text: 'Average CyAN Risk Index',
+          text: 'Previous forecast for the year',
           position: 'outer-middle'
         },
         padding: {
@@ -4216,14 +4229,20 @@ Promise.all([
       y2: {
         show: true,
         label: {
-          text: 'Log CI Cells (mL)',
+          text: '2-week rolling long-run mean probability of bloom',
           position: 'outer-middle'
         },
-        tick: {
-          format: d3.format(".3"),
-          count: 5,
-          // values: [.25,.50,.75,1]
+        padding: {
+          bottom: 0
         },
+        type: 'linear',
+        tick: {
+          format: d3.format(".2%"),
+          count: 5,
+          values: [.25, .50, .75, 1]
+        },
+        max: 1,
+        min: 0,
       },
     },
     point: {
@@ -7253,12 +7272,12 @@ Promise.all([
   });
 
   $("#CHARadio").on("click", function() {
-    mymap.removeLayer(hexCyanLayer);
-    mymap.addLayer(hexLayer);
+    $("#CyANDatePicker").hide();
+    $("#CHLANDatePicker").show();
   });
   $("#CYANRadio").on("click", function() {
-    mymap.removeLayer(hexLayer);
-    // mymap.addLayer(hexCyanLayer);
+    $("#CyANDatePicker").show();
+    $("#CHLANDatePicker").hide();
   });
 });
 
@@ -7303,6 +7322,23 @@ triggerTabList.forEach(function(triggerEl) {
   })
 })
 
+var triggerTabList = [].slice.call(document.querySelectorAll('#mean-tab'))
+triggerTabList.forEach(function(triggerEl) {
+  var tabTrigger = new bootstrap.Tab(triggerEl)
+  triggerEl.addEventListener('click', function(event) {
+    event.preventDefault()
+    tabTrigger.show()
+  })
+})
+var triggerTabList = [].slice.call(document.querySelectorAll('#cumSum-tab'))
+triggerTabList.forEach(function(triggerEl) {
+  var tabTrigger = new bootstrap.Tab(triggerEl)
+  triggerEl.addEventListener('click', function(event) {
+    event.preventDefault()
+    tabTrigger.show()
+  })
+})
+
 // Open sidebar
 function openNav() {
   $("#info").show();
@@ -7328,6 +7364,9 @@ $("#sat-button").on("click", function() {
 });
 $("#sat-button").hide();
 $("#openBar").hide();
+$("#CyANDatePicker").hide();
+
+
 
 // Todays Date
 var today = new Date();
