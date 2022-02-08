@@ -482,55 +482,99 @@ Promise.all([
   weatherData2022pcSum = ["2022"];
   weatherData2022atempMean = ["2022"];
   weatherData2022atempSum = ["2022"];
+  weatherData2022surfMean = ["2022"];
+  weatherData2022surfSum = ["2022"];
+  weatherData2022windMean = ["2022"];
+  weatherData2022windSum = ["2022"];
   weatherData2021pcMean = ["2021"];
   weatherData2021pcSum = ["2021"];
   weatherData2021atempMean = ["2021"];
   weatherData2021atempSum = ["2021"];
+  weatherData2021surfMean = ["2021"];
+  weatherData2021surfSum = ["2021"];
+  weatherData2021windMean = ["2021"];
+  weatherData2021windSum = ["2021"];
   weatherData2020 = [];
   weatherData2020pcMean = ["2020"];
   weatherData2020pcSum = ["2020"];
   weatherData2020atempMean = ["2020"];
   weatherData2020atempSum = ["2020"];
+  weatherData2020surfMean = ["2020"];
+  weatherData2020surfSum = ["2020"];
+  weatherData2020windMean = ["2020"];
+  weatherData2020windSum = ["2020"];
   weatherData2019 = [];
   weatherData2019pcMean = ["2019"];
   weatherData2019pcSum = ["2019"];
   weatherData2019atempMean = ["2019"];
   weatherData2019atempSum = ["2019"];
+  weatherData2019surfMean = ["2019"];
+  weatherData2019surfSum = ["2019"];
+  weatherData2019windMean = ["2019"];
+  weatherData2019windSum = ["2019"];
   weatherData2018 = [];
   weatherData2018pcMean = ["2018"];
   weatherData2018pcSum = ["2018"];
   weatherData2018atempMean = ["2018"];
   weatherData2018atempSum = ["2018"];
+  weatherData2018surfMean = ["2018"];
+  weatherData2018surfSum = ["2018"];
+  weatherData2018windMean = ["2018"];
+  weatherData2018windSum = ["2018"];
   weatherData2017 = [];
   weatherData2017pcMean = ["2017"];
   weatherData2017pcSum = ["2017"];
   weatherData2017atempMean = ["2017"];
   weatherData2017atempSum = ["2017"];
+  weatherData2017surfMean = ["2017"];
+  weatherData2017surfSum = ["2017"];
+  weatherData2017windMean = ["2017"];
+  weatherData2017windSum = ["2017"];
   weatherData2016 = [];
   weatherData2016pcMean = ["2016"];
   weatherData2016pcSum = ["2016"];
   weatherData2016atempMean = ["2016"];
   weatherData2016atempSum = ["2016"];
+  weatherData2016surfMean = ["2016"];
+  weatherData2016surfSum = ["2016"];
+  weatherData2016windMean = ["2016"];
+  weatherData2016windSum = ["2016"];
   weatherData2015 = [];
   weatherData2015pcMean = ["2015"];
   weatherData2015pcSum = ["2015"];
   weatherData2015atempMean = ["2015"];
   weatherData2015atempSum = ["2015"];
+  weatherData2015surfMean = ["2015"];
+  weatherData2015surfSum = ["2015"];
+  weatherData2015windMean = ["2015"];
+  weatherData2015windSum = ["2015"];
   weatherData2014 = [];
   weatherData2014pcMean = ["2014"];
   weatherData2014pcSum = ["2014"];
   weatherData2014atempMean = ["2014"];
   weatherData2014atempSum = ["2014"];
+  weatherData2014surfMean = ["2014"];
+  weatherData2014surfSum = ["2014"];
+  weatherData2014windMean = ["2014"];
+  weatherData2014windSum = ["2014"];
   weatherData2013 = [];
   weatherData2013pcMean = ["2013"];
   weatherData2013pcSum = ["2013"];
   weatherData2013atempMean = ["2013"];
   weatherData2013atempSum = ["2013"];
+  weatherData2013surfMean = ["2013"];
+  weatherData2013surfSum = ["2013"];
+  weatherData2013windMean = ["2013"];
+  weatherData2013windSum = ["2013"];
   weatherData2012 = [];
   weatherData2012pcMean = ["2012"];
   weatherData2012pcSum = ["2012"];
   weatherData2012atempMean = ["2012"];
   weatherData2012atempSum = ["2012"];
+  weatherData2012surfMean = ["2012"];
+  weatherData2012surfSum = ["2012"];
+  weatherData2012windMean = ["2012"];
+  weatherData2012windSum = ["2012"];
 
 
 
@@ -540,208 +584,564 @@ Promise.all([
     pcS2022: weatherData2022pcSum,
     atempM2022: weatherData2022atempMean,
     atempS2022: weatherData2022atempSum,
+    surfM2022: weatherData2022surfMean,
+    surfS2022: weatherData2022surfSum,
+    windM2022: weatherData2022windMean,
+    windS2022: weatherData2022windSum,
     pcM2021: weatherData2021pcMean,
     pcS2021: weatherData2021pcSum,
     atempM2021: weatherData2021atempMean,
     atempS2021: weatherData2021atempSum,
+    surfM2021: weatherData2021surfMean,
+    surfS2021: weatherData2021surfSum,
+    windM2021: weatherData2021windMean,
+    windS2021: weatherData2021windSum,
     pcM2020: weatherData2020pcMean,
     pcS2020: weatherData2020pcSum,
     atempM2020: weatherData2020atempMean,
     atempS2020: weatherData2020atempSum,
+    surfM2020: weatherData2020surfMean,
+    surfS2020: weatherData2020surfSum,
+    windM2020: weatherData2020windMean,
+    windS2020: weatherData2020windSum,
     pcM2019: weatherData2019pcMean,
     pcS2019: weatherData2019pcSum,
     atempM2019: weatherData2019atempMean,
     atempS2019: weatherData2019atempSum,
+    surfM2019: weatherData2019surfMean,
+    surfS2019: weatherData2019surfSum,
+    windM2019: weatherData2019windMean,
+    windS2019: weatherData2019windSum,
     pcM2018: weatherData2018pcMean,
     pcS2018: weatherData2018pcSum,
     atempM2018: weatherData2018atempMean,
     atempS2018: weatherData2018atempSum,
+    surfM2018: weatherData2018surfMean,
+    surfS2018: weatherData2018surfSum,
+    windM2018: weatherData2018windMean,
+    windS2018: weatherData2018windSum,
     pcM2017: weatherData2017pcMean,
     pcS2017: weatherData2017pcSum,
     atempM2017: weatherData2017atempMean,
     atempS2017: weatherData2017atempSum,
+    surfM2017: weatherData2017surfMean,
+    surfS2017: weatherData2017surfSum,
+    windM2017: weatherData2017windMean,
+    windS2017: weatherData2017windSum,
     pcM2016: weatherData2016pcMean,
     pcS2016: weatherData2016pcSum,
     atempM2016: weatherData2016atempMean,
     atempS2016: weatherData2016atempSum,
+    surfM2016: weatherData2016surfMean,
+    surfS2016: weatherData2016surfSum,
+    windM2016: weatherData2016windMean,
+    windS2016: weatherData2016windSum,
     pcM2015: weatherData2015pcMean,
     pcS2015: weatherData2015pcSum,
     atempM2015: weatherData2015atempMean,
     atempS2015: weatherData2015atempSum,
+    surfM2015: weatherData2015surfMean,
+    surfS2015: weatherData2015surfSum,
+    windM2015: weatherData2015windMean,
+    windS2015: weatherData2015windSum,
     pcM2014: weatherData2014pcMean,
     pcS2014: weatherData2014pcSum,
     atempM2014: weatherData2014atempMean,
     atempS2014: weatherData2014atempSum,
+    surfM2014: weatherData2014surfMean,
+    surfS2014: weatherData2014surfSum,
+    windM2014: weatherData2014windMean,
+    windS2014: weatherData2014windSum,
     pcM2013: weatherData2013pcMean,
     pcS2013: weatherData2013pcSum,
     atempM2013: weatherData2013atempMean,
     atempS2013: weatherData2013atempSum,
+    surfM2013: weatherData2013surfMean,
+    surfS2013: weatherData2013surfSum,
+    windM2013: weatherData2013windMean,
+    windS2013: weatherData2013windSum,
     pcM2012: weatherData2012pcMean,
     pcS2012: weatherData2012pcSum,
     atempM2012: weatherData2012atempMean,
     atempS2012: weatherData2012atempSum,
+    surfM2012: weatherData2012surfMean,
+    surfS2012: weatherData2012surfSum,
+    windM2012: weatherData2012windMean,
+    windS2012: weatherData2012windSum,
   }
 
   function varsCounts(i) {
     let weatherData = datasets[27];
     for (let i = 0; i < weatherData.length; i++) {
-      yearConversion = new Date(weatherData[i].date);
-      yearWeather = yearConversion.getFullYear();
+      weatherDate = new Date(weatherData[i].date);
+      yearConversion = weatherDate.setHours(weatherDate.getHours() + 8);
+      yearWeather = weatherDate.getFullYear();
+
+      // dateGage1Reformat = streamGageData[i].date.split("-");
+      // yearGage1 = dateGage1Reformat[0];
       switch (yearWeather) {
         case 2022:
-          weatherData2022pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_mean == "") {
+            weatherData2022pcMean.push("null");
+          } else {
+            weatherData2022pcMean.push(weatherData[i].Precip_mean);
+          };
           if (weatherData[i].Precip_cumsum == "") {
             weatherData2022pcSum.push("null");
           } else {
             weatherData2022pcSum.push(weatherData[i].Precip_cumsum);
           };
-          weatherData2022atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_mean == "") {
+            weatherData2022atempMean.push("null");
+          } else {
+            weatherData2022atempMean.push(weatherData[i].Air_Temp_mean);
+          };
           if (weatherData[i].Air_Temp_cumsum == "") {
             weatherData2022atempSum.push("null");
           } else {
             weatherData2022atempSum.push(weatherData[i].Air_Temp_cumsum);
           };
+          if (weatherData[i].Surf_Radiation_mean == "") {
+            weatherData2022surfMean.push("null");
+          } else {
+            weatherData2022surfMean.push(weatherData[i].Surf_Radiation_mean);
+          };
+          if (weatherData[i].Surf_Radiation_cumsum == "") {
+            weatherData2022surfSum.push("null");
+          } else {
+            weatherData2022surfSum.push(weatherData[i].Surf_Radiation_cumsum);
+          };
+          if (weatherData[i].Wind_Velocity_mean == "") {
+            weatherData2022windMean.push("null");
+          } else {
+            weatherData2022windMean.push(weatherData[i].Wind_Velocity_mean);
+          };
+          if (weatherData[i].Wind_Velocity_cumsum == "") {
+            weatherData2022windSum.push("null");
+          } else {
+            weatherData2022windSum.push(weatherData[i].Wind_Velocity_cumsum);
+          };
           break;
         case 2021:
-          weatherData2021pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_mean == "") {
+            weatherData2021pcMean.push("null");
+          } else {
+            weatherData2021pcMean.push(weatherData[i].Precip_mean);
+          };
           if (weatherData[i].Precip_cumsum == "") {
             weatherData2021pcSum.push("null");
           } else {
             weatherData2021pcSum.push(weatherData[i].Precip_cumsum);
           };
-          weatherData2021atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_mean == "") {
+            weatherData2021atempMean.push("null");
+          } else {
+            weatherData2021atempMean.push(weatherData[i].Air_Temp_mean);
+          };
           if (weatherData[i].Air_Temp_cumsum == "") {
             weatherData2021atempSum.push("null");
           } else {
             weatherData2021atempSum.push(weatherData[i].Air_Temp_cumsum);
           };
+          if (weatherData[i].Surf_Radiation_mean == "") {
+            weatherData2021surfMean.push("null");
+          } else {
+            weatherData2021surfMean.push(weatherData[i].Surf_Radiation_mean);
+          };
+          if (weatherData[i].Surf_Radiation_cumsum == "") {
+            weatherData2021surfSum.push("null");
+          } else {
+            weatherData2021surfSum.push(weatherData[i].Surf_Radiation_cumsum);
+          };
+          if (weatherData[i].Wind_Velocity_mean == "") {
+            weatherData2021windMean.push("null");
+          } else {
+            weatherData2021windMean.push(weatherData[i].Wind_Velocity_mean);
+          };
+          if (weatherData[i].Wind_Velocity_cumsum == "") {
+            weatherData2021windSum.push("null");
+          } else {
+            weatherData2021windSum.push(weatherData[i].Wind_Velocity_cumsum);
+          };
           break;
         case 2020:
-          weatherData2020pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_mean == "") {
+            weatherData2020pcMean.push("null");
+          } else {
+            weatherData2020pcMean.push(weatherData[i].Precip_mean);
+          };
           if (weatherData[i].Precip_cumsum == "") {
             weatherData2020pcSum.push("null");
           } else {
             weatherData2020pcSum.push(weatherData[i].Precip_cumsum);
           };
-          weatherData2020atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_mean == "") {
+            weatherData2020atempMean.push("null");
+          } else {
+            weatherData2020atempMean.push(weatherData[i].Air_Temp_mean);
+          };
           if (weatherData[i].Air_Temp_cumsum == "") {
             weatherData2020atempSum.push("null");
           } else {
             weatherData2020atempSum.push(weatherData[i].Air_Temp_cumsum);
           };
+          if (weatherData[i].Surf_Radiation_mean == "") {
+            weatherData2020surfMean.push("null");
+          } else {
+            weatherData2020surfMean.push(weatherData[i].Surf_Radiation_mean);
+          };
+          if (weatherData[i].Surf_Radiation_cumsum == "") {
+            weatherData2020surfSum.push("null");
+          } else {
+            weatherData2020surfSum.push(weatherData[i].Surf_Radiation_cumsum);
+          };
+          if (weatherData[i].Wind_Velocity_mean == "") {
+            weatherData2020windMean.push("null");
+          } else {
+            weatherData2020windMean.push(weatherData[i].Wind_Velocity_mean);
+          };
+          if (weatherData[i].Wind_Velocity_cumsum == "") {
+            weatherData2020windSum.push("null");
+          } else {
+            weatherData2020windSum.push(weatherData[i].Wind_Velocity_cumsum);
+          };
           break;
         case 2019:
-          weatherData2019pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_mean == "") {
+            weatherData2019pcMean.push("null");
+          } else {
+            weatherData2019pcMean.push(weatherData[i].Precip_mean);
+          };
           if (weatherData[i].Precip_cumsum == "") {
             weatherData2019pcSum.push("null");
           } else {
             weatherData2019pcSum.push(weatherData[i].Precip_cumsum);
           };
-          weatherData2019atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_mean == "") {
+            weatherData2019atempMean.push("null");
+          } else {
+            weatherData2019atempMean.push(weatherData[i].Air_Temp_mean);
+          };
           if (weatherData[i].Air_Temp_cumsum == "") {
             weatherData2019atempSum.push("null");
           } else {
             weatherData2019atempSum.push(weatherData[i].Air_Temp_cumsum);
           };
+          if (weatherData[i].Surf_Radiation_mean == "") {
+            weatherData2019surfMean.push("null");
+          } else {
+            weatherData2019surfMean.push(weatherData[i].Surf_Radiation_mean);
+          };
+          if (weatherData[i].Surf_Radiation_cumsum == "") {
+            weatherData2019surfSum.push("null");
+          } else {
+            weatherData2019surfSum.push(weatherData[i].Surf_Radiation_cumsum);
+          };
+          if (weatherData[i].Wind_Velocity_mean == "") {
+            weatherData2019windMean.push("null");
+          } else {
+            weatherData2019windMean.push(weatherData[i].Wind_Velocity_mean);
+          };
+          if (weatherData[i].Wind_Velocity_cumsum == "") {
+            weatherData2019windSum.push("null");
+          } else {
+            weatherData2019windSum.push(weatherData[i].Wind_Velocity_cumsum);
+          };
           break;
         case 2018:
-          weatherData2018pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_mean == "") {
+            weatherData2018pcMean.push("null");
+          } else {
+            weatherData2018pcMean.push(weatherData[i].Precip_mean);
+          };
           if (weatherData[i].Precip_cumsum == "") {
             weatherData2018pcSum.push("null");
           } else {
             weatherData2018pcSum.push(weatherData[i].Precip_cumsum);
           };
-          weatherData2018atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_mean == "") {
+            weatherData2018atempMean.push("null");
+          } else {
+            weatherData2018atempMean.push(weatherData[i].Air_Temp_mean);
+          };
           if (weatherData[i].Air_Temp_cumsum == "") {
             weatherData2018atempSum.push("null");
           } else {
             weatherData2018atempSum.push(weatherData[i].Air_Temp_cumsum);
           };
+          if (weatherData[i].Surf_Radiation_mean == "") {
+            weatherData2018surfMean.push("null");
+          } else {
+            weatherData2018surfMean.push(weatherData[i].Surf_Radiation_mean);
+          };
+          if (weatherData[i].Surf_Radiation_cumsum == "") {
+            weatherData2018surfSum.push("null");
+          } else {
+            weatherData2018surfSum.push(weatherData[i].Surf_Radiation_cumsum);
+          };
+          if (weatherData[i].Wind_Velocity_mean == "") {
+            weatherData2018windMean.push("null");
+          } else {
+            weatherData2018windMean.push(weatherData[i].Wind_Velocity_mean);
+          };
+          if (weatherData[i].Wind_Velocity_cumsum == "") {
+            weatherData2018windSum.push("null");
+          } else {
+            weatherData2018windSum.push(weatherData[i].Wind_Velocity_cumsum);
+          };
           break;
         case 2017:
-          weatherData2017pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_mean == "") {
+            weatherData2017pcMean.push("null");
+          } else {
+            weatherData2017pcMean.push(weatherData[i].Precip_mean);
+          };
           if (weatherData[i].Precip_cumsum == "") {
             weatherData2017pcSum.push("null");
           } else {
             weatherData2017pcSum.push(weatherData[i].Precip_cumsum);
           };
-          weatherData2017atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_mean == "") {
+            weatherData2017atempMean.push("null");
+          } else {
+            weatherData2017atempMean.push(weatherData[i].Air_Temp_mean);
+          };
           if (weatherData[i].Air_Temp_cumsum == "") {
             weatherData2017atempSum.push("null");
           } else {
             weatherData2017atempSum.push(weatherData[i].Air_Temp_cumsum);
           };
+          if (weatherData[i].Surf_Radiation_mean == "") {
+            weatherData2017surfMean.push("null");
+          } else {
+            weatherData2017surfMean.push(weatherData[i].Surf_Radiation_mean);
+          };
+          if (weatherData[i].Surf_Radiation_cumsum == "") {
+            weatherData2017surfSum.push("null");
+          } else {
+            weatherData2017surfSum.push(weatherData[i].Surf_Radiation_cumsum);
+          };
+          if (weatherData[i].Wind_Velocity_mean == "") {
+            weatherData2017windMean.push("null");
+          } else {
+            weatherData2017windMean.push(weatherData[i].Wind_Velocity_mean);
+          };
+          if (weatherData[i].Wind_Velocity_cumsum == "") {
+            weatherData2017windSum.push("null");
+          } else {
+            weatherData2017windSum.push(weatherData[i].Wind_Velocity_cumsum);
+          };
           break;
         case 2016:
-          weatherData2016pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_mean == "") {
+            weatherData2016pcMean.push("null");
+          } else {
+            weatherData2016pcMean.push(weatherData[i].Precip_mean);
+          };
           if (weatherData[i].Precip_cumsum == "") {
             weatherData2016pcSum.push("null");
           } else {
             weatherData2016pcSum.push(weatherData[i].Precip_cumsum);
           };
-          weatherData2016atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_mean == "") {
+            weatherData2016atempMean.push("null");
+          } else {
+            weatherData2016atempMean.push(weatherData[i].Air_Temp_mean);
+          };
           if (weatherData[i].Air_Temp_cumsum == "") {
             weatherData2016atempSum.push("null");
           } else {
             weatherData2016atempSum.push(weatherData[i].Air_Temp_cumsum);
           };
+          if (weatherData[i].Surf_Radiation_mean == "") {
+            weatherData2016surfMean.push("null");
+          } else {
+            weatherData2016surfMean.push(weatherData[i].Surf_Radiation_mean);
+          };
+          if (weatherData[i].Surf_Radiation_cumsum == "") {
+            weatherData2016surfSum.push("null");
+          } else {
+            weatherData2016surfSum.push(weatherData[i].Surf_Radiation_cumsum);
+          };
+          if (weatherData[i].Wind_Velocity_mean == "") {
+            weatherData2016windMean.push("null");
+          } else {
+            weatherData2016windMean.push(weatherData[i].Wind_Velocity_mean);
+          };
+          if (weatherData[i].Wind_Velocity_cumsum == "") {
+            weatherData2016windSum.push("null");
+          } else {
+            weatherData2016windSum.push(weatherData[i].Wind_Velocity_cumsum);
+          };
           break;
         case 2015:
-          weatherData2015pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_mean == "") {
+            weatherData2015pcMean.push("null");
+          } else {
+            weatherData2015pcMean.push(weatherData[i].Precip_mean);
+          };
           if (weatherData[i].Precip_cumsum == "") {
             weatherData2015pcSum.push("null");
           } else {
             weatherData2015pcSum.push(weatherData[i].Precip_cumsum);
           };
-          weatherData2015atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_mean == "") {
+            weatherData2015atempMean.push("null");
+          } else {
+            weatherData2015atempMean.push(weatherData[i].Air_Temp_mean);
+          };
           if (weatherData[i].Air_Temp_cumsum == "") {
             weatherData2015atempSum.push("null");
           } else {
             weatherData2015atempSum.push(weatherData[i].Air_Temp_cumsum);
           };
+          if (weatherData[i].Surf_Radiation_mean == "") {
+            weatherData2015surfMean.push("null");
+          } else {
+            weatherData2015surfMean.push(weatherData[i].Surf_Radiation_mean);
+          };
+          if (weatherData[i].Surf_Radiation_cumsum == "") {
+            weatherData2015surfSum.push("null");
+          } else {
+            weatherData2015surfSum.push(weatherData[i].Surf_Radiation_cumsum);
+          };
+          if (weatherData[i].Wind_Velocity_mean == "") {
+            weatherData2015windMean.push("null");
+          } else {
+            weatherData2015windMean.push(weatherData[i].Wind_Velocity_mean);
+          };
+          if (weatherData[i].Wind_Velocity_cumsum == "") {
+            weatherData2015windSum.push("null");
+          } else {
+            weatherData2015windSum.push(weatherData[i].Wind_Velocity_cumsum);
+          };
           break;
         case 2014:
-          weatherData2014pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_mean == "") {
+            weatherData2014pcMean.push("null");
+          } else {
+            weatherData2014pcMean.push(weatherData[i].Precip_mean);
+          };
           if (weatherData[i].Precip_cumsum == "") {
             weatherData2014pcSum.push("null");
           } else {
             weatherData2014pcSum.push(weatherData[i].Precip_cumsum);
           };
-          weatherData2014atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_mean == "") {
+            weatherData2014atempMean.push("null");
+          } else {
+            weatherData2014atempMean.push(weatherData[i].Air_Temp_mean);
+          };
           if (weatherData[i].Air_Temp_cumsum == "") {
             weatherData2014atempSum.push("null");
           } else {
             weatherData2014atempSum.push(weatherData[i].Air_Temp_cumsum);
           };
+          if (weatherData[i].Surf_Radiation_mean == "") {
+            weatherData2014surfMean.push("null");
+          } else {
+            weatherData2014surfMean.push(weatherData[i].Surf_Radiation_mean);
+          };
+          if (weatherData[i].Surf_Radiation_cumsum == "") {
+            weatherData2014surfSum.push("null");
+          } else {
+            weatherData2014surfSum.push(weatherData[i].Surf_Radiation_cumsum);
+          };
+          if (weatherData[i].Wind_Velocity_mean == "") {
+            weatherData2014windMean.push("null");
+          } else {
+            weatherData2014windMean.push(weatherData[i].Wind_Velocity_mean);
+          };
+          if (weatherData[i].Wind_Velocity_cumsum == "") {
+            weatherData2014windSum.push("null");
+          } else {
+            weatherData2014windSum.push(weatherData[i].Wind_Velocity_cumsum);
+          };
           break;
         case 2013:
-          weatherData2013pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_mean == "") {
+            weatherData2013pcMean.push("null");
+          } else {
+            weatherData2013pcMean.push(weatherData[i].Precip_mean);
+          };
           if (weatherData[i].Precip_cumsum == "") {
             weatherData2013pcSum.push("null");
           } else {
             weatherData2013pcSum.push(weatherData[i].Precip_cumsum);
           };
-          weatherData2013atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_mean == "") {
+            weatherData2013atempMean.push("null");
+          } else {
+            weatherData2013atempMean.push(weatherData[i].Air_Temp_mean);
+          };
           if (weatherData[i].Air_Temp_cumsum == "") {
             weatherData2013atempSum.push("null");
           } else {
             weatherData2013atempSum.push(weatherData[i].Air_Temp_cumsum);
           };
+          if (weatherData[i].Surf_Radiation_mean == "") {
+            weatherData2013surfMean.push("null");
+          } else {
+            weatherData2013surfMean.push(weatherData[i].Surf_Radiation_mean);
+          };
+          if (weatherData[i].Surf_Radiation_cumsum == "") {
+            weatherData2013surfSum.push("null");
+          } else {
+            weatherData2013surfSum.push(weatherData[i].Surf_Radiation_cumsum);
+          };
+          if (weatherData[i].Wind_Velocity_mean == "") {
+            weatherData2013windMean.push("null");
+          } else {
+            weatherData2013windMean.push(weatherData[i].Wind_Velocity_mean);
+          };
+          if (weatherData[i].Wind_Velocity_cumsum == "") {
+            weatherData2013windSum.push("null");
+          } else {
+            weatherData2013windSum.push(weatherData[i].Wind_Velocity_cumsum);
+          };
           break;
         case 2012:
           var USTd = new Date(yearConversion)
           wt.push(USTd.setHours(USTd.getHours() + 8));
-          weatherData2012pcMean.push(weatherData[i].Precip_mean);
+          if (weatherData[i].Precip_mean == "") {
+            weatherData2012pcMean.push("null");
+          } else {
+            weatherData2012pcMean.push(weatherData[i].Precip_mean);
+          };
           if (weatherData[i].Precip_cumsum == "") {
             weatherData2012pcSum.push("null");
           } else {
             weatherData2012pcSum.push(weatherData[i].Precip_cumsum);
           };
-          weatherData2012atempMean.push(weatherData[i].Air_Temp_mean);
+          if (weatherData[i].Air_Temp_mean == "") {
+            weatherData2012atempMean.push("null");
+          } else {
+            weatherData2012atempMean.push(weatherData[i].Air_Temp_mean);
+          };
           if (weatherData[i].Air_Temp_cumsum == "") {
             weatherData2012atempSum.push("null");
           } else {
             weatherData2012atempSum.push(weatherData[i].Air_Temp_cumsum);
+          };
+          if (weatherData[i].Surf_Radiation_mean == "") {
+            weatherData2012surfMean.push("null");
+          } else {
+            weatherData2012surfMean.push(weatherData[i].Surf_Radiation_mean);
+          };
+          if (weatherData[i].Surf_Radiation_cumsum == "") {
+            weatherData2012surfSum.push("null");
+          } else {
+            weatherData2012surfSum.push(weatherData[i].Surf_Radiation_cumsum);
+          };
+          if (weatherData[i].Wind_Velocity_mean == "") {
+            weatherData2012windMean.push("null");
+          } else {
+            weatherData2012windMean.push(weatherData[i].Wind_Velocity_mean);
+          };
+          if (weatherData[i].Wind_Velocity_cumsum == "") {
+            weatherData2012windSum.push("null");
+          } else {
+            weatherData2012windSum.push(weatherData[i].Wind_Velocity_cumsum);
           };
           break;
         default:
@@ -2940,6 +3340,7 @@ Promise.all([
   // Padding settings
   var padTop = 10;
   var padRight = 30;
+  var padLeft = 70;
   // Stream gage charts
   // stream gage subchart
   chart = c3.generate({
@@ -2980,7 +3381,7 @@ Promise.all([
     padding: {
       // bottom: 10,
       right: padRight,
-      // left: padSide,
+      left: padLeft,
     },
     axis: {
       x: {
@@ -3055,7 +3456,7 @@ Promise.all([
       // bottom: 10,
       top: padTop,
       right: padRight,
-      // left: padSide,
+      left: padLeft,
     },
     axis: {
       x: {
@@ -3132,7 +3533,7 @@ Promise.all([
     padding: {
       top: padTop,
       right: padRight,
-      // left: padSide,
+      left: padLeft,
     },
     axis: {
       x: {
@@ -3201,7 +3602,7 @@ Promise.all([
     padding: {
       top: padTop,
       right: padRight,
-      // left: padSide,
+      left: padLeft,
     },
     axis: {
       x: {
@@ -3270,7 +3671,7 @@ Promise.all([
     padding: {
       top: padTop,
       right: padRight,
-      // left: padSide,
+      left: padLeft,
     },
     axis: {
       x: {
@@ -3359,7 +3760,7 @@ Promise.all([
       // bottom: 10,
       top: padTop,
       right: padRight,
-      // left: padSide,
+      left: padLeft,
     },
     axis: {
       x: {
@@ -3456,7 +3857,7 @@ Promise.all([
       // bottom: 10,
       top: padTop,
       right: padRight,
-      // left: padSide,
+      left: padLeft,
     },
     axis: {
       x: {
@@ -3529,7 +3930,7 @@ Promise.all([
     padding: {
       top: padTop,
       right: padRight,
-      // left: padSide,
+      left: padLeft,
     },
     axis: {
       x: {
@@ -3596,7 +3997,7 @@ Promise.all([
     padding: {
       top: padTop,
       right: padRight,
-      // left: padSide,
+      left: padLeft,
     },
     axis: {
       x: {
@@ -3655,7 +4056,7 @@ Promise.all([
     },
     data: {
       x: "Date",
-      columns: [t, weatherVars.pcM2022, weatherVars.pcM2021, weatherVars.pcM2020],
+      columns: [wt, weatherVars.pcM2022, weatherVars.pcM2021, weatherVars.pcM2020],
       type: 'spline',
     },
     // color: {
@@ -3674,15 +4075,15 @@ Promise.all([
       onbrush: function(d) {
         precipChart.zoom(precipSubChart.zoom());
         aitTempChart.zoom(precipSubChart.zoom());
-        precipSumChart.zoom(precipSubChart.zoom());
-        aitTempSumChart.zoom(precipSubChart.zoom());
+        surfChart.zoom(precipSubChart.zoom());
+        windChart.zoom(precipSubChart.zoom());
       },
     },
 
     padding: {
       top: padTop,
       right: padRight,
-      // left: padSide,
+      left: padLeft,
     },
     axis: {
       x: {
@@ -3727,8 +4128,8 @@ Promise.all([
       onzoom: function(d) {
         precipChart.zoom(precipSubChart.zoom());
         aitTempChart.zoom(precipSubChart.zoom());
-        precipSumChart.zoom(precipSubChart.zoom());
-        aitTempSumChart.zoom(precipSubChart.zoom());
+        surfChart.zoom(precipSubChart.zoom());
+        windChart.zoom(precipSubChart.zoom());
       }
     },
     tooltip: {
@@ -3757,14 +4158,14 @@ Promise.all([
     },
     data: {
       x: "Date",
-      columns: [t, weatherVars.pcM2022, weatherVars.pcM2021, weatherVars.pcM2020],
+      columns: [wt, weatherVars.pcM2022, weatherVars.pcM2021, weatherVars.pcM2020],
       type: 'spline',
     },
 
     padding: {
       top: padTop,
       right: padRight,
-      // left: padSide,
+      left: padLeft,
     },
     axis: {
       x: {
@@ -3829,7 +4230,7 @@ Promise.all([
     },
     data: {
       x: "Date",
-      columns: [t, weatherVars.atempM2022, weatherVars.atempM2021, weatherVars.atempM2020],
+      columns: [wt, weatherVars.atempM2022, weatherVars.atempM2021, weatherVars.atempM2020],
       type: 'spline',
     },
     // color: {
@@ -3838,7 +4239,7 @@ Promise.all([
     padding: {
       top: padTop,
       right: padRight,
-      // left: padSide,
+      left: padLeft,
     },
     axis: {
       x: {
@@ -3892,13 +4293,14 @@ Promise.all([
     },
     bindto: "#airTemp-chart"
   });
-  precipSumChart = c3.generate({
+  // Surface downward shortwave radiation Chart
+  surfChart = c3.generate({
     size: {
       height: 220,
     },
     data: {
       x: "Date",
-      columns: [t, weatherVars.pcS2022, weatherVars.pcS2021, weatherVars.pcS2020],
+      columns: [wt, weatherVars.surfM2022, weatherVars.surfM2021, weatherVars.surfM2020],
       type: 'spline',
     },
     // color: {
@@ -3907,7 +4309,242 @@ Promise.all([
     padding: {
       top: padTop,
       right: padRight,
-      // left: padSide,
+      left: padLeft,
+    },
+    axis: {
+      x: {
+        type: "timeseries",
+        tick: {
+          format: "%b %d ",
+          centered: true,
+          fit: true,
+          count: 20
+        }
+      },
+      y: {
+        label: {
+          text: 'Surface downward shortwave radiation',
+          position: 'outer-middle'
+        },
+        min: 0,
+        padding: {
+          bottom: 0
+        },
+        type: 'linear',
+        tick: {
+          format: d3.format(".2s"),
+
+          count: 5,
+          // values: [0,5000,10000,15000]
+        }
+      }
+    },
+    point: {
+      r: 0,
+      focus: {
+        expand: {
+          r: 10
+        }
+      }
+    },
+    // zoom: {
+    //   enabled: {
+    //     type: "drag"
+    //   },
+    // },
+    tooltip: {
+      linked: true,
+    },
+    legend: {
+      show: false,
+    },
+    line: {
+      connectNull: true
+    },
+    bindto: "#surf-chart"
+  });
+  // wind velocity chart
+  windChart = c3.generate({
+    size: {
+      height: 220,
+    },
+    data: {
+      x: "Date",
+      columns: [wt, weatherVars.windM2022, weatherVars.windM2021, weatherVars.windM2020],
+      type: 'spline',
+    },
+    // color: {
+    //   pattern: [chartColor]
+    // },
+    padding: {
+      top: padTop,
+      right: padRight,
+      left: padLeft,
+    },
+    axis: {
+      x: {
+        type: "timeseries",
+        tick: {
+          format: "%b %d ",
+          centered: true,
+          fit: true,
+          count: 20
+        }
+      },
+      y: {
+        label: {
+          text: 'Wind velocity (m/s)',
+          position: 'outer-middle'
+        },
+        min: 0,
+        padding: {
+          bottom: 0
+        },
+        type: 'linear',
+        tick: {
+          format: d3.format(".2s"),
+
+          count: 5,
+          // values: [0,5000,10000,15000]
+        }
+      }
+    },
+    point: {
+      r: 0,
+      focus: {
+        expand: {
+          r: 10
+        }
+      }
+    },
+    // zoom: {
+    //   enabled: {
+    //     type: "drag"
+    //   },
+    // },
+    tooltip: {
+      linked: true,
+    },
+    legend: {
+      show: false,
+    },
+    line: {
+      connectNull: true
+    },
+    bindto: "#wind-chart"
+  });
+  precipSumSubChart = c3.generate({
+    size: {
+      height: 250,
+
+    },
+    data: {
+      x: "Date",
+      columns: [wt, weatherVars.pcS2022, weatherVars.pcS2021, weatherVars.pcS2020],
+      type: 'spline',
+    },
+    // color: {
+    //   pattern: [chartColor]
+    // },
+    subchart: {
+      show: true,
+      axis: {
+        x: {
+          show: false
+        }
+      },
+      size: {
+        height: 15
+      },
+      onbrush: function(d) {
+        precipSumChart.zoom(precipSumSubChart.zoom());
+        aitTempSumChart.zoom(precipSumSubChart.zoom());
+        surfSumChart.zoom(precipSumSubChart.zoom());
+        windSumChart.zoom(precipSumSubChart.zoom());
+      },
+    },
+
+    padding: {
+      top: padTop,
+      right: padRight,
+      left: padLeft,
+    },
+    axis: {
+      x: {
+        type: "timeseries",
+        tick: {
+          format: "%b %d",
+          centered: true,
+          fit: true,
+          count: 20
+        }
+      },
+      y: {
+        label: {
+          text: 'Avg. precipitation (mL)',
+          position: 'outer-middle'
+        },
+        min: 0,
+        padding: {
+          bottom: 0
+        },
+        type: 'linear',
+        tick: {
+          format: d3.format(".2s"),
+
+          count: 5,
+          // values: [0,5000,10000,15000]
+        }
+      }
+    },
+    point: {
+      r: 0,
+      focus: {
+        expand: {
+          r: 10
+        }
+      }
+    },
+    zoom: {
+      // rescale: true,+
+      enabled: true,
+      type: "scroll",
+      onzoom: function(d) {
+        precipSumChart.zoom(precipSumSubChart.zoom());
+        aitTempSumChart.zoom(precipSumSubChart.zoom());
+        surfSumChart.zoom(precipSumSubChart.zoom());
+        windSumChart.zoom(precipSumSubChart.zoom());
+      }
+    },
+    tooltip: {
+      linked: true,
+    },
+    legend: {
+      enabled: false,
+    },
+    line: {
+      connectNull: true
+    },
+    bindto: "#precipSumSub-chart"
+  });
+  $("#precipSumSub-chart > svg > g:nth-child(2)").hide();
+  // Precipitation Cum Sum Chart
+  precipSumChart = c3.generate({
+    size: {
+      height: 220,
+    },
+    data: {
+      x: "Date",
+      columns: [wt, weatherVars.pcS2022, weatherVars.pcS2021, weatherVars.pcS2020],
+      type: 'spline',
+    },
+    // color: {
+    //   pattern: [chartColor]
+    // },
+    padding: {
+      top: padTop,
+      right: padRight,
+      left: padLeft,
     },
     axis: {
       x: {
@@ -3961,13 +4598,14 @@ Promise.all([
     },
     bindto: "#precipSum-chart"
   });
+  // Air temp cum sum chart
   aitTempSumChart = c3.generate({
     size: {
       height: 220,
     },
     data: {
       x: "Date",
-      columns: [t, weatherVars.atempS2022, weatherVars.atempS2021, weatherVars.atempS2020],
+      columns: [wt, weatherVars.atempS2022, weatherVars.atempS2021, weatherVars.atempS2020],
       type: 'spline',
     },
     // color: {
@@ -3976,7 +4614,7 @@ Promise.all([
     padding: {
       top: padTop,
       right: padRight,
-      // left: padSide,
+      left: padLeft,
     },
     axis: {
       x: {
@@ -4030,6 +4668,147 @@ Promise.all([
     },
     bindto: "#airTempSum-chart"
   });
+  // Surface downward shortwave radiation cum sum chart
+  surfSumChart = c3.generate({
+    size: {
+      height: 220,
+    },
+    data: {
+      x: "Date",
+      columns: [wt, weatherVars.surfS2022, weatherVars.surfS2021, weatherVars.surfS2020],
+      type: 'spline',
+    },
+    // color: {
+    //   pattern: [chartColor]
+    // },
+    padding: {
+      top: padTop,
+      right: padRight,
+      left: padLeft,
+    },
+    axis: {
+      x: {
+        type: "timeseries",
+        tick: {
+          format: "%b %d ",
+          centered: true,
+          fit: true,
+          count: 20
+        }
+      },
+      y: {
+        label: {
+          text: 'Surface downward shortwave radiation',
+          position: 'outer-middle'
+        },
+        min: 0,
+        padding: {
+          bottom: 0
+        },
+        type: 'linear',
+        tick: {
+          format: d3.format(".2s"),
+
+          count: 5,
+          // values: [0,5000,10000,15000]
+        }
+      }
+    },
+    point: {
+      r: 0,
+      focus: {
+        expand: {
+          r: 10
+        }
+      }
+    },
+    // zoom: {
+    //   enabled: {
+    //     type: "drag"
+    //   },
+    // },
+    tooltip: {
+      linked: true,
+    },
+    legend: {
+      show: false,
+    },
+    line: {
+      connectNull: true
+    },
+    bindto: "#surfSum-chart"
+  });
+  // wind velocity cum sum chart
+  windSumChart = c3.generate({
+    size: {
+      height: 220,
+    },
+    data: {
+      x: "Date",
+      columns: [wt, weatherVars.windS2022, weatherVars.windS2021, weatherVars.windS2020],
+      type: 'spline',
+    },
+    // color: {
+    //   pattern: [chartColor]
+    // },
+    padding: {
+      top: padTop,
+      right: padRight,
+      left: padLeft,
+    },
+    axis: {
+      x: {
+        type: "timeseries",
+        tick: {
+          format: "%b %d ",
+          centered: true,
+          fit: true,
+          count: 20
+        }
+      },
+      y: {
+        label: {
+          text: 'Wind velocity (m/s)',
+          position: 'outer-middle'
+        },
+        min: 0,
+        padding: {
+          bottom: 0
+        },
+        type: 'linear',
+        tick: {
+          format: d3.format(".2s"),
+
+          count: 5,
+          // values: [0,5000,10000,15000]
+        }
+      }
+    },
+    point: {
+      r: 0,
+      focus: {
+        expand: {
+          r: 10
+        }
+      }
+    },
+    // zoom: {
+    //   enabled: {
+    //     type: "drag"
+    //   },
+    // },
+    tooltip: {
+      linked: true,
+    },
+    legend: {
+      show: false,
+    },
+    line: {
+      connectNull: true
+    },
+    bindto: "#windSum-chart"
+  });
+
 
   // CyAN Charts
   var cyan = ['Probability of a bloom'];
@@ -4037,6 +4816,7 @@ Promise.all([
   var noCyanLast = 100 - cyanLast;
   var lastModelAcc = 100 * model_accuracy.slice(-1);
   var nocyan = ['Probability of no bloom'];
+  // Previous Forecast Donut
   var donutChart = c3.generate({
     data: {
       columns: [
@@ -4074,6 +4854,7 @@ Promise.all([
     },
     bindto: "#donut-chart"
   });
+  // Historical Expectation Donut
   var donutChart2 = c3.generate({
     data: {
       columns: [
@@ -4111,7 +4892,7 @@ Promise.all([
     },
     bindto: "#donut-chart2"
   });
-
+  //
   var splineChart = c3.generate({
     size: {
       height: 220,
@@ -5085,13 +5866,25 @@ Promise.all([
     aitTempChart.load({
       unload: true,
     });
-    dchMeanChart.load({
+    surfChart.load({
+      unload: true,
+    });
+    windChart.load({
+      unload: true,
+    });
+    precipSumSubChart.load({
       unload: true,
     });
     precipSumChart.load({
       unload: true,
     });
     aitTempSumChart.load({
+      unload: true,
+    });
+    surfSumChart.load({
+      unload: true,
+    });
+    windSumChart.load({
       unload: true,
     });
     $(".weatherCheck").css('color', 'white');
@@ -5105,6 +5898,10 @@ Promise.all([
       weatherData2022pcSum = ["2022"];
       weatherData2022atempMean = ["2022"];
       weatherData2022atempSum = ["2022"];
+      weatherData2022surfMean = ["2022"];
+      weatherData2022surfSum = ["2022"];
+      weatherData2022windMean = ["2022"];
+      weatherData2022windSum = ["2022"];
 
       var weatherVars = {
         name: "Precip",
@@ -5112,6 +5909,10 @@ Promise.all([
         pcS2022: weatherData2022pcSum,
         atempM2022: weatherData2022atempMean,
         atempS2022: weatherData2022atempSum,
+        surfM2022: weatherData2022surfMean,
+        surfS2022: weatherData2022surfSum,
+        windM2022: weatherData2022windMean,
+        windS2022: weatherData2022windSum,
       }
 
       varsCounts(weatherVars);
@@ -5125,12 +5926,28 @@ Promise.all([
       aitTempChart.load({
         columns: [weatherVars.atempM2022],
       });
+      surfChart.load({
+        columns: [weatherVars.surfM2022],
+      });
+      windChart.load({
+        columns: [weatherVars.windM2022],
+      });
+      precipSumSubChart.load({
+        columns: [weatherVars.pcS2022],
+      });
       precipSumChart.load({
         columns: [weatherVars.pcS2022],
       });
       aitTempSumChart.load({
         columns: [weatherVars.atempS2022],
       });
+      surfSumChart.load({
+        columns: [weatherVars.surfS2022],
+      });
+      windSumChart.load({
+        columns: [weatherVars.windS2022],
+      });
+
       var stroke = precipSubChart.color('2022');
       $("#weather2022").css('color', stroke);
     } else {
@@ -5143,10 +5960,25 @@ Promise.all([
       aitTempChart.unload({
         ids: ["2022"],
       });
+      surfChart.unload({
+        ids: ["2022"],
+      });
+      windChart.unload({
+        ids: ["2022"],
+      });
+      precipSumSubChart.unload({
+        ids: ["2022"],
+      });
       precipSumChart.unload({
         ids: ["2022"],
       });
       aitTempSumChart.unload({
+        ids: ["2022"],
+      });
+      surfSumChart.unload({
+        ids: ["2022"],
+      });
+      windSumChart.unload({
         ids: ["2022"],
       });
       $("#weather2022").css('color', 'white');
@@ -5161,6 +5993,10 @@ Promise.all([
       weatherData2021pcSum = ["2021"];
       weatherData2021atempMean = ["2021"];
       weatherData2021atempSum = ["2021"];
+      weatherData2021surfMean = ["2021"];
+      weatherData2021surfSum = ["2021"];
+      weatherData2021windMean = ["2021"];
+      weatherData2021windSum = ["2021"];
 
       var weatherVars = {
         name: "Precip",
@@ -5168,10 +6004,13 @@ Promise.all([
         pcS2021: weatherData2021pcSum,
         atempM2021: weatherData2021atempMean,
         atempS2021: weatherData2021atempSum,
+        surfM2021: weatherData2021surfMean,
+        surfS2021: weatherData2021surfSum,
+        windM2021: weatherData2021windMean,
+        windS2021: weatherData2021windSum,
       }
 
       varsCounts(weatherVars);
-
 
       precipSubChart.load({
         columns: [weatherVars.pcM2021],
@@ -5182,15 +6021,30 @@ Promise.all([
       aitTempChart.load({
         columns: [weatherVars.atempM2021],
       });
+      surfChart.load({
+        columns: [weatherVars.surfM2021],
+      });
+      windChart.load({
+        columns: [weatherVars.windM2021],
+      });
+      precipSumSubChart.load({
+        columns: [weatherVars.pcS2021],
+      });
       precipSumChart.load({
         columns: [weatherVars.pcS2021],
       });
       aitTempSumChart.load({
         columns: [weatherVars.atempS2021],
       });
+      surfSumChart.load({
+        columns: [weatherVars.surfS2021],
+      });
+      windSumChart.load({
+        columns: [weatherVars.windS2021],
+      });
+
       var stroke = precipSubChart.color('2021');
       $("#weather2021").css('color', stroke);
-
     } else {
       precipSubChart.unload({
         ids: ["2021"],
@@ -5201,10 +6055,25 @@ Promise.all([
       aitTempChart.unload({
         ids: ["2021"],
       });
+      surfChart.unload({
+        ids: ["2021"],
+      });
+      windChart.unload({
+        ids: ["2021"],
+      });
+      precipSumSubChart.unload({
+        ids: ["2021"],
+      });
       precipSumChart.unload({
         ids: ["2021"],
       });
       aitTempSumChart.unload({
+        ids: ["2021"],
+      });
+      surfSumChart.unload({
+        ids: ["2021"],
+      });
+      windSumChart.unload({
         ids: ["2021"],
       });
       $("#weather2021").css('color', 'white');
@@ -5221,6 +6090,10 @@ Promise.all([
       weatherData2020pcSum = ["2020"];
       weatherData2020atempMean = ["2020"];
       weatherData2020atempSum = ["2020"];
+      weatherData2020surfMean = ["2020"];
+      weatherData2020surfSum = ["2020"];
+      weatherData2020windMean = ["2020"];
+      weatherData2020windSum = ["2020"];
 
       var weatherVars = {
         name: "Precip",
@@ -5228,6 +6101,10 @@ Promise.all([
         pcS2020: weatherData2020pcSum,
         atempM2020: weatherData2020atempMean,
         atempS2020: weatherData2020atempSum,
+        surfM2020: weatherData2020surfMean,
+        surfS2020: weatherData2020surfSum,
+        windM2020: weatherData2020windMean,
+        windS2020: weatherData2020windSum,
       }
 
       varsCounts(weatherVars);
@@ -5241,12 +6118,28 @@ Promise.all([
       aitTempChart.load({
         columns: [weatherVars.atempM2020],
       });
+      surfChart.load({
+        columns: [weatherVars.surfM2020],
+      });
+      windChart.load({
+        columns: [weatherVars.windM2020],
+      });
+      precipSumSubChart.load({
+        columns: [weatherVars.pcS2020],
+      });
       precipSumChart.load({
         columns: [weatherVars.pcS2020],
       });
       aitTempSumChart.load({
         columns: [weatherVars.atempS2020],
       });
+      surfSumChart.load({
+        columns: [weatherVars.surfS2020],
+      });
+      windSumChart.load({
+        columns: [weatherVars.windS2020],
+      });
+
       var stroke = precipSubChart.color('2020');
       $("#weather2020").css('color', stroke);
     } else {
@@ -5259,13 +6152,28 @@ Promise.all([
       aitTempChart.unload({
         ids: ["2020"],
       });
+      surfChart.unload({
+        ids: ["2020"],
+      });
+      windChart.unload({
+        ids: ["2020"],
+      });
+      precipSumSubChart.unload({
+        ids: ["2020"],
+      });
       precipSumChart.unload({
         ids: ["2020"],
       });
       aitTempSumChart.unload({
         ids: ["2020"],
       });
-      $("#weather2020").css('color', 'white');
+      surfSumChart.unload({
+        ids: ["2020"],
+      });
+      windSumChart.unload({
+        ids: ["2020"],
+      });
+            $("#weather2020").css('color', 'white');
     }
   });
   $("#weather2019").on("click", function() {
@@ -5277,6 +6185,10 @@ Promise.all([
       weatherData2019pcSum = ["2019"];
       weatherData2019atempMean = ["2019"];
       weatherData2019atempSum = ["2019"];
+      weatherData2019surfMean = ["2019"];
+      weatherData2019surfSum = ["2019"];
+      weatherData2019windMean = ["2019"];
+      weatherData2019windSum = ["2019"];
 
       var weatherVars = {
         name: "Precip",
@@ -5284,6 +6196,10 @@ Promise.all([
         pcS2019: weatherData2019pcSum,
         atempM2019: weatherData2019atempMean,
         atempS2019: weatherData2019atempSum,
+        surfM2019: weatherData2019surfMean,
+        surfS2019: weatherData2019surfSum,
+        windM2019: weatherData2019windMean,
+        windS2019: weatherData2019windSum,
       }
 
       varsCounts(weatherVars);
@@ -5297,12 +6213,28 @@ Promise.all([
       aitTempChart.load({
         columns: [weatherVars.atempM2019],
       });
+      surfChart.load({
+        columns: [weatherVars.surfM2019],
+      });
+      windChart.load({
+        columns: [weatherVars.windM2019],
+      });
+      precipSumSubChart.load({
+        columns: [weatherVars.pcS2019],
+      });
       precipSumChart.load({
         columns: [weatherVars.pcS2019],
       });
       aitTempSumChart.load({
         columns: [weatherVars.atempS2019],
       });
+      surfSumChart.load({
+        columns: [weatherVars.surfS2019],
+      });
+      windSumChart.load({
+        columns: [weatherVars.windS2019],
+      });
+
       var stroke = precipSubChart.color('2019');
       $("#weather2019").css('color', stroke);
     } else {
@@ -5315,13 +6247,28 @@ Promise.all([
       aitTempChart.unload({
         ids: ["2019"],
       });
+      surfChart.unload({
+        ids: ["2019"],
+      });
+      windChart.unload({
+        ids: ["2019"],
+      });
+      precipSumSubChart.unload({
+        ids: ["2019"],
+      });
       precipSumChart.unload({
         ids: ["2019"],
       });
       aitTempSumChart.unload({
         ids: ["2019"],
       });
-      $("#weather2019").css('color', 'white');
+      surfSumChart.unload({
+        ids: ["2019"],
+      });
+      windSumChart.unload({
+        ids: ["2019"],
+      });
+            $("#weather2019").css('color', 'white');
     }
   });
   $("#weather2018").on("click", function() {
@@ -5333,6 +6280,10 @@ Promise.all([
       weatherData2018pcSum = ["2018"];
       weatherData2018atempMean = ["2018"];
       weatherData2018atempSum = ["2018"];
+      weatherData2018surfMean = ["2018"];
+      weatherData2018surfSum = ["2018"];
+      weatherData2018windMean = ["2018"];
+      weatherData2018windSum = ["2018"];
 
       var weatherVars = {
         name: "Precip",
@@ -5340,6 +6291,10 @@ Promise.all([
         pcS2018: weatherData2018pcSum,
         atempM2018: weatherData2018atempMean,
         atempS2018: weatherData2018atempSum,
+        surfM2018: weatherData2018surfMean,
+        surfS2018: weatherData2018surfSum,
+        windM2018: weatherData2018windMean,
+        windS2018: weatherData2018windSum,
       }
 
       varsCounts(weatherVars);
@@ -5353,12 +6308,28 @@ Promise.all([
       aitTempChart.load({
         columns: [weatherVars.atempM2018],
       });
+      surfChart.load({
+        columns: [weatherVars.surfM2018],
+      });
+      windChart.load({
+        columns: [weatherVars.windM2018],
+      });
+      precipSumSubChart.load({
+        columns: [weatherVars.pcS2018],
+      });
       precipSumChart.load({
         columns: [weatherVars.pcS2018],
       });
       aitTempSumChart.load({
         columns: [weatherVars.atempS2018],
       });
+      surfSumChart.load({
+        columns: [weatherVars.surfS2018],
+      });
+      windSumChart.load({
+        columns: [weatherVars.windS2018],
+      });
+
       var stroke = precipSubChart.color('2018');
       $("#weather2018").css('color', stroke);
     } else {
@@ -5371,10 +6342,25 @@ Promise.all([
       aitTempChart.unload({
         ids: ["2018"],
       });
+      surfChart.unload({
+        ids: ["2018"],
+      });
+      windChart.unload({
+        ids: ["2018"],
+      });
+      precipSumSubChart.unload({
+        ids: ["2018"],
+      });
       precipSumChart.unload({
         ids: ["2018"],
       });
       aitTempSumChart.unload({
+        ids: ["2018"],
+      });
+      surfSumChart.unload({
+        ids: ["2018"],
+      });
+      windSumChart.unload({
         ids: ["2018"],
       });
       $("#weather2018").css('color', 'white');
@@ -5389,6 +6375,10 @@ Promise.all([
       weatherData2017pcSum = ["2017"];
       weatherData2017atempMean = ["2017"];
       weatherData2017atempSum = ["2017"];
+      weatherData2017surfMean = ["2017"];
+      weatherData2017surfSum = ["2017"];
+      weatherData2017windMean = ["2017"];
+      weatherData2017windSum = ["2017"];
 
       var weatherVars = {
         name: "Precip",
@@ -5396,6 +6386,10 @@ Promise.all([
         pcS2017: weatherData2017pcSum,
         atempM2017: weatherData2017atempMean,
         atempS2017: weatherData2017atempSum,
+        surfM2017: weatherData2017surfMean,
+        surfS2017: weatherData2017surfSum,
+        windM2017: weatherData2017windMean,
+        windS2017: weatherData2017windSum,
       }
 
       varsCounts(weatherVars);
@@ -5409,12 +6403,28 @@ Promise.all([
       aitTempChart.load({
         columns: [weatherVars.atempM2017],
       });
+      surfChart.load({
+        columns: [weatherVars.surfM2017],
+      });
+      windChart.load({
+        columns: [weatherVars.windM2017],
+      });
+      precipSumSubChart.load({
+        columns: [weatherVars.pcS2017],
+      });
       precipSumChart.load({
         columns: [weatherVars.pcS2017],
       });
       aitTempSumChart.load({
         columns: [weatherVars.atempS2017],
       });
+      surfSumChart.load({
+        columns: [weatherVars.surfS2017],
+      });
+      windSumChart.load({
+        columns: [weatherVars.windS2017],
+      });
+
       var stroke = precipSubChart.color('2017');
       $("#weather2017").css('color', stroke);
     } else {
@@ -5427,10 +6437,25 @@ Promise.all([
       aitTempChart.unload({
         ids: ["2017"],
       });
+      surfChart.unload({
+        ids: ["2017"],
+      });
+      windChart.unload({
+        ids: ["2017"],
+      });
+      precipSumSubChart.unload({
+        ids: ["2017"],
+      });
       precipSumChart.unload({
         ids: ["2017"],
       });
       aitTempSumChart.unload({
+        ids: ["2017"],
+      });
+      surfSumChart.unload({
+        ids: ["2017"],
+      });
+      windSumChart.unload({
         ids: ["2017"],
       });
       $("#weather2017").css('color', 'white');
@@ -5445,6 +6470,10 @@ Promise.all([
       weatherData2016pcSum = ["2016"];
       weatherData2016atempMean = ["2016"];
       weatherData2016atempSum = ["2016"];
+      weatherData2016surfMean = ["2016"];
+      weatherData2016surfSum = ["2016"];
+      weatherData2016windMean = ["2016"];
+      weatherData2016windSum = ["2016"];
 
       var weatherVars = {
         name: "Precip",
@@ -5452,6 +6481,10 @@ Promise.all([
         pcS2016: weatherData2016pcSum,
         atempM2016: weatherData2016atempMean,
         atempS2016: weatherData2016atempSum,
+        surfM2016: weatherData2016surfMean,
+        surfS2016: weatherData2016surfSum,
+        windM2016: weatherData2016windMean,
+        windS2016: weatherData2016windSum,
       }
 
       varsCounts(weatherVars);
@@ -5465,12 +6498,28 @@ Promise.all([
       aitTempChart.load({
         columns: [weatherVars.atempM2016],
       });
+      surfChart.load({
+        columns: [weatherVars.surfM2016],
+      });
+      windChart.load({
+        columns: [weatherVars.windM2016],
+      });
+      precipSumSubChart.load({
+        columns: [weatherVars.pcS2016],
+      });
       precipSumChart.load({
         columns: [weatherVars.pcS2016],
       });
       aitTempSumChart.load({
         columns: [weatherVars.atempS2016],
       });
+      surfSumChart.load({
+        columns: [weatherVars.surfS2016],
+      });
+      windSumChart.load({
+        columns: [weatherVars.windS2016],
+      });
+
       var stroke = precipSubChart.color('2016');
       $("#weather2016").css('color', stroke);
     } else {
@@ -5483,10 +6532,25 @@ Promise.all([
       aitTempChart.unload({
         ids: ["2016"],
       });
+      surfChart.unload({
+        ids: ["2016"],
+      });
+      windChart.unload({
+        ids: ["2016"],
+      });
+      precipSumSubChart.unload({
+        ids: ["2016"],
+      });
       precipSumChart.unload({
         ids: ["2016"],
       });
       aitTempSumChart.unload({
+        ids: ["2016"],
+      });
+      surfSumChart.unload({
+        ids: ["2016"],
+      });
+      windSumChart.unload({
         ids: ["2016"],
       });
       $("#weather2016").css('color', 'white');
@@ -5501,6 +6565,10 @@ Promise.all([
       weatherData2015pcSum = ["2015"];
       weatherData2015atempMean = ["2015"];
       weatherData2015atempSum = ["2015"];
+      weatherData2015surfMean = ["2015"];
+      weatherData2015surfSum = ["2015"];
+      weatherData2015windMean = ["2015"];
+      weatherData2015windSum = ["2015"];
 
       var weatherVars = {
         name: "Precip",
@@ -5508,6 +6576,10 @@ Promise.all([
         pcS2015: weatherData2015pcSum,
         atempM2015: weatherData2015atempMean,
         atempS2015: weatherData2015atempSum,
+        surfM2015: weatherData2015surfMean,
+        surfS2015: weatherData2015surfSum,
+        windM2015: weatherData2015windMean,
+        windS2015: weatherData2015windSum,
       }
 
       varsCounts(weatherVars);
@@ -5521,12 +6593,28 @@ Promise.all([
       aitTempChart.load({
         columns: [weatherVars.atempM2015],
       });
+      surfChart.load({
+        columns: [weatherVars.surfM2015],
+      });
+      windChart.load({
+        columns: [weatherVars.windM2015],
+      });
+      precipSumSubChart.load({
+        columns: [weatherVars.pcS2015],
+      });
       precipSumChart.load({
         columns: [weatherVars.pcS2015],
       });
       aitTempSumChart.load({
         columns: [weatherVars.atempS2015],
       });
+      surfSumChart.load({
+        columns: [weatherVars.surfS2015],
+      });
+      windSumChart.load({
+        columns: [weatherVars.windS2015],
+      });
+
       var stroke = precipSubChart.color('2015');
       $("#weather2015").css('color', stroke);
     } else {
@@ -5539,10 +6627,25 @@ Promise.all([
       aitTempChart.unload({
         ids: ["2015"],
       });
+      surfChart.unload({
+        ids: ["2015"],
+      });
+      windChart.unload({
+        ids: ["2015"],
+      });
+      precipSumSubChart.unload({
+        ids: ["2015"],
+      });
       precipSumChart.unload({
         ids: ["2015"],
       });
       aitTempSumChart.unload({
+        ids: ["2015"],
+      });
+      surfSumChart.unload({
+        ids: ["2015"],
+      });
+      windSumChart.unload({
         ids: ["2015"],
       });
       $("#weather2015").css('color', 'white');
@@ -5557,6 +6660,10 @@ Promise.all([
       weatherData2014pcSum = ["2014"];
       weatherData2014atempMean = ["2014"];
       weatherData2014atempSum = ["2014"];
+      weatherData2014surfMean = ["2014"];
+      weatherData2014surfSum = ["2014"];
+      weatherData2014windMean = ["2014"];
+      weatherData2014windSum = ["2014"];
 
       var weatherVars = {
         name: "Precip",
@@ -5564,6 +6671,10 @@ Promise.all([
         pcS2014: weatherData2014pcSum,
         atempM2014: weatherData2014atempMean,
         atempS2014: weatherData2014atempSum,
+        surfM2014: weatherData2014surfMean,
+        surfS2014: weatherData2014surfSum,
+        windM2014: weatherData2014windMean,
+        windS2014: weatherData2014windSum,
       }
 
       varsCounts(weatherVars);
@@ -5577,12 +6688,28 @@ Promise.all([
       aitTempChart.load({
         columns: [weatherVars.atempM2014],
       });
+      surfChart.load({
+        columns: [weatherVars.surfM2014],
+      });
+      windChart.load({
+        columns: [weatherVars.windM2014],
+      });
+      precipSumSubChart.load({
+        columns: [weatherVars.pcS2014],
+      });
       precipSumChart.load({
         columns: [weatherVars.pcS2014],
       });
       aitTempSumChart.load({
         columns: [weatherVars.atempS2014],
       });
+      surfSumChart.load({
+        columns: [weatherVars.surfS2014],
+      });
+      windSumChart.load({
+        columns: [weatherVars.windS2014],
+      });
+
       var stroke = precipSubChart.color('2014');
       $("#weather2014").css('color', stroke);
     } else {
@@ -5595,10 +6722,25 @@ Promise.all([
       aitTempChart.unload({
         ids: ["2014"],
       });
+      surfChart.unload({
+        ids: ["2014"],
+      });
+      windChart.unload({
+        ids: ["2014"],
+      });
+      precipSumSubChart.unload({
+        ids: ["2014"],
+      });
       precipSumChart.unload({
         ids: ["2014"],
       });
       aitTempSumChart.unload({
+        ids: ["2014"],
+      });
+      surfSumChart.unload({
+        ids: ["2014"],
+      });
+      windSumChart.unload({
         ids: ["2014"],
       });
       $("#weather2014").css('color', 'white');
@@ -5613,6 +6755,10 @@ Promise.all([
       weatherData2013pcSum = ["2013"];
       weatherData2013atempMean = ["2013"];
       weatherData2013atempSum = ["2013"];
+      weatherData2013surfMean = ["2013"];
+      weatherData2013surfSum = ["2013"];
+      weatherData2013windMean = ["2013"];
+      weatherData2013windSum = ["2013"];
 
       var weatherVars = {
         name: "Precip",
@@ -5620,6 +6766,10 @@ Promise.all([
         pcS2013: weatherData2013pcSum,
         atempM2013: weatherData2013atempMean,
         atempS2013: weatherData2013atempSum,
+        surfM2013: weatherData2013surfMean,
+        surfS2013: weatherData2013surfSum,
+        windM2013: weatherData2013windMean,
+        windS2013: weatherData2013windSum,
       }
 
       varsCounts(weatherVars);
@@ -5633,15 +6783,30 @@ Promise.all([
       aitTempChart.load({
         columns: [weatherVars.atempM2013],
       });
+      surfChart.load({
+        columns: [weatherVars.surfM2013],
+      });
+      windChart.load({
+        columns: [weatherVars.windM2013],
+      });
+      precipSumSubChart.load({
+        columns: [weatherVars.pcS2013],
+      });
       precipSumChart.load({
         columns: [weatherVars.pcS2013],
       });
       aitTempSumChart.load({
         columns: [weatherVars.atempS2013],
       });
+      surfSumChart.load({
+        columns: [weatherVars.surfS2013],
+      });
+      windSumChart.load({
+        columns: [weatherVars.windS2013],
+      });
+
       var stroke = precipSubChart.color('2013');
       $("#weather2013").css('color', stroke);
-
     } else {
       precipSubChart.unload({
         ids: ["2013"],
@@ -5652,10 +6817,25 @@ Promise.all([
       aitTempChart.unload({
         ids: ["2013"],
       });
+      surfChart.unload({
+        ids: ["2013"],
+      });
+      windChart.unload({
+        ids: ["2013"],
+      });
+      precipSumSubChart.unload({
+        ids: ["2013"],
+      });
       precipSumChart.unload({
         ids: ["2013"],
       });
       aitTempSumChart.unload({
+        ids: ["2013"],
+      });
+      surfSumChart.unload({
+        ids: ["2013"],
+      });
+      windSumChart.unload({
         ids: ["2013"],
       });
       $("#weather2013").css('color', 'white');
@@ -5670,6 +6850,10 @@ Promise.all([
       weatherData2012pcSum = ["2012"];
       weatherData2012atempMean = ["2012"];
       weatherData2012atempSum = ["2012"];
+      weatherData2012surfMean = ["2012"];
+      weatherData2012surfSum = ["2012"];
+      weatherData2012windMean = ["2012"];
+      weatherData2012windSum = ["2012"];
 
       var weatherVars = {
         name: "Precip",
@@ -5677,6 +6861,10 @@ Promise.all([
         pcS2012: weatherData2012pcSum,
         atempM2012: weatherData2012atempMean,
         atempS2012: weatherData2012atempSum,
+        surfM2012: weatherData2012surfMean,
+        surfS2012: weatherData2012surfSum,
+        windM2012: weatherData2012windMean,
+        windS2012: weatherData2012windSum,
       }
 
       varsCounts(weatherVars);
@@ -5690,15 +6878,30 @@ Promise.all([
       aitTempChart.load({
         columns: [weatherVars.atempM2012],
       });
+      surfChart.load({
+        columns: [weatherVars.surfM2012],
+      });
+      windChart.load({
+        columns: [weatherVars.windM2012],
+      });
+      precipSumSubChart.load({
+        columns: [weatherVars.pcS2012],
+      });
       precipSumChart.load({
         columns: [weatherVars.pcS2012],
       });
       aitTempSumChart.load({
         columns: [weatherVars.atempS2012],
       });
+      surfSumChart.load({
+        columns: [weatherVars.surfS2012],
+      });
+      windSumChart.load({
+        columns: [weatherVars.windS2012],
+      });
+
       var stroke = precipSubChart.color('2012');
       $("#weather2012").css('color', stroke);
-
     } else {
       precipSubChart.unload({
         ids: ["2012"],
@@ -5709,10 +6912,25 @@ Promise.all([
       aitTempChart.unload({
         ids: ["2012"],
       });
+      surfChart.unload({
+        ids: ["2012"],
+      });
+      windChart.unload({
+        ids: ["2012"],
+      });
+      precipSumSubChart.unload({
+        ids: ["2012"],
+      });
       precipSumChart.unload({
         ids: ["2012"],
       });
       aitTempSumChart.unload({
+        ids: ["2012"],
+      });
+      surfSumChart.unload({
+        ids: ["2012"],
+      });
+      windSumChart.unload({
         ids: ["2012"],
       });
       $("#weather2012").css('color', 'white');
@@ -7282,7 +8500,31 @@ Promise.all([
 });
 
 
-
+// Tab JS
+var triggerTabList = [].slice.call(document.querySelectorAll('#context-tab'))
+triggerTabList.forEach(function(triggerEl) {
+  var tabTrigger = new bootstrap.Tab(triggerEl)
+  triggerEl.addEventListener('click', function(event) {
+    event.preventDefault()
+    tabTrigger.show()
+  })
+})
+var triggerTabList = [].slice.call(document.querySelectorAll('#content-tab'))
+triggerTabList.forEach(function(triggerEl) {
+  var tabTrigger = new bootstrap.Tab(triggerEl)
+  triggerEl.addEventListener('click', function(event) {
+    event.preventDefault()
+    tabTrigger.show()
+  })
+})
+var triggerTabList = [].slice.call(document.querySelectorAll('#is-tab'))
+triggerTabList.forEach(function(triggerEl) {
+  var tabTrigger = new bootstrap.Tab(triggerEl)
+  triggerEl.addEventListener('click', function(event) {
+    event.preventDefault()
+    tabTrigger.show()
+  })
+})
 
 // Tab JS
 var triggerTabList = [].slice.call(document.querySelectorAll('#weather-tab'))
@@ -7322,22 +8564,8 @@ triggerTabList.forEach(function(triggerEl) {
   })
 })
 
-var triggerTabList = [].slice.call(document.querySelectorAll('#mean-tab'))
-triggerTabList.forEach(function(triggerEl) {
-  var tabTrigger = new bootstrap.Tab(triggerEl)
-  triggerEl.addEventListener('click', function(event) {
-    event.preventDefault()
-    tabTrigger.show()
-  })
-})
-var triggerTabList = [].slice.call(document.querySelectorAll('#cumSum-tab'))
-triggerTabList.forEach(function(triggerEl) {
-  var tabTrigger = new bootstrap.Tab(triggerEl)
-  triggerEl.addEventListener('click', function(event) {
-    event.preventDefault()
-    tabTrigger.show()
-  })
-})
+
+
 
 // Open sidebar
 function openNav() {

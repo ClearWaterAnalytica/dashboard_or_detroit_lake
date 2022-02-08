@@ -394,6 +394,10 @@ text {
   margin-top: -170px;
   z-index: 0;
 }
+#precipSumSub-chart {
+  margin-top: -170px;
+  z-index: 0;
+}
 
 #sampleSub-chart {
   margin-top: -170px;
@@ -407,8 +411,9 @@ text {
 
 .frontSub {
   z-index: 1000;
-
-
+}
+.frontFrontSub {
+  z-index: 1001;
 }
 .radioselect {
     margin: auto;

@@ -126,113 +126,162 @@
               <div class="tab-content" id="myTabContent">
                 <!-- weather tab -->
                 <div class="tab-pane fade show" id="weather" role="tabpanel" aria-labelledby="weather-tab">
-                  <div id="deck-2" class="counts frontSub">
-                    <div class="tabInfo d-flex flex-row align-items-center  justify-content-between">
-                      <div class="dropdown no-arrow frontSub locationTab">
-                        <span class="ml-3 d-lg-inline text-gray-600 small">Data taken from PRISM</span>
-                      </div>
 
-                      <!-- Weather tab year dropdown -->
-                      <div class="dropdown no-arrow frontSub yearTab">
-                        <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="mr-2 d-lg-inline text-gray-600 small">Select year: <i class="far fa-calendar-alt"></i></span>
-                          <span id="gageYearDropdown" class="dropdownTitle"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
-                          <center>
-                            <div id="clearWeather" class="checkbox weatherCheck">
-                              <label>Clear All</label>
-                            </div>
-                            <div id="weather2022" class="checkbox weatherCheck">
-                              <label>2022</label>
-                            </div>
-                            <div id="weather2021" class="checkbox weatherCheck">
-                              <label>2021</label>
-                            </div>
-                            <div id="weather2020" class="checkbox weatherCheck">
-                              <label>2020</label>
-                            </div>
-                            <div id="weather2019" class="checkbox weatherCheck">
-                              <label>2019</label>
-                            </div>
-                            <div id="weather2018" class="checkbox weatherCheck">
-                              <label>2018</label>
-                            </div>
-                            <div id="weather2017" class="checkbox weatherCheck">
-                              <label>2017</label>
-                            </div>
-                            <div id="weather2016" class="checkbox weatherCheck">
-                              <label>2016</label>
-                            </div>
-                            <div id="weather2015" class="checkbox weatherCheck">
-                              <label>2015</label>
-                            </div>
-                            <div id="weather2014" class="checkbox weatherCheck">
-                              <label>2014</label>
-                            </div>
-                            <div id="weather2013" class="checkbox weatherCheck">
-                              <label>2013</label>
-                            </div>
-                            <div id="weather2012" class="checkbox weatherCheck">
-                              <label>2012</label>
-                            </div>
-                          </center>
+                  <!-- tab list -->
+                  <div class="card">
+                    <!-- tab list -->
+                    <ul class="nav nav-tabs frontSub" id="myTab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="context-tab" data-bs-toggle="tab" href="#context" data-bs-target="#context" type="button" role="tab" aria-controls="context" aria-selected="false">
+                          Instantaneous
+                        </button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="content-tab" data-bs-toggle="tab" href="#contentTab" data-bs-target="#contentTab" type="button" role="tab" aria-controls="contentTab" aria-selected="true">
+                          Cumulative
+                        </button>
+                      </li>
+                    </ul>
+                    <div id="deck-2" class="counts frontSub">
+                      <div class="tabInfo d-flex flex-row align-items-center  justify-content-between">
+                        <div class="dropdown no-arrow frontSub locationTab">
+                          <span class="ml-3 d-lg-inline text-gray-600 small">Data taken from PRISM</span>
+                        </div>
+
+                        <!-- Weather tab year dropdown -->
+                        <div class="dropdown no-arrow frontSub yearTab">
+                          <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-lg-inline text-gray-600 small">Select year: <i class="far fa-calendar-alt"></i></span>
+                            <span id="gageYearDropdown" class="dropdownTitle"></span>
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground frontFrontSub" aria-labelledby="dropdownMenuLink">
+                            <center>
+                              <div id="clearWeather" class="checkbox weatherCheck">
+                                <label>Clear All</label>
+                              </div>
+                              <div id="weather2022" class="checkbox weatherCheck">
+                                <label>2022</label>
+                              </div>
+                              <div id="weather2021" class="checkbox weatherCheck">
+                                <label>2021</label>
+                              </div>
+                              <div id="weather2020" class="checkbox weatherCheck">
+                                <label>2020</label>
+                              </div>
+                              <div id="weather2019" class="checkbox weatherCheck">
+                                <label>2019</label>
+                              </div>
+                              <div id="weather2018" class="checkbox weatherCheck">
+                                <label>2018</label>
+                              </div>
+                              <div id="weather2017" class="checkbox weatherCheck">
+                                <label>2017</label>
+                              </div>
+                              <div id="weather2016" class="checkbox weatherCheck">
+                                <label>2016</label>
+                              </div>
+                              <div id="weather2015" class="checkbox weatherCheck">
+                                <label>2015</label>
+                              </div>
+                              <div id="weather2014" class="checkbox weatherCheck">
+                                <label>2014</label>
+                              </div>
+                              <div id="weather2013" class="checkbox weatherCheck">
+                                <label>2013</label>
+                              </div>
+                              <div id="weather2012" class="checkbox weatherCheck">
+                                <label>2012</label>
+                              </div>
+                            </center>
+                          </div>
+                        </div>
+                        <!-- Weather tab info button -->
+                        <div class="frontSub infoTab infoTab">
+                          <a data-toggle="modal" data-target="#prismInfoWindow"><i class="nav fas fa-info-circle"></i></a>
                         </div>
                       </div>
-                      <!-- Weather tab info button -->
-                      <div class="frontSub infoTab infoTab">
-                        <a data-toggle="modal" data-target="#prismInfoWindow"><i class="nav fas fa-info-circle"></i></a>
+                    </div>
+                    <!-- tab content -->
+                    <div class="tab-content mt-1" id="myTabContent">
+                      <!--lesson context tab -->
+                      <div class="tab-pane fade show active" id="context" role="tabpanel" aria-labelledby="context-tab">
+                        <!-- SubChart -->
+                        <div id="precipSubChartDeck" class="card-deck counts">
+                          <br><br>
+                          <div class="card mt-1">
+                            <center>
+                              Select date range
+                            </center>
+                            <div id="precipSub-chart"></div>
+                          </div>
+                        </div>
+                        <!-- Mean Precipitation Chart -->
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card">
+                            <div id="precip-chart"></div>
+                          </div>
+                        </div>
+                        <!-- Mean Air Temperature Chart -->
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card">
+                            <div id="airTemp-chart"></div>
+                          </div>
+                        </div>
+                        <!-- Surf Chart -->
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card">
+                            <div id="surf-chart"></div>
+                          </div>
+                        </div>
+                        <!-- Wind Chart -->
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card">
+                            <div id="wind-chart"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Cumulative Sum Weather tab -->
+                      <div class="tab-pane fade" id="contentTab" role="tabpanel" aria-labelledby="content-tab">
+                        <!-- Cumulative Sum Weather subChart -->
+                        <div id="precipSumSubChartDeck" class="card-deck counts">
+                          <br><br>
+                          <div class="card mt-1">
+                            <center>
+                              Select date range
+                            </center>
+                            <div id="precipSumSub-chart"></div>
+                          </div>
+                        </div>
+                        <!-- Cum Sum Precipitation Chart -->
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card">
+                            <div id="precipSum-chart"></div>
+                          </div>
+                        </div>
+                        <!-- Cum Sum Temperature Chart -->
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card">
+                            <div id="airTempSum-chart"></div>
+                          </div>
+                        </div>
+                        <!-- Cum Sum Surf Chart -->
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card">
+                            <div id="surfSum-chart"></div>
+                          </div>
+                        </div>
+                        <!-- Cum Sum Wind Chart -->
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card">
+                            <div id="windSum-chart"></div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <!-- tab list -->
-                  <ul class="nav nav-tabs" id="weatherSubTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                      <button class="nav-link active" id="mean-tab" data-bs-toggle="tab" href="#mean" data-bs-target="#mean" type="button" role="tab" aria-controls="mean" aria-selected="true">
-                        Mean
-                      </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="cumSum-tab" data-bs-toggle="tab" href="#cumSum" data-bs-target="#cumSum" type="button" role="tab" aria-controls="cumSum" aria-selected="false">
-                        Cumulative Sum
-                      </button>
-                    </li>
-                  </ul>
 
-                  <!-- SubChart -->
-                  <div id="precipSubChartDeck" class="card-deck counts">
-                    <br><br>
-                    <div class="card mt-1">
-                      <center>
-                        Select date range
-                      </center>
-                      <div id="precipSub-chart"></div>
-                    </div>
-                  </div>
-                  <!-- Mean Precipitation Chart -->
-                  <div id="deck-2" class="card-deck counts">
-                    <div class="card">
-                      <div id="precip-chart"></div>
-                    </div>
-                  </div>
-                  <!-- Mean Air Temperature Chart -->
-                  <div id="deck-2" class="card-deck counts">
-                    <div class="card">
-                      <div id="airTemp-chart"></div>
-                    </div>
-                  </div>
-                  <!-- Cum Sum Precipitation Chart -->
-                  <div id="deck-2" class="card-deck counts">
-                    <div class="card">
-                      <div id="precipSum-chart"></div>
-                    </div>
-                  </div>
-                  <!-- Cum Sum Temperature Chart -->
-                  <div id="deck-2" class="card-deck counts">
-                    <div class="card">
-                      <div id="airTempSum-chart"></div>
-                    </div>
-                  </div>
+
+
                 </div>
                 <!-- Stream tab -->
                 <div class="tab-pane fade show" id="stream" role="tabpanel" aria-labelledby="stream-tab">
