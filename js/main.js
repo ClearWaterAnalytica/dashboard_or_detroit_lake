@@ -4822,6 +4822,8 @@ Promise.all([
   var noCyanLast = 100 - cyanLast;
   var lastModelAcc = 100 * model_accuracy.slice(-1);
   var nocyan = ['Probability of no bloom'];
+  var currentNowCastDate = nct.slice(-1);
+  var previousNowCastDate;
   // Previous Forecast Donut
   var donutChart = c3.generate({
     data: {
@@ -4908,7 +4910,7 @@ Promise.all([
       columns: [
         bloom_p,
         expCyanDate,
-        nctCurrentDate,
+        // nctCurrentDate,
         logCICells,
       ],
       axes: {
@@ -4942,6 +4944,7 @@ Promise.all([
           }
           $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").text(100 * model_accuracy[d.index] + "% Observed Bloom area");
           var USTdDonut = new Date(d.x);
+          previousNowCastDate = d.x;
           var monthDonut = USTdDonut.getMonth();
           var dayDonut = USTdDonut.getDate();
           var yearDonut = USTdDonut.getFullYear();
@@ -4949,6 +4952,7 @@ Promise.all([
           var lastweekDonut = new Date(USTdDonut.getFullYear(), USTdDonut.getMonth(), USTdDonut.getDate() + 7);
           lastweekDonutReformatted = lastweekDonut.getMonth() + 1 + "/" + lastweekDonut.getDate();
           $("#dateCyan").text(dateSelectDonut + "-" + lastweekDonutReformatted);
+          $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > line").css('stroke', '#17e8ce');
           donutChart.load({
             unload: true,
             columns: [
@@ -4956,21 +4960,43 @@ Promise.all([
               ['Probability of no bloom', cyanoProb_1],
             ],
           });
-          splineChart.load({
-            unload: nctHistoricalDate,
-            columns: [
-              nctHistoricalDate,
-            ],
-            type: 'spline',
-            types: {
-              Historical: 'bar',
+          splineChart.xgrids([{
+              value: previousNowCastDate,
+              id: 'previousGrid',
+              text: 'Previous'
             },
-            colors: {
-              Historical: '#17e8ce',
-            },
-          });
+            {
+              value: currentNowCastDate,
+              class: 'currentGrid',
+              text: 'Current'
+            }
+          ]);
+          // splineChart.load({
+          //   unload: nctHistoricalDate,
+          //   columns: [
+          //     nctHistoricalDate,
+          //   ],
+          //   type: 'spline',
+          //   types: {
+          //     Historical: 'bar',
+          //   },
+          //   colors: {
+          //     Historical: '#17e8ce',
+          //   },
+          // });
         };
       },
+    },
+    grid: {
+      x: {
+        lines: [{
+            value: currentNowCastDate,
+            class: 'currentGrid',
+            text: 'Current'
+          },
+          // {value: previousNowCastDate, text: 'Previous'},
+        ]
+      }
     },
     // color: {
     //   pattern: [chartColor]
@@ -5065,6 +5091,7 @@ Promise.all([
     },
     bindto: "#spline-chart"
   });
+  $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > line").css('stroke', '#ff7f0e');
 
   // Tab Interactions
   $("#weather-tab").on("click", function() {

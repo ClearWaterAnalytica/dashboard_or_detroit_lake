@@ -365,6 +365,13 @@ text {
   font-size: 13px;
 }
 
+#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > line {
+    stroke: #17e8ce;
+}
+
+#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > line {
+  stroke: #ff7f0e;
+}
 .tick line {
   stroke: gray;
 }
