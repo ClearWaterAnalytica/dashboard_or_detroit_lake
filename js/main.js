@@ -139,17 +139,19 @@ var optionsCyan = {
 };
 
 // hexbin map layer
+
 var hexLayer = L.hexbinLayer(options).addTo(mymap);
+
 var hexCyanLayer = L.hexbinLayer(optionsCyan);
 
-$("#CHARadio").on("click", function() {
-  hexLayer.addTo(mymap);
-});
-
-$("#CYANRadio").on("click", function() {
-  // hexCyanLayer.addTo(mymap);
-  mymap.removeLayer(hexLayer);
-});
+// $("#CHARadio").on("click", function() {
+//
+//   hexLayer.addTo(mymap);
+// });
+//
+// $("#CYANRadio").on("click", function() {
+//   hexCyanLayer.addTo(mymap);
+// });
 // hexlayer options
 function tooltip_function(d) {
 
@@ -370,15 +372,19 @@ Promise.all([
 
 ]).then(function(datasets) {
 
-  hexdata = [];
-  datasets[4].forEach(function(d) {
-    hexdata.push([
-      d.lon,
-      d.lat,
-      d.Chlorophyll,
-    ]);
-  })
-  hexLayer.data(hexdata);
+  function hexbinFunction(i) {
+
+    hexdata = [];
+    datasets[4].forEach(function(d) {
+      hexdata.push([
+        d.lon,
+        d.lat,
+        d.Chlorophyll,
+      ]);
+    })
+    hexLayer.data(hexdata);
+  };
+  hexbinFunction();
 
   hexCyanData = [];
   datasets[30].forEach(function(d) {
@@ -4323,7 +4329,7 @@ Promise.all([
       },
       y: {
         label: {
-          text: 'Surface downward shortwave radiation',
+          text: 'Surface radiation (W/m^2)',
           position: 'outer-middle'
         },
         min: 0,
@@ -4558,7 +4564,7 @@ Promise.all([
       },
       y: {
         label: {
-          text: 'cumulative sum of mean precip. (deg C)',
+          text: 'Mean precip. (deg C)',
           position: 'outer-middle'
         },
         min: 0,
@@ -4628,7 +4634,7 @@ Promise.all([
       },
       y: {
         label: {
-          text: 'cumulative sum of mean air temp. (mL)',
+          text: 'Mean air temp. (mL)',
           position: 'outer-middle'
         },
         min: 0,
@@ -4698,7 +4704,7 @@ Promise.all([
       },
       y: {
         label: {
-          text: 'Surface downward shortwave radiation',
+          text: 'Surface radiation (W/m^2)',
           position: 'outer-middle'
         },
         min: 0,
@@ -4911,7 +4917,7 @@ Promise.all([
       },
       names: {
         Probability_of_bloom: 'Probability of bloom',
-        Log_CI_Cells_mL: '2-week rolling long-run mean probability of bloom'
+        Log_CI_Cells_mL: 'Historical expectation'
       },
       type: 'spline',
       types: {
@@ -5010,7 +5016,7 @@ Promise.all([
       y2: {
         show: true,
         label: {
-          text: '2-week rolling long-run mean probability of bloom',
+          text: 'Historical expectation',
           position: 'outer-middle'
         },
         padding: {
@@ -5041,6 +5047,7 @@ Promise.all([
     },
     tooltip: {
       linked: true,
+      // hide: [current, nctHistoricalDate],
     },
     // subchart: {
     //   show: true,
@@ -5049,8 +5056,9 @@ Promise.all([
     //   },
     // },
     legend: {
-      show: true,
-      hide: [bloom_p, logCICells],
+      // show: true,
+      // hide: [bloom_p, logCICells],
+      hide: true,
     },
     line: {
       connectNull: true
@@ -6173,7 +6181,7 @@ Promise.all([
       windSumChart.unload({
         ids: ["2020"],
       });
-            $("#weather2020").css('color', 'white');
+      $("#weather2020").css('color', 'white');
     }
   });
   $("#weather2019").on("click", function() {
@@ -6268,7 +6276,7 @@ Promise.all([
       windSumChart.unload({
         ids: ["2019"],
       });
-            $("#weather2019").css('color', 'white');
+      $("#weather2019").css('color', 'white');
     }
   });
   $("#weather2018").on("click", function() {

@@ -358,9 +358,11 @@ text {
 }
 #spline-chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-y > text {
   fill: #1f77b4;
+    font-size: 13px;
 }
 #spline-chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-y2 > text {
   fill: #de2d26;
+  font-size: 13px;
 }
 
 .tick line {
