@@ -5200,6 +5200,20 @@ Promise.all([
         [nocyan, noCyanLast],
       ],
     });
+    pieTestchart.load({
+      unload: true,
+      columns: [
+        ['Obsereved Bloom Area', 75],
+        ['', 25],
+      ],
+    });
+    pieTestchart2.load({
+      unload: true,
+      columns: [
+        ['Forecast Accuracy', 75],
+        ['', 25],
+      ],
+    });
     splineChart.load({
       unload: true,
       columns: [
@@ -5209,6 +5223,7 @@ Promise.all([
         logCICells,
       ],
     });
+
   });
 
   // Stream Gage Year Selection
