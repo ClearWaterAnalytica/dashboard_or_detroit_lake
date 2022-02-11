@@ -4064,6 +4064,9 @@ Promise.all([
       x: "Date",
       columns: [wt, weatherVars.pcM2022, weatherVars.pcM2021, weatherVars.pcM2020],
       type: 'spline',
+      onclick: function(d, i) {
+        console.log("onclick", d, i);
+      },
     },
     // color: {
     //   pattern: [chartColor]
@@ -4156,6 +4159,7 @@ Promise.all([
   $("#weather2021").css('color', stroke2021);
   var stroke2020 = precipSubChart.color('2020');
   $("#weather2020").css('color', stroke2020);
+
   // weather chart
   precipChart = c3.generate({
     size: {
@@ -4167,7 +4171,6 @@ Promise.all([
       columns: [wt, weatherVars.pcM2022, weatherVars.pcM2021, weatherVars.pcM2020],
       type: 'spline',
     },
-
     padding: {
       top: padTop,
       right: padRight,
@@ -8586,6 +8589,10 @@ Promise.all([
     $("#CyANDatePicker").show();
     $("#CHLANDatePicker").hide();
   });
+    precipSubChart.zoom([1328630400000,1351267200000]);
+    precipSumSubChart.zoom([1328630400000,1351267200000]);
+    chart.zoom([1583078400000,1603724400000]);
+    sampleSubChart.zoom([1463537040000,1473214680000]);
 });
 
 // Tab JS
