@@ -124,7 +124,7 @@ var options = {
   radius: 12,
   opacity: .6,
   colorRange: [colors[5], colors[4], colors[3], colors[2], colors[1], colors[0]],
-  colorScaleExtent: [1, 1.2],
+  colorScaleExtent: [.53, 1.22],
   duration: 500,
   radiusRange: [11, 11],
 };
@@ -133,7 +133,7 @@ var optionsCyan = {
   radius: 20,
   opacity: .6,
   colorRange: [colors[5], colors[4], colors[3], colors[2], colors[1], colors[0]],
-  colorScaleExtent: [8, 8.75],
+  colorScaleExtent: [2.17, 8.75],
   duration: 500,
   radiusRange: [11, 11],
 };
