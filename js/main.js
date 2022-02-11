@@ -4857,7 +4857,7 @@ Promise.all([
       show: false
     },
     donut: {
-      title: lastModelAcc + "% Observed Bloom area",
+      // title: lastModelAcc + "% Observed Bloom area",
       width: 70,
     },
     bindto: "#donut-chart"
@@ -4895,7 +4895,7 @@ Promise.all([
       show: false
     },
     donut: {
-      title: lastModelAcc + "% Forecast Accuracy",
+      // title: lastModelAcc + "% Forecast Accuracy",
       width: 70,
     },
     bindto: "#donut-chart2"
@@ -5085,8 +5085,68 @@ Promise.all([
     },
     bindto: "#spline-chart"
   });
+  // Apply orange to the current date x-axis grid line
   $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > line").css('stroke', '#ff7f0e');
 
+  var pieTestchart = c3.generate({
+    size: {
+      height: 200,
+    },
+    data: {
+      // iris data from R
+      columns: [
+        ['Obsereved Bloom Area', 75],
+        ['', 25],
+      ],
+      type: 'pie',
+      onclick: function(d, i) {
+        console.log("onclick", d, i);
+      },
+      onmouseover: function(d, i) {
+        console.log("onmouseover", d, i);
+      },
+      onmouseout: function(d, i) {
+        console.log("onmouseout", d, i);
+      }
+    },
+    color: {
+      pattern: ['#7fcdbb', '#ffffcc']
+    },
+    legend: {
+      hide: true,
+    },
+    bindto: "#pieTestChart"
+  });
+
+  var pieTestchart2 = c3.generate({
+    size: {
+      height: 200,
+    },
+    data: {
+      // iris data from R
+      columns: [
+        ['Forecast Accuracy', 75],
+        ['', 25],
+      ],
+      type: 'pie',
+      onclick: function(d, i) {
+        console.log("onclick", d, i);
+      },
+      onmouseover: function(d, i) {
+        console.log("onmouseover", d, i);
+      },
+      onmouseout: function(d, i) {
+        console.log("onmouseout", d, i);
+      }
+    },
+    color: {
+      pattern: ['#fe9929', '#ffffcc']
+    },
+    legend: {
+      hide: true,
+    },
+    bindto: "#pieTestChart2"
+  });
   // Tab Interactions
   $("#weather-tab").on("click", function() {
     // Remove Map Layers

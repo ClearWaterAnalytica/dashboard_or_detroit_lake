@@ -46,6 +46,14 @@ button {
 #deck-3 .c3-chart-lines {
   stroke-width: 5px !important;
 }
+#spline-card {
+  bottom: 200px;
+}
+
+.pieCenter {
+  z-index: 100;
+  bottom: 44%;
+}
 
 .donutRange {
   font-size: 12px;
