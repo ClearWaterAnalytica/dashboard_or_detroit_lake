@@ -5006,12 +5006,6 @@ Promise.all([
       right: 80,
       left: 80,
     },
-    bar: {
-      width: {
-        ratio: .15
-      },
-      maxWidth: .15
-    },
     axis: {
       x: {
         type: "timeseries",
@@ -5050,12 +5044,12 @@ Promise.all([
         },
         type: 'linear',
         tick: {
-          format: d3.format(".2%"),
+          format: d3.format(".1%"),
           count: 5,
-          values: [.25, .50, .75, 1]
+          // values: [.25, .50, .75, 1]
         },
-        max: 1,
-        min: 0,
+        // max: .75,
+        // min: 0,
       },
     },
     point: {
@@ -5148,7 +5142,7 @@ Promise.all([
       columns: [
         expCyanDate,
         bloom_p,
-        nctCurrentDate,
+        // nctCurrentDate,
         logCICells,
       ],
     });
@@ -8534,7 +8528,23 @@ Promise.all([
   });
 });
 
-
+// Tab JS
+var triggerTabList = [].slice.call(document.querySelectorAll('#gage-instant-tab'))
+triggerTabList.forEach(function(triggerEl) {
+  var tabTrigger = new bootstrap.Tab(triggerEl)
+  triggerEl.addEventListener('click', function(event) {
+    event.preventDefault()
+    tabTrigger.show()
+  })
+})
+var triggerTabList = [].slice.call(document.querySelectorAll('#gage-sum-tab'))
+triggerTabList.forEach(function(triggerEl) {
+  var tabTrigger = new bootstrap.Tab(triggerEl)
+  triggerEl.addEventListener('click', function(event) {
+    event.preventDefault()
+    tabTrigger.show()
+  })
+})
 // Tab JS
 var triggerTabList = [].slice.call(document.querySelectorAll('#context-tab'))
 triggerTabList.forEach(function(triggerEl) {

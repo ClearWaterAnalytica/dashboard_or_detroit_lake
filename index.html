@@ -145,7 +145,7 @@
                     <div id="deck-2" class="counts frontSub">
                       <div class="tabInfo d-flex flex-row align-items-center  justify-content-between">
                         <div class="dropdown no-arrow frontSub locationTab">
-                          <span class="ml-3 d-lg-inline text-gray-600 small">Data taken from PRISM</span>
+                          <span class="ml-3 d-lg-inline text-gray-600 small">Data taken from gridMET</span>
                         </div>
 
                         <!-- Weather tab year dropdown -->
@@ -227,13 +227,13 @@
                             <div id="airTemp-chart"></div>
                           </div>
                         </div>
-                        <!-- Surf Chart -->
+                        <!-- Mean Surf Chart -->
                         <div id="deck-2" class="card-deck counts">
                           <div class="card">
                             <div id="surf-chart"></div>
                           </div>
                         </div>
-                        <!-- Wind Chart -->
+                        <!-- Mean Wind Chart -->
                         <div id="deck-2" class="card-deck counts">
                           <div class="card">
                             <div id="wind-chart"></div>
@@ -280,11 +280,22 @@
                     </div>
                   </div>
 
-
-
                 </div>
                 <!-- Stream tab -->
                 <div class="tab-pane fade show" id="stream" role="tabpanel" aria-labelledby="stream-tab">
+                  <!-- tab list -->
+                  <ul class="nav nav-tabs frontSub" id="myStreamTab" role="tablist">
+                    <li class="nav-item frontSub" role="presentation">
+                      <button class="nav-link frontSub active" id="gage-instant-tab" data-bs-toggle="tab" href="#gage-instant" data-bs-target="#gage-instantTab" type="button" role="tab" aria-controls="gage-instantTab" aria-selected="false">
+                        Instantaneous
+                      </button>
+                    </li>
+                    <li class="nav-item frontSub" role="presentation">
+                      <button class="nav-link frontSub" id="gage-sum-tab" data-bs-toggle="tab" href="#gage-sum" data-bs-target="#gage-sumTab" type="button" role="tab" aria-controls="gage-sumTab" aria-selected="true">
+                        Cumulative
+                      </button>
+                    </li>
+                  </ul>
                   <!-- Stream gage location dropdown -->
                   <div id="deck-2" class="counts frontSub">
                     <div class="tabInfo d-flex flex-row align-items-center  justify-content-between">
@@ -357,13 +368,11 @@
                       <div class="frontSub infoTab">
                         <a data-toggle="modal" data-target="#streamInfoWindow"><i class="nav fas fa-info-circle"></i></a>
                       </div>
-
                     </div>
-
                   </div>
-
-                  <div id="deck-2" class="card-deck counts">
-                    <div class="col-lg-12">
+                  <div class="tab-content mt-1" id="myStreamTabContent">
+                    <!--lesson context tab -->
+                    <div class="tab-pane fade show active" id="gage-instant" role="tabpanel" aria-labelledby="gage-instant-tab">
                       <!-- SubChart -->
                       <div id="gageSubChartDeck" class="card-deck counts">
                         <div class="card mt-1">
@@ -393,29 +402,35 @@
                           <div id="dchMean-chart"></div>
                         </div>
                       </div>
-                      <!-- Chart -->
-                      <div id="deck-2" class="card-deck counts">
-                        <div class="card">
-                          <center>
-                            <p></p>
-                          </center>
-                          <!-- <div id="gage-subChart"></div> -->
-                          <div id="h20Sum-chart"></div>
+
+                    </div>
+                    <!--Cumulative Sum Weather tab -->
+                    <div class="tab-pane fade" id="gage-sum" role="tabpanel" aria-labelledby="gage-sum-tab">
+
+                        <!-- Chart -->
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card">
+                            <center>
+                              <p></p>
+                            </center>
+                            <!-- <div id="gage-subChart"></div> -->
+                            <div id="h20Sum-chart"></div>
+                          </div>
+                        </div>
+                        <!-- Chart -->
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card">
+                            <center>
+                              <p></p>
+                            </center>
+                            <!-- <div id="gage-subChart"></div> -->
+                            <div id="dchSum-chart"></div>
+                          </div>
                         </div>
                       </div>
-                      <!-- Chart -->
-                      <div id="deck-2" class="card-deck counts">
-                        <div class="card">
-                          <center>
-                            <p></p>
-                          </center>
-                          <!-- <div id="gage-subChart"></div> -->
-                          <div id="dchSum-chart"></div>
-                        </div>
-                      </div>
+
                     </div>
                   </div>
-                </div>
                 <!-- Sample tab -->
                 <div class="tab-pane fade show" id="sample" role="tabpanel" aria-labelledby="sample-tab">
                   <!-- Sample location dropdown -->

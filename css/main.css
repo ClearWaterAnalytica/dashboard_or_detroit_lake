@@ -422,7 +422,7 @@ text {
   z-index: 1000;
 }
 .frontFrontSub {
-  z-index: 1001;
+  z-index: -1;
 }
 .radioselect {
     margin: auto;
