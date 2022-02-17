@@ -73,6 +73,7 @@ bloom_p: probability of bloom (Unit: float as percentage)
 bloom_p_1: probability of no bloom (Unit: float as percentage)
 model_accuracy: accuracy of the now-cast model (Unit: float as percentage)
 
+
 detroit_lake_nowcast_expected_longrun_predictions.csv
 date: date of observation (Unit: year-month-day)
 exp_prob: 2-week rolling long-run mean probability of bloom (Unit: float as percentage)
