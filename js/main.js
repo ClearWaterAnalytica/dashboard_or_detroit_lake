@@ -4884,6 +4884,7 @@ Promise.all([
     },
     bindto: "#donut-chart"
   });
+  $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").prop('title', 'yourText');
   // Historical Expectation Donut
   var donutChart2 = c3.generate({
     data: {
@@ -4976,6 +4977,7 @@ Promise.all([
           lastweekDonutReformatted = lastweekDonut.getMonth() + 1 + "/" + lastweekDonut.getDate();
           $("#dateCyan").text(dateSelectDonut + "-" + lastweekDonutReformatted);
           $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > line").css('stroke', '#17e8ce');
+          $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > line").css('stroke', '#ff7f0e');
           $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > text").attr("dy", "-5");
           $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > text").attr("dy", "10");
           donutChart.load({
@@ -5015,18 +5017,18 @@ Promise.all([
     },
     grid: {
       x: {
-        lines: [{
-            value: currentNowCastDate,
-            class: 'currentGrid',
-            text: 'Current',
-            // position: 'start'
-          },
+        lines: [
           {
               value: currentNowCastDate,
               id: 'previousGrid',
               text: 'Previous'
             },
-          // {value: previousNowCastDate, text: 'Previous'},
+            {
+              value: currentNowCastDate,
+              class: 'currentGrid',
+              text: 'Current',
+              // position: 'start'
+            },
         ]
       }
     },
@@ -5058,7 +5060,7 @@ Promise.all([
         },
         type: 'linear',
         tick: {
-          format: d3.format(".2%"),
+          format: d3.format(".0%"),
           count: 5,
           values: [.25, .50, .75, 1]
         },
@@ -5076,7 +5078,7 @@ Promise.all([
         },
         type: 'linear',
         tick: {
-          format: d3.format(".1%"),
+          format: d3.format(".0%"),
           count: 5,
           // values: [.25, .50, .75, 1]
         },
@@ -5118,7 +5120,9 @@ Promise.all([
     bindto: "#spline-chart"
   });
   // Apply orange to the current date x-axis grid line
-  $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > line").css('stroke', '#ff7f0e');
+  $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > line").css('stroke', '#17e8ce');
+  $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > line").css('stroke', '#17e8ce');
+  // Change location of grid labels
   $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > text").attr("dy", "-5");
   $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > text").attr("dy", "10");
 
@@ -8721,6 +8725,8 @@ triggerTabList.forEach(function(triggerEl) {
   })
 })
 
+
+// tooltips on hover on integer in donut Charts
 
 
 

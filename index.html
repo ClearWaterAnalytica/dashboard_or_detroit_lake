@@ -407,30 +407,30 @@
                     <!--Cumulative Sum Weather tab -->
                     <div class="tab-pane fade" id="gage-sum" role="tabpanel" aria-labelledby="gage-sum-tab">
 
-                        <!-- Chart -->
-                        <div id="deck-2" class="card-deck counts">
-                          <div class="card">
-                            <center>
-                              <p></p>
-                            </center>
-                            <!-- <div id="gage-subChart"></div> -->
-                            <div id="h20Sum-chart"></div>
-                          </div>
-                        </div>
-                        <!-- Chart -->
-                        <div id="deck-2" class="card-deck counts">
-                          <div class="card">
-                            <center>
-                              <p></p>
-                            </center>
-                            <!-- <div id="gage-subChart"></div> -->
-                            <div id="dchSum-chart"></div>
-                          </div>
+                      <!-- Chart -->
+                      <div id="deck-2" class="card-deck counts">
+                        <div class="card">
+                          <center>
+                            <p></p>
+                          </center>
+                          <!-- <div id="gage-subChart"></div> -->
+                          <div id="h20Sum-chart"></div>
                         </div>
                       </div>
-
+                      <!-- Chart -->
+                      <div id="deck-2" class="card-deck counts">
+                        <div class="card">
+                          <center>
+                            <p></p>
+                          </center>
+                          <!-- <div id="gage-subChart"></div> -->
+                          <div id="dchSum-chart"></div>
+                        </div>
+                      </div>
                     </div>
+
                   </div>
+                </div>
                 <!-- Sample tab -->
                 <div class="tab-pane fade show" id="sample" role="tabpanel" aria-labelledby="sample-tab">
                   <!-- Sample location dropdown -->
@@ -603,47 +603,52 @@
                   </div>
 
 
-                    <div class="col-lg-12">
-                      <!-- Chart -->
-                      <div id="deck-2" class="card-deck counts">
-                        <div  id="donutCard1" class="card mt-1">
-                          <center>
-                            <p class="mb-0">Previous forecast</p>
-                            <div class="donutRange">
-                              <span id="dateCyan"></span>
-                            </div>
-                          </center>
-                          <div id="donut-chart"></div>
-                          <div class="donutInfo">
+                  <div class="col-lg-12">
+                    <!-- Chart -->
+                    <div id="deck-2" class="card-deck counts">
+                      <div id="donutCard1" class="card mt-1">
+                        <center>
+                          <p class="mb-0">Previous forecast</p>
+                          <div class="donutRange">
+                            <span id="dateCyan"></span>
+                          </div>
+                        </center>
+                        <div id="donut-chart"></div>
+                        <!-- <div class="donutInfo">
                           <a data-toggle="modal" data-target="#previousForecastWindow"><i class="fas fa-info-circle"></i></a>
-                          </div>
+                          </div> -->
 
-                          <!-- <div id="pieTestChart" class="pieCenter"></div> -->
-                        </div>
-                        <div id="donutCard2" class="card mt-1">
-                          <center>
-                            <p class="mb-0">Current forecast</p>
-                            <div class="donutRange">
-                              <span id="dateCyan2"></span>
-                            </div>
-                          </center>
-                          <div id="donut-chart2"></div>
-                          <div class="donutInfo">
-                          <a data-toggle="modal" data-target="#currentForecastWindow"><i class="fas fa-info-circle"></i></a>
-                          </div>
-                          <!-- <div id="pieTestChart2" class="pieCenter"></div> -->
-                        </div>
+                        <!-- <div id="pieTestChart" class="pieCenter"></div> -->
                       </div>
-                      <!-- Chart -->
-                      <div id="spline-deck-2" class="card-deck counts">
-                        <div id="spline-card" class="card">
-                            <div id="clickInstruct">
-                              See where you are in the season (click on the blue line to explore previous predictions):
-                            </div>
-                          <div id="spline-chart"></div>
-                        </div>
+                      <div id="donutCard2" class="card mt-1">
+                        <center>
+                          <p class="mb-0">Current forecast</p>
+                          <div class="donutRange">
+                            <span id="dateCyan2"></span>
+                          </div>
+                        </center>
+                        <div id="donut-chart2"></div>
+                        <!-- <div class="donutInfo">
+                          <a data-toggle="modal" data-target="#currentForecastWindow"><i class="fas fa-info-circle"></i></a>
+                          </div> -->
+                        <!-- <div id="pieTestChart2" class="pieCenter"></div> -->
                       </div>
                     </div>
+                    <!-- Chart -->
+                    <div id="spline-deck-2" class="card-deck counts">
+                      <div id="spline-card" class="card">
+                        <center>
+                          <div id="habTitle">
+                            HAB Season
+                          </div>
+                        </center>
+                        <div id="clickInstruct">
+                          Click on the blue line to explore previous predictions
+                        </div>
+                        <div id="spline-chart"></div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
               </div>
@@ -700,7 +705,7 @@
               <div id="CHARadio" class="form-check form-check-inline">
                 <input class="mr-2 text-gray-600 radioText" type="radio" name="choice" value="ChloroA" id="choice-chla" checked>Chlorophyl a</input>
               </div>
-              <div  id="CYANRadio" class="form-check form-check-inline">
+              <div id="CYANRadio" class="form-check form-check-inline">
                 <div><input class="mr-2 text-gray-600 radioText" type="radio" name="choice" value="cyan" id="choice-cyan">CyAN</input></div>
               </div>
 
@@ -767,8 +772,8 @@
                 <div class="slidecontainer">
                   <div class="timeTitle mb-1 mt-1">Slide to select date for hexbin layer</div>
                   <div id="CHLANDatePicker">
-                  <input type="range" min="0" max="2282" value="2282" class="slider" id="myRange">
-                  <input id="d0" class="timeTitle ml-1 mb-1 mt-1 " type="date" min="2018-12-14" max="2022-01-27" value="2022-01-27">
+                    <input type="range" min="0" max="2282" value="2282" class="slider" id="myRange">
+                    <input id="d0" class="timeTitle ml-1 mb-1 mt-1 " type="date" min="2018-12-14" max="2022-01-27" value="2022-01-27">
                   </div>
                   <div id="CyANDatePicker">
                     <input type="range" min="0" max="1986" value="1986" class="slider" id="myCyANRange">

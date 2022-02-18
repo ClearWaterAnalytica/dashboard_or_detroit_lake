@@ -32,32 +32,38 @@ html, body, main {
   font-size: .75rem;
 }
 
+.c3-chart-arcs-title {
+  margin-top: 500px !important;
+}
+
 .radioText {
   font-size: 1.125rem;
 }
-#sat-tab{
+
+#sat-tab {
   font-size: 1.125rem;
 }
-#sat-button{
+
+#sat-button {
   font-size: 1.125rem;
 }
 
 button {
   font-size: small;
 }
+
 .c3-chart-arcs-title {
-    dominant-baseline: middle;
-    font-size: 1em;
+  dominant-baseline: middle;
+  font-size: 1em;
 }
+
 #deck-3 .c3-chart-lines {
   stroke-width: 5px !important;
 }
-#spline-card {
-  margin-top: 33%;
-}
+
 .c3-chart-arcs-title {
-    dominant-baseline: middle;
-    font-size: 5em;
+  dominant-baseline: middle;
+  font-size: 5em;
 }
 
 .pieCenter {
@@ -68,6 +74,7 @@ button {
 .donutRange {
   font-size: 12px;
 }
+
 .loader {
   position: fixed;
   width: 100%;
@@ -237,9 +244,10 @@ div#footer>div {
   font-weight: bold;
 }
 
-.greyBackground{
+.greyBackground {
   background-color: grey;
 }
+
 /* #legend-panel {
   position: fixed;
   bottom: 180px;
@@ -261,7 +269,7 @@ div#footer>div {
 }
 
 #sat-button {
-  position:  absolute;
+  position: absolute;
   bottom: 16px;
   right: 25px;
   /* width: 400px; */
@@ -270,7 +278,6 @@ div#footer>div {
   opacity: .8;
   color: white;
 }
-
 
 #openBar a {
   color: white;
@@ -374,22 +381,29 @@ span {
 text {
   fill: white
 }
-#spline-chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-y > text {
+
+#spline-chart>svg>g:nth-child(2)>g.c3-axis.c3-axis-y>text {
   fill: #1f77b4;
-    font-size: 13px;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: .75pt;
 }
-#spline-chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-y2 > text {
+
+#spline-chart>svg>g:nth-child(2)>g.c3-axis.c3-axis-y2>text {
   fill: #de2d26;
   font-size: 13px;
+  font-weight: bold;
+  letter-spacing: .75pt;
 }
 
-#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > line {
-    stroke: #17e8ce;
+#spline-chart>svg>g:nth-child(2)>g.c3-grid.c3-grid-lines>g.c3-xgrid-lines>g:nth-child(1)>line {
+  stroke: #17e8ce;
 }
 
-#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > line {
+#spline-chart>svg>g:nth-child(2)>g.c3-grid.c3-grid-lines>g.c3-xgrid-lines>g:nth-child(2)>line {
   stroke: #ff7f0e;
 }
+
 .tick line {
   stroke: gray;
 }
@@ -421,6 +435,7 @@ text {
   margin-top: -170px;
   z-index: 0;
 }
+
 #precipSumSub-chart {
   margin-top: -170px;
   z-index: 0;
@@ -439,14 +454,15 @@ text {
 .frontSub {
   z-index: 1000;
 }
+
 .frontFrontSub {
   z-index: -1;
 }
-.radioselect {
-    margin: auto;
-    margin-top: 1%;
-}
 
+.radioselect {
+  margin: auto;
+  margin-top: 1%;
+}
 
 .c3-axis-y-label {
   font-size: .75rem;
@@ -543,6 +559,7 @@ text {
 padding-left: 4%; */
   font-size: 1.3;
 }
+
 .timeTitle {
   text-align: left;
   padding-right: 10px;
@@ -643,9 +660,11 @@ padding-left: 4%; */
   align-items: left;
   /* border-radius: 3%; */
 }
+
 .infoTab {
   margin-right: 10px;
 }
+
 #deck-2>div.card.col-lg-11 {
   background-color: grey !important;
 }
@@ -654,9 +673,11 @@ padding-left: 4%; */
   background: grey;
   color: white;
 }
+
 .legend-options {
   width: 100%;
 }
+
 .checkbox {
   color: white;
 }
@@ -737,6 +758,7 @@ label {
   opacity: 30%;
   cursor: pointer;
 }
+
 .tooltiptext:hover {
   opacity: 100%;
   cursor: pointer;
@@ -819,8 +841,9 @@ label:HOVER {
 }
 
 .labelSize p {
-    font-size: 14px;
+  font-size: 14px;
 }
+
 .sliderSize {
   width: 75%
 }
@@ -840,38 +863,39 @@ label:HOVER {
   margin-right: -.75rem;
   margin-left: -.75rem;
 } */
-
-
 .fa-chevron-circle-left {
   color: white;
   font-size: 26px;
 }
+
 .mbsc-padding.md-header {
-    font-size: 1.25em;
-    font-weight: 400;
-    padding: .8em .8em .4em .8em;
+  font-size: 1.25em;
+  font-weight: 400;
+  padding: .8em .8em .4em .8em;
 }
 
 .md-dateslider .mbsc-padding {
-    text-align: center;
+  text-align: center;
 }
 
 .md-check-cont {
-    padding: 8px 0 16px 0;
+  padding: 8px 0 16px 0;
 }
 
 .md-check {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    font-size: 26px;
-    padding: .2em;
-    line-height: 23px;
-    border-radius: 33px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  font-size: 26px;
+  padding: .2em;
+  line-height: 23px;
+  border-radius: 33px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
+
 @media only screen and (max-width: 1710px) {
+
   /* For smaller screens: */
   #info {
     position: absolute;
@@ -905,10 +929,10 @@ label:HOVER {
     z-index: 1001;
     font-size: .75rem;
   }
-
 }
 
 @media only screen and (max-width: 1250px) {
+
   /* For smaller screens: */
   #info {
     position: absolute;
@@ -927,7 +951,7 @@ label:HOVER {
 
   #openBar {
     position: absolute;
-  width: 520px;
+    width: 520px;
     padding: 0px 15px 0px 15px;
     /* top: 1%;
     left: 1%; */
@@ -935,6 +959,7 @@ label:HOVER {
     z-index: 999;
     opacity: .9;
   }
+
   .donutInfo {
     margin-left: 61%;
     margin-top: -75%;
@@ -944,11 +969,12 @@ label:HOVER {
 }
 
 @media only screen and (max-width: 1002px) {
+
   /* For smaller screens: */
   #info {
     position: absolute;
     height: 100%;
-  width: 520px;
+    width: 520px;
     /* top: 1%;
     bottom: 1%;
     left: .5%; */
@@ -962,7 +988,7 @@ label:HOVER {
 
   #openBar {
     position: absolute;
-  width: 520px;
+    width: 520px;
     padding: 0px 15px 0px 15px;
     /* top: 1%;
     left: 1%; */
@@ -977,10 +1003,10 @@ label:HOVER {
     z-index: 1001;
     font-size: .75rem;
   }
-
 }
 
 @media only screen and (max-width: 838px) {
+
   /* For mobile phones: */
   #info {
     position: absolute;
@@ -1035,6 +1061,7 @@ label:HOVER {
     overflow-x: hidden;
     overflow-y: hidden;
   }
+
   #infoMapLegend {
     position: absolute;
     /* height: 100%; */
@@ -1048,54 +1075,61 @@ label:HOVER {
     padding: 0px 15px 0px 15px;
     overflow-x: hidden;
   }
+
   .dropdownTitle {
     font-size: 12px;
     position: relative;
     text-align: center;
+  }
+
+  .donutInfo {
+    margin-left: 230px;
+    margin-top: -200px;
+    z-index: 1001;
+    font-size: .75rem;
+  }
+
+  #spline-card {
+    /* margin-top: 25%; */
+  }
 }
-.donutInfo {
-  margin-left: 230px;
-  margin-top: -200px;
-  z-index: 1001;
-  font-size: .75rem;
-}
-#spline-card {
-  margin-top: 25%;
-}
-}
+
 @media only screen and (max-width: 750px) {
-.donutInfo {
-  margin-left: 14em;
-  margin-top: -200px;
-  z-index: 1001;
-  font-size: .75rem;
+  .donutInfo {
+    margin-left: 14em;
+    margin-top: -200px;
+    z-index: 1001;
+    font-size: .75rem;
+  }
 }
-}
+
 @media only screen and (max-width: 570px) {
+
   /* For mobile phones: */
   .card-deck .card {
-      margin-bottom: .0rem;
+    margin-bottom: .0rem;
   }
+
   .dropdownTitle {
     font-size: 12px;
     position: relative;
     text-align: center;
-}
-#donutCard1 {
-  margin-top: 75%;
-  margin-bottom: 60%;
-}
-#donutCard2 {
-  margin-top: 75%;
-  margin-bottom: 10%;
-}
-#spline-card {
-  margin-top: 50%;
-}
-.donutInfo {
-  margin-left: 19em;
-  margin-top: -200px;
-  z-index: 1001;
-  font-size: .75rem;
-}
+  }
+
+  #donutCard1 {
+    margin-top: 75%;
+    margin-bottom: 60%;
+  }
+
+  #donutCard2 {
+    margin-top: 75%;
+    margin-bottom: 10%;
+  }
+
+  .donutInfo {
+    margin-left: 19em;
+    margin-top: -200px;
+    z-index: 1001;
+    font-size: .75rem;
+  }
 }
