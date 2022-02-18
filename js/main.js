@@ -4884,7 +4884,12 @@ Promise.all([
     },
     bindto: "#donut-chart"
   });
-  $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").prop('title', 'yourText');
+  $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").attr("data-toggle", "tooltipDonut1");
+  $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").attr("title", "% Observed Bloom area");
+  $(document).ready(function(){
+    $('[data-toggle="tooltipDonut1"]').tooltip();
+  });
+
   // Historical Expectation Donut
   var donutChart2 = c3.generate({
     data: {
@@ -4924,7 +4929,11 @@ Promise.all([
     bindto: "#donut-chart2"
   });
   $(".c3-chart-arcs-title").attr("dy", 5);
-
+  $("#donut-chart2 > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").attr("data-toggle", "tooltipDonut2");
+  $("#donut-chart2 > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").attr("title", "% Forecast Accuracy");
+  $(document).ready(function(){
+    $('[data-toggle="tooltipDonut2"]').tooltip();
+  });
   var splineChart = c3.generate({
     size: {
       height: 350,

@@ -32,6 +32,10 @@ html, body, main {
   font-size: .75rem;
 }
 
+#donut-chart2 > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text {
+z-index: 1005; 
+}
+
 .radioText {
   font-size: 1.125rem;
 }
