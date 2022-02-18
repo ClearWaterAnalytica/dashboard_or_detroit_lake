@@ -4898,7 +4898,7 @@ Promise.all([
     bindto: "#donut-chart"
   });
   $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").attr("data-toggle", "tooltipDonut1");
-  $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").attr("title", "% Observed Bloom area");
+  $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").attr("title", "% Observed Bloom Area");
   $(document).ready(function(){
     $('[data-toggle="tooltipDonut1"]').tooltip();
   });
