@@ -4923,7 +4923,8 @@ Promise.all([
     },
     bindto: "#donut-chart2"
   });
-  //
+  $(".c3-chart-arcs-title").attr("dy", 5);
+
   var splineChart = c3.generate({
     size: {
       height: 350,
