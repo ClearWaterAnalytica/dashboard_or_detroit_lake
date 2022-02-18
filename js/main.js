@@ -1,3 +1,4 @@
+// Initial load GIF
 $(window).ready(function() {
   $('.loader').fadeOut("slow");
 });
@@ -18,6 +19,7 @@ var lakeBoundsClosedMini = L.latLngBounds(
   L.latLng(44.76672930999038, -122.09269384395935), //Northeast
 );
 
+// Create map element
 var mymap = L.map('map', {
   // center: [44.70580544041939, -122.24899460193791],
   zoomControl: false,
@@ -28,14 +30,15 @@ var mymap = L.map('map', {
   // maxBoundsViscosity: .8,
 });
 
-
-
+// Initial map bounds
 mymap.fitBounds(lakeBoundsClosedMini);
 
+// Baselayer maps
 var voyager =
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png');
 var satellite =
   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+// Initial basemap
 var USGS_USImagery = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}', {
   maxZoom: 20,
   attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
@@ -47,6 +50,7 @@ var baseLayers = {
   'USGS_USImagery': USGS_USImagery,
 }
 
+// Mouse position on map leaflet plugin
 L.Control.MousePosition = L.Control.extend({
   options: {
     position: 'bottomleft',
@@ -58,7 +62,6 @@ L.Control.MousePosition = L.Control.extend({
     latFormatter: undefined,
     prefix: ""
   },
-
   onAdd: function(map) {
     this._container = L.DomUtil.create('div', 'leaflet-control-mouseposition');
     L.DomEvent.disableClickPropagation(this._container);
@@ -66,11 +69,9 @@ L.Control.MousePosition = L.Control.extend({
     this._container.innerHTML = this.options.emptyString;
     return this._container;
   },
-
   onRemove: function(map) {
     map.off('mousemove', this._onMouseMove)
   },
-
   _onMouseMove: function(e) {
     var lng = this.options.lngFormatter ? this.options.lngFormatter(e.latlng.lng) : L.Util.formatNum(e.latlng.lng, this.options.numDigits);
     var lat = this.options.latFormatter ? this.options.latFormatter(e.latlng.lat) : L.Util.formatNum(e.latlng.lat, this.options.numDigits);
@@ -78,44 +79,46 @@ L.Control.MousePosition = L.Control.extend({
     var prefixAndValue = this.options.prefix + ' ' + value;
     this._container.innerHTML = prefixAndValue;
   }
-
 });
-
 L.Map.mergeOptions({
   positionControl: false
 });
-
 L.Map.addInitHook(function() {
   if (this.options.positionControl) {
     this.positionControl = new L.Control.MousePosition();
     this.addControl(this.positionControl);
   }
 });
-
 L.control.mousePosition = function(options) {
   return new L.Control.MousePosition(options);
 };
+
+// Add mouse position plug-in to top right of map
 L.control.mousePosition({
   position: 'topright'
 }).addTo(mymap);
+// Add map scale to top right of map
 L.control.scale({
   position: 'topright'
 }).addTo(mymap);
+// Add control layers for basemaps to top right of map
 new L.control.layers(baseLayers, {}, {
   collapsed: true
 }).addTo(mymap);
-
+// Add zoom home to top right of map
 new L.Control.zoomHome({
   position: 'topright'
 }).addTo(mymap);
 
+
 var chart, sampleChart, precipChart, airTempChart, toxinChart, nitrateChart;
 
+// Create color scale for hexbins and hexbin legend
 var colors = chroma.scale('Spectral').domain([0, 1]).padding(0.15).mode('lch').colors(6);
-var color = chroma.scale('Spectral').domain([0, 1]).padding(0.15).mode('lch').colors(6);
 
+// Create hexbin color legend
 for (i = 0; i < 6; i++) {
-  $('head').append($("<style> .legend-color-" + (i + 1).toString() + " { background: " + color[i] + "; font-size: 15px; opacity: .6; text-shadow: 0 0 0px #ffffff;} </style>"));
+  $('head').append($("<style> .legend-color-" + (i + 1).toString() + " { background: " + colors[i] + "; font-size: 15px; opacity: .6; text-shadow: 0 0 0px #ffffff;} </style>"));
 }
 
 // var cardRules = new Array();
@@ -135,6 +138,8 @@ for (i = 0; i < 6; i++) {
 //
 // colorScaleExtentCHL = []
 // minChlExtent = chlMinExtentSplit.split(' ');
+
+// Chlorophyl a hexbin options
 var options = {
   radius: 12,
   opacity: .6,
@@ -145,7 +150,7 @@ var options = {
   radiusRange: [11, 11],
 };
 
-
+// CYaN hexbin options
 var optionsCyan = {
   radius: 20,
   opacity: .6,
@@ -155,8 +160,7 @@ var optionsCyan = {
   radiusRange: [11, 11],
 };
 
-// hexbin map layer
-
+// Add Chlorophyl A hexbin map layer
 var hexLayer = L.hexbinLayer(options).addTo(mymap);
 
 var hexCyanLayer = L.hexbinLayer(optionsCyan);
@@ -169,48 +173,54 @@ var hexCyanLayer = L.hexbinLayer(optionsCyan);
 // $("#CYANRadio").on("click", function() {
 //   hexCyanLayer.addTo(mymap);
 // });
-// hexlayer options
-function tooltip_function(d) {
 
+// Tooltip function for Chlorophyl A hexbins
+function tooltip_function(d) {
+// Collect all Chlorophyl values in given hexbin
   var chlA_sum = d.reduce(function(acc, obj) {
     return (acc + parseFloat(obj["o"][2]));
   }, 0);
-
+// Average chlorophyl values in given hexbin
   avgChl = chlA_sum / d.length;
+// Format Chlorophyl values to 3 decimal places
   avgChl = d3.format(".3")(avgChl);
+  // Create tooltip text
   var tooltip_text = `Avg. Chlorophyll: ${String(avgChl)}`
-
+  // Return tooltip text
   return tooltip_text
 }
 
+// Tooltip function for CYaN hexbins
 function tooltip_functionCyAN(d) {
-
   var cyan_sum = d.reduce(function(acc, obj) {
     return (acc + parseFloat(obj["o"][2]));
   }, 0);
-
   avgCyan = cyan_sum / d.length;
   avgcyan = d3.format(".3")(avgCyan);
   var tooltip_text = `Avg. CyAN: ${String(avgCyan)}`
-
   return tooltip_text
 }
 
-
+// Update opacity of hexbins to opacitly slider value
 $('#myOpacityRange').on('input', function(value) {
   $('.hexbin').css({
     opacity: $(this).val() * '.1'
   });
 });
 
+// Create Chlorophyl A hexbin layer
 hexLayer
+// hexbin longitute value
   .lng(function(d) {
     return d[0];
   })
+  // hexbin latitude value
   .lat(function(d) {
     return d[1];
   })
+  // color values for hexbins
   .colorValue(
+    // assign hexbin colors to average chlorophyl A values
     function(d) {
       var sum = d.reduce(function(acc, obj) {
         return (acc + parseFloat(obj["o"][2]));
@@ -219,6 +229,7 @@ hexLayer
       return avgChl
     }
   )
+  // Assign tooltip function to the hexbin hover handler
   .hoverHandler(L.HexbinHoverHandler.compound({
     handlers: [
       L.HexbinHoverHandler.resizeFill(),
@@ -228,6 +239,7 @@ hexLayer
     ]
   }));
 
+// CYAN hexbin
 hexCyanLayer
   .lng(function(d) {
     return d[0];
@@ -253,6 +265,7 @@ hexCyanLayer
     ]
   }));
 
+// Date slider
 dateSelect = $('#d0').val();
 let [y, m, d] = dateSelect.split('-');
 mapYear = y;
@@ -347,9 +360,10 @@ window.onload = function() {
   dateInput.addEventListener('change', date2range, false);
 }
 
-
+// set initial stream gage ID
 var gageID = "14178000";
 
+// Load in data
 Promise.all([
   d3.csv('assets/stream_gauge_tab/gage.csv'), //datasets[0]
   d3.json("assets/stream_gauge_tab/usgs.geojson"), //datasets[1]
@@ -385,7 +399,6 @@ Promise.all([
   d3.csv('assets/exp_cyan_tab/detroit_lake_exp_cyan.csv'), //datasets[31]
   d3.csv('assets/exp_cyan_tab/detroit_lake_exp_cyan_test.csv'), //datasets[32]
   d3.csv('assets/now_cast_tab/detroit_lake_nowcast_expected_longrun_predictions.csv'), //datasets[33]
-
 
 ]).then(function(datasets) {
 
@@ -4941,10 +4954,10 @@ Promise.all([
     data: {
       x: "Date",
       columns: [
-        bloom_p,
         expCyanDate,
-        // nctCurrentDate,
         logCICells,
+        bloom_p,
+        // nctCurrentDate,
       ],
       axes: {
         Probability_of_bloom: 'y',
@@ -5133,8 +5146,8 @@ Promise.all([
   $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > line").css('stroke', '#17e8ce');
   $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > line").css('stroke', '#17e8ce');
   // Change location of grid labels
-  $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > text").attr("dy", "-5");
-  $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > text").attr("dy", "10");
+  $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > text").attr("dy", "-5");
+  $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > text").attr("dy", "10");
 
 // Pie Charts inside donuts
   // var pieTestchart = c3.generate({
