@@ -4893,7 +4893,7 @@ Promise.all([
     donut: {
       // title: lastModelAcc + "% Observed Bloom area",
       title: lastModelAcc,
-      width: 70,
+      width: 85,
     },
     bindto: "#donut-chart"
   });
@@ -4937,7 +4937,7 @@ Promise.all([
     },
     donut: {
       title: lastModelAcc,
-      width: 70,
+      width: 85,
     },
     bindto: "#donut-chart2"
   });
