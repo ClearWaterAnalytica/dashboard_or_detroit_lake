@@ -118,16 +118,33 @@ for (i = 0; i < 6; i++) {
   $('head').append($("<style> .legend-color-" + (i + 1).toString() + " { background: " + color[i] + "; font-size: 15px; opacity: .6; text-shadow: 0 0 0px #ffffff;} </style>"));
 }
 
-
-// hexbin options
+// var cardRules = new Array();
+// var chlMinExtent = 0;
+// var chlMaxExtent = 0;
+//
+//     $.get('assets/meta_data.txt', function(data){
+//             cardRules = data.split('\n');
+//             console.log(cardRules);
+//             chlMinExtentSplit = cardRules[6].split(' ');
+//             chlMinExtentLocal = chlMinExtentSplit[4] * 1;
+//             chlMaxExtentLocal = chlMinExtentSplit[8].trimRight(2) * 1;
+//             chlMinExtent = chlMinExtentLocal;
+//             chlMaxExtent = chlMaxExtentLocal;
+//
+//         });
+//
+// colorScaleExtentCHL = []
+// minChlExtent = chlMinExtentSplit.split(' ');
 var options = {
   radius: 12,
   opacity: .6,
   colorRange: [colors[5], colors[4], colors[3], colors[2], colors[1], colors[0]],
   colorScaleExtent: [.53, 1.22],
+  // colorScaleExtent: [chlMinExtent, chlMaxExtent],
   duration: 500,
   radiusRange: [11, 11],
 };
+
 
 var optionsCyan = {
   radius: 20,
@@ -4824,6 +4841,7 @@ Promise.all([
   var cyanLast = 100 * parseFloat(bloom_p.slice(-1));
   var noCyanLast = 100 - cyanLast;
   var lastModelAcc = 100 * model_accuracy.slice(-1);
+  lastModelAccOther = 1 - lastModelAcc;
   var nocyan = ['Probability of no bloom'];
   var currentNowCastDate = nct.slice(-1);
   var previousNowCastDate;
@@ -4861,6 +4879,7 @@ Promise.all([
     },
     donut: {
       // title: lastModelAcc + "% Observed Bloom area",
+      title: lastModelAcc,
       width: 70,
     },
     bindto: "#donut-chart"
@@ -4898,7 +4917,7 @@ Promise.all([
       show: false
     },
     donut: {
-      // title: lastModelAcc + "% Forecast Accuracy",
+      title: lastModelAcc,
       width: 70,
     },
     bindto: "#donut-chart2"
@@ -4906,7 +4925,7 @@ Promise.all([
   //
   var splineChart = c3.generate({
     size: {
-      height: 220,
+      height: 350,
     },
     data: {
       x: "Date",
@@ -4945,7 +4964,8 @@ Promise.all([
               nctHistoricalDate.push('null')
             }
           }
-          $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").text(100 * model_accuracy[d.index] + "% Observed Bloom area");
+          // $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").text(100 * model_accuracy[d.index] + "% Observed Bloom area");
+          $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").text(100 * model_accuracy[d.index]);
           var USTdDonut = new Date(d.x);
           previousNowCastDate = d.x;
           var monthDonut = USTdDonut.getMonth();
@@ -4956,6 +4976,8 @@ Promise.all([
           lastweekDonutReformatted = lastweekDonut.getMonth() + 1 + "/" + lastweekDonut.getDate();
           $("#dateCyan").text(dateSelectDonut + "-" + lastweekDonutReformatted);
           $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > line").css('stroke', '#17e8ce');
+          $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > text").attr("dy", "-5");
+          $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > text").attr("dy", "10");
           donutChart.load({
             unload: true,
             columns: [
@@ -4963,7 +4985,8 @@ Promise.all([
               ['Probability of no bloom', cyanoProb_1],
             ],
           });
-          splineChart.xgrids([{
+          splineChart.xgrids([
+            {
               value: previousNowCastDate,
               id: 'previousGrid',
               text: 'Previous'
@@ -4995,8 +5018,14 @@ Promise.all([
         lines: [{
             value: currentNowCastDate,
             class: 'currentGrid',
-            text: 'Current'
+            text: 'Current',
+            // position: 'start'
           },
+          {
+              value: currentNowCastDate,
+              id: 'previousGrid',
+              text: 'Previous'
+            },
           // {value: previousNowCastDate, text: 'Previous'},
         ]
       }
@@ -5090,66 +5119,67 @@ Promise.all([
   });
   // Apply orange to the current date x-axis grid line
   $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > line").css('stroke', '#ff7f0e');
+  $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > text").attr("dy", "-5");
+  $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > text").attr("dy", "10");
 
-  var pieTestchart = c3.generate({
-    size: {
-      height: 200,
-    },
-    data: {
-      // iris data from R
-      columns: [
-        ['Obsereved Bloom Area', 75],
-        ['', 25],
-      ],
-      type: 'pie',
-      onclick: function(d, i) {
-        console.log("onclick", d, i);
-      },
-      onmouseover: function(d, i) {
-        console.log("onmouseover", d, i);
-      },
-      onmouseout: function(d, i) {
-        console.log("onmouseout", d, i);
-      }
-    },
-    color: {
-      pattern: ['#7fcdbb', '#ffffcc']
-    },
-    legend: {
-      hide: true,
-    },
-    bindto: "#pieTestChart"
-  });
-
-  var pieTestchart2 = c3.generate({
-    size: {
-      height: 200,
-    },
-    data: {
-      // iris data from R
-      columns: [
-        ['Forecast Accuracy', 75],
-        ['', 25],
-      ],
-      type: 'pie',
-      onclick: function(d, i) {
-        console.log("onclick", d, i);
-      },
-      onmouseover: function(d, i) {
-        console.log("onmouseover", d, i);
-      },
-      onmouseout: function(d, i) {
-        console.log("onmouseout", d, i);
-      }
-    },
-    color: {
-      pattern: ['#fe9929', '#ffffcc']
-    },
-    legend: {
-      hide: true,
-    },
-    bindto: "#pieTestChart2"
-  });
+// Pie Charts inside donuts
+  // var pieTestchart = c3.generate({
+  //   size: {
+  //     height: 200,
+  //   },
+  //   data: {
+  //     columns: [
+  //       ['Obsereved Bloom Area', 75],
+  //       ['', 25],
+  //     ],
+  //     type: 'pie',
+  //     onclick: function(d, i) {
+  //       console.log("onclick", d, i);
+  //     },
+  //     onmouseover: function(d, i) {
+  //       console.log("onmouseover", d, i);
+  //     },
+  //     onmouseout: function(d, i) {
+  //       console.log("onmouseout", d, i);
+  //     }
+  //   },
+  //   color: {
+  //     pattern: ['#7fcdbb', '#ffffcc']
+  //   },
+  //   legend: {
+  //     hide: true,
+  //   },
+  //   bindto: "#pieTestChart"
+  // });
+  //
+  // var pieTestchart2 = c3.generate({
+  //   size: {
+  //     height: 200,
+  //   },
+  //   data: {
+  //     columns: [
+  //       ['Forecast Accuracy', 75],
+  //       ['', 25],
+  //     ],
+  //     type: 'pie',
+  //     onclick: function(d, i) {
+  //       console.log("onclick", d, i);
+  //     },
+  //     onmouseover: function(d, i) {
+  //       console.log("onmouseover", d, i);
+  //     },
+  //     onmouseout: function(d, i) {
+  //       console.log("onmouseout", d, i);
+  //     }
+  //   },
+  //   color: {
+  //     pattern: ['#fe9929', '#ffffcc']
+  //   },
+  //   legend: {
+  //     hide: true,
+  //   },
+  //   bindto: "#pieTestChart2"
+  // });
   // Tab Interactions
   $("#weather-tab").on("click", function() {
     // Remove Map Layers
@@ -5200,20 +5230,20 @@ Promise.all([
         [nocyan, noCyanLast],
       ],
     });
-    pieTestchart.load({
-      unload: true,
-      columns: [
-        ['Obsereved Bloom Area', 75],
-        ['', 25],
-      ],
-    });
-    pieTestchart2.load({
-      unload: true,
-      columns: [
-        ['Forecast Accuracy', 75],
-        ['', 25],
-      ],
-    });
+    // pieTestchart.load({
+    //   unload: true,
+    //   columns: [
+    //     ['Obsereved Bloom Area', lastModelAcc],
+    //     ['', lastModelAccOther],
+    //   ],
+    // });
+    // pieTestchart2.load({
+    //   unload: true,
+    //   columns: [
+    //     ['Forecast Accuracy', lastModelAcc],
+    //     ['', lastModelAccOther],
+    //   ],
+    // });
     splineChart.load({
       unload: true,
       columns: [

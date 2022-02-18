@@ -22,9 +22,15 @@ html, body, main {
 
 #clickInstruct {
   font-size: .75rem;
+  padding-left: .25rem;
 }
 
-
+.donutInfo {
+  margin-left: 185px;
+  margin-top: -200px;
+  z-index: 1001;
+  font-size: .75rem;
+}
 
 .radioText {
   font-size: 1.125rem;
@@ -47,12 +53,16 @@ button {
   stroke-width: 5px !important;
 }
 #spline-card {
-  bottom: 200px;
+  margin-top: 33%;
+}
+.c3-chart-arcs-title {
+    dominant-baseline: middle;
+    font-size: 5em;
 }
 
 .pieCenter {
-  z-index: 100;
-  bottom: 44%;
+  z-index: 1000;
+  bottom: 75px;
 }
 
 .donutRange {
@@ -880,7 +890,7 @@ label:HOVER {
 
   #openBar {
     position: absolute;
-    width: 520px;
+    width: 550px;
     padding: 0px 15px 0px 15px;
     /* top: 1%;
     left: 1%; */
@@ -889,7 +899,12 @@ label:HOVER {
     opacity: .9;
   }
 
-
+  .donutInfo {
+    margin-left: 61%;
+    margin-top: -75%;
+    z-index: 1001;
+    font-size: .75rem;
+  }
 
 }
 
@@ -920,7 +935,12 @@ label:HOVER {
     z-index: 999;
     opacity: .9;
   }
-
+  .donutInfo {
+    margin-left: 61%;
+    margin-top: -75%;
+    z-index: 1001;
+    font-size: .75rem;
+  }
 }
 
 @media only screen and (max-width: 1002px) {
@@ -949,6 +969,13 @@ label:HOVER {
     /* font-size: 3rem; */
     z-index: 999;
     opacity: .9;
+  }
+
+  .donutInfo {
+    margin-left: 61%;
+    margin-top: -75%;
+    z-index: 1001;
+    font-size: .75rem;
   }
 
 }
@@ -1026,6 +1053,23 @@ label:HOVER {
     position: relative;
     text-align: center;
 }
+.donutInfo {
+  margin-left: 230px;
+  margin-top: -200px;
+  z-index: 1001;
+  font-size: .75rem;
+}
+#spline-card {
+  margin-top: 25%;
+}
+}
+@media only screen and (max-width: 750px) {
+.donutInfo {
+  margin-left: 14em;
+  margin-top: -200px;
+  z-index: 1001;
+  font-size: .75rem;
+}
 }
 @media only screen and (max-width: 570px) {
   /* For mobile phones: */
@@ -1036,5 +1080,22 @@ label:HOVER {
     font-size: 12px;
     position: relative;
     text-align: center;
+}
+#donutCard1 {
+  margin-top: 75%;
+  margin-bottom: 60%;
+}
+#donutCard2 {
+  margin-top: 75%;
+  margin-bottom: 10%;
+}
+#spline-card {
+  margin-top: 50%;
+}
+.donutInfo {
+  margin-left: 19em;
+  margin-top: -200px;
+  z-index: 1001;
+  font-size: .75rem;
 }
 }

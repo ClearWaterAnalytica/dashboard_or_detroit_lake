@@ -606,7 +606,7 @@
                     <div class="col-lg-12">
                       <!-- Chart -->
                       <div id="deck-2" class="card-deck counts">
-                        <div class="card mt-1">
+                        <div  id="donutCard1" class="card mt-1">
                           <center>
                             <p class="mb-0">Previous forecast</p>
                             <div class="donutRange">
@@ -614,9 +614,13 @@
                             </div>
                           </center>
                           <div id="donut-chart"></div>
-                          <div id="pieTestChart" class="pieCenter"></div>
+                          <div class="donutInfo">
+                          <a data-toggle="modal" data-target="#previousForecastWindow"><i class="fas fa-info-circle"></i></a>
+                          </div>
+
+                          <!-- <div id="pieTestChart" class="pieCenter"></div> -->
                         </div>
-                        <div class="card mt-1">
+                        <div id="donutCard2" class="card mt-1">
                           <center>
                             <p class="mb-0">Current forecast</p>
                             <div class="donutRange">
@@ -624,14 +628,17 @@
                             </div>
                           </center>
                           <div id="donut-chart2"></div>
-                          <div id="pieTestChart2" class="pieCenter"></div>
+                          <div class="donutInfo">
+                          <a data-toggle="modal" data-target="#currentForecastWindow"><i class="fas fa-info-circle"></i></a>
+                          </div>
+                          <!-- <div id="pieTestChart2" class="pieCenter"></div> -->
                         </div>
                       </div>
                       <!-- Chart -->
                       <div id="spline-deck-2" class="card-deck counts">
                         <div id="spline-card" class="card">
                             <div id="clickInstruct">
-                              Click on blue line below to select date
+                              See where you are in the season (click on the blue line to explore previous predictions):
                             </div>
                           <div id="spline-chart"></div>
                         </div>
@@ -760,7 +767,7 @@
                 <div class="slidecontainer">
                   <div class="timeTitle mb-1 mt-1">Slide to select date for hexbin layer</div>
                   <div id="CHLANDatePicker">
-                  <input type="range" min="0" max="1141" value="1141" class="slider" id="myRange">
+                  <input type="range" min="0" max="2282" value="2282" class="slider" id="myRange">
                   <input id="d0" class="timeTitle ml-1 mb-1 mt-1 " type="date" min="2018-12-14" max="2022-01-27" value="2022-01-27">
                   </div>
                   <div id="CyANDatePicker">
@@ -930,6 +937,40 @@
             <p>Red colored values highlight areas of high chlorophyll-a, relative to the blue colored areas.
               Values are computed as the ratio of the Near Infrared and Red bands from the Sentinel 2a satellite
               (see this <a href="https://en.wikipedia.org/wiki/Sentinel-2" target="_blank">link</a>)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="previousForecastWindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
+      <div class="modal-content">
+        <div class="modal-header">
+          <strong class="modal-title" id="exampleModalLongTitle">Previous forecast info</strong>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="demo" class="carousel " data-ride="carousel">
+            <p>% Observed Bloom area</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="currentForecastWindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
+      <div class="modal-content">
+        <div class="modal-header">
+          <strong class="modal-title" id="exampleModalLongTitle">Current forecast info</strong>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="demo" class="carousel " data-ride="carousel">
+            <p>% Forecast Accuracy</p>
           </div>
         </div>
       </div>
