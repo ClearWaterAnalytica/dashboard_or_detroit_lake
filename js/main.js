@@ -3,18 +3,14 @@ $(window).ready(function() {
   $('.loader').fadeOut("slow");
 });
 
-// bounds of lake
-var lakeBounds = L.latLngBounds(
-  L.latLng(44.607486241841485, -122.65328825946432), //Southwest
-  L.latLng(44.79646203583117, -122.09510671380221), //Northeast
-);
+// Change for new dashboard
 
 var lakeBoundsClosed = L.latLngBounds(
   L.latLng(44.6518457695288, -122.30459300466374), //Southwest
   L.latLng(44.76672930999038, -122.09269384395935), //Northeast
 );
 
-var lakeBoundsClosedMini = L.latLngBounds(
+var lakeBoundsOpenMini = L.latLngBounds(
   L.latLng(44.6518457695288, -122.43459300466374), //Southwest
   L.latLng(44.76672930999038, -122.09269384395935), //Northeast
 );
@@ -31,7 +27,7 @@ var mymap = L.map('map', {
 });
 
 // Initial map bounds
-mymap.fitBounds(lakeBoundsClosedMini);
+mymap.fitBounds(lakeBoundsOpenMini);
 
 // Baselayer maps
 var voyager =
@@ -176,13 +172,13 @@ var hexCyanLayer = L.hexbinLayer(optionsCyan);
 
 // Tooltip function for Chlorophyl A hexbins
 function tooltip_function(d) {
-// Collect all Chlorophyl values in given hexbin
+  // Collect all Chlorophyl values in given hexbin
   var chlA_sum = d.reduce(function(acc, obj) {
     return (acc + parseFloat(obj["o"][2]));
   }, 0);
-// Average chlorophyl values in given hexbin
+  // Average chlorophyl values in given hexbin
   avgChl = chlA_sum / d.length;
-// Format Chlorophyl values to 3 decimal places
+  // Format Chlorophyl values to 3 decimal places
   avgChl = d3.format(".3")(avgChl);
   // Create tooltip text
   var tooltip_text = `Avg. Chlorophyll: ${String(avgChl)}`
@@ -210,7 +206,7 @@ $('#myOpacityRange').on('input', function(value) {
 
 // Create Chlorophyl A hexbin layer
 hexLayer
-// hexbin longitute value
+  // hexbin longitute value
   .lng(function(d) {
     return d[0];
   })
@@ -240,30 +236,30 @@ hexLayer
   }));
 
 // CYAN hexbin
-hexCyanLayer
-  .lng(function(d) {
-    return d[0];
-  })
-  .lat(function(d) {
-    return d[1];
-  })
-  .colorValue(
-    function(d) {
-      var sum = d.reduce(function(acc, obj) {
-        return (acc + parseFloat(obj["o"][2]));
-      }, 0);
-      avgChl = sum / d.length;
-      return avgChl
-    }
-  )
-  .hoverHandler(L.HexbinHoverHandler.compound({
-    handlers: [
-      L.HexbinHoverHandler.resizeFill(),
-      L.HexbinHoverHandler.tooltip({
-        tooltipContent: tooltip_functionCyAN
-      })
-    ]
-  }));
+// hexCyanLayer
+//   .lng(function(d) {
+//     return d[0];
+//   })
+//   .lat(function(d) {
+//     return d[1];
+//   })
+//   .colorValue(
+//     function(d) {
+//       var sum = d.reduce(function(acc, obj) {
+//         return (acc + parseFloat(obj["o"][2]));
+//       }, 0);
+//       avgChl = sum / d.length;
+//       return avgChl
+//     }
+//   )
+//   .hoverHandler(L.HexbinHoverHandler.compound({
+//     handlers: [
+//       L.HexbinHoverHandler.resizeFill(),
+//       L.HexbinHoverHandler.tooltip({
+//         tooltipContent: tooltip_functionCyAN
+//       })
+//     ]
+//   }));
 
 // Date slider
 dateSelect = $('#d0').val();
@@ -360,10 +356,13 @@ window.onload = function() {
   dateInput.addEventListener('change', date2range, false);
 }
 
+
+// Change for new dashboard
 // set initial stream gage ID
 var gageID = "14178000";
 
-// Load in data
+// Change for new dashboard
+// Load in datasets
 Promise.all([
   d3.csv('assets/stream_gauge_tab/gage.csv'), //datasets[0]
   d3.json("assets/stream_gauge_tab/usgs.geojson"), //datasets[1]
@@ -399,23 +398,20 @@ Promise.all([
   d3.csv('assets/exp_cyan_tab/detroit_lake_exp_cyan.csv'), //datasets[31]
   d3.csv('assets/exp_cyan_tab/detroit_lake_exp_cyan_test.csv'), //datasets[32]
   d3.csv('assets/now_cast_tab/detroit_lake_nowcast_expected_longrun_predictions.csv'), //datasets[33]
-
 ]).then(function(datasets) {
 
-  function hexbinFunction(i) {
+  // Load Chlorophyl A data into hexbin data array then into hexlayer
+  hexdata = [];
+  datasets[4].forEach(function(d) {
+    hexdata.push([
+      d.lon,
+      d.lat,
+      d.Chlorophyll,
+    ]);
+  })
+  hexLayer.data(hexdata);
 
-    hexdata = [];
-    datasets[4].forEach(function(d) {
-      hexdata.push([
-        d.lon,
-        d.lat,
-        d.Chlorophyll,
-      ]);
-    })
-    hexLayer.data(hexdata);
-  };
-  hexbinFunction();
-
+  // Load CyAN Map dataset
   hexCyanData = [];
   datasets[30].forEach(function(d) {
     hexCyanData.push([
@@ -427,17 +423,20 @@ Promise.all([
   })
   hexCyanLayer.data(hexCyanData);
 
-  //  Expected Cyan data
+
+  //  Expected Cyan Vars
   dateArray2022 = ["Date"];
   expCyanDate = ["Date"];
   logCICells = ["Log_CI_Cells_mL"];
   // expCyanBloom = ["Bloom"];
+
   var expCyanVars = {
     name: "Expected CyAN",
     lCI: logCICells,
     // ecb: expCyanBloom,
   }
 
+  // Load in Expected CyAN data
   function expCyanCounts(i) {
     let expCyanData = datasets[33];
     for (let i = 0; i < expCyanData.length; i++) {
@@ -454,23 +453,24 @@ Promise.all([
 
   };
   expCyanCounts(expCyanVars);
-  // Nowcast data
+
+  // Nowcast vars
   nct = ["Date"];
   bloom_p = ["Probability_of_bloom"];
   bloom_1_p = ["Probability of no bloom"];
   model_accuracy = ["Accuracy of the now-cast model"];
-  nctCurrentDate = ["Current"];
+  bloom_proportion = ["Proportion of blooms from last 7 days"];
 
   var nowCastVars = {
     name: "Now Cast",
     bp: bloom_p,
     b1p: bloom_1_p,
     ma: model_accuracy,
-    cd: nctCurrentDate,
+    ba: bloom_proportion,
   }
 
 
-
+  //  Load in NowCast data
   function nowCastCounts(i) {
     let nowCastData = datasets[29];
     for (let i = 0; i < nowCastData.length; i++) {
@@ -486,24 +486,26 @@ Promise.all([
       bloom_p.push(nowCastData[i].bloom_p);
       bloom_1_p.push(nowCastData[i].bloom_1_p);
       model_accuracy.push(nowCastData[i].model_accuracy);
-      if (i == nowCastData.length - 1) {
-        nctCurrentDate.push(1)
-      } else if (i !== nowCastData.length) {
-        nctCurrentDate.push('null')
-      }
-      var lastweek = new Date(USTd.getFullYear(), USTd.getMonth(), USTd.getDate() + 7);
-      currentDateDonutReformatted = currentDateDonut.getMonth() + 1 + "/" + currentDateDonut.getDate();
-      currentDateDonutReformattedUpdate = currentDateDonut.getMonth() + 1 + "/" + currentDateDonut.getDate() + "/" + currentDateDonut.getFullYear();
-      lastweekReformatted = lastweek.getMonth() + 1 + "/" + lastweek.getDate();
+      bloom_proportion.push(nowCastData[i].bloom_proportion);
 
-      $("#dateCyan").text(currentDateDonutReformatted + "-" + lastweekReformatted);
-      $("#dateCyan2").text(currentDateDonutReformatted + "-" + lastweekReformatted);
+      // Calculate 7 days from selected date
+      var nextweek = new Date(USTd.getFullYear(), USTd.getMonth(), USTd.getDate() + 7);
+
+      // Get most current date and format into display
+      currentDateDonutReformatted = currentDateDonut.getMonth() + 1 + "/" + currentDateDonut.getDate();
+      // Get date 7 days after most current date and format into display
+      nextweekReformatted = nextweek.getMonth() + 1 + "/" + nextweek.getDate();
+
+      // Update date range display over previous forcast donut chart
+      $("#dateCyan").text(currentDateDonutReformatted + "-" + nextweekReformatted);
+      // Update date range display over current forcast donut chart
+      $("#dateCyan2").text(currentDateDonutReformatted + "-" + nextweekReformatted);
     }
   }
 
 
 
-  // Weather Data
+  // Weather Data vars
   var wt = ["Date"];
   var wt2020 = ["Date"];
   var wt2021 = ["Date"];
@@ -612,8 +614,6 @@ Promise.all([
   weatherData2012windMean = ["2012"];
   weatherData2012windSum = ["2012"];
 
-
-
   var weatherVars = {
     name: "Precip",
     pcM2022: weatherData2022pcMean,
@@ -706,15 +706,15 @@ Promise.all([
     windS2012: weatherData2012windSum,
   }
 
+  // Load in weather data
   function varsCounts(i) {
     let weatherData = datasets[27];
+    // itereate through the weather dataset and assign data into appropritate fields and years
     for (let i = 0; i < weatherData.length; i++) {
       weatherDate = new Date(weatherData[i].date);
       yearConversion = weatherDate.setHours(weatherDate.getHours() + 8);
       yearWeather = weatherDate.getFullYear();
 
-      // dateGage1Reformat = streamGageData[i].date.split("-");
-      // yearGage1 = dateGage1Reformat[0];
       switch (yearWeather) {
         case 2022:
           if (weatherData[i].Precip_mean == "") {
@@ -1185,8 +1185,7 @@ Promise.all([
     }
   }
 
-  // Stream Gage Data
-
+  // Stream Gage Data vars
   var t = ["Date"];
   var t2020 = ["Date"];
   var t2021 = ["Date"];
@@ -1259,6 +1258,7 @@ Promise.all([
   streamGage1Data2010dchMean = ["2010"];
   streamGage1Data2010dchSum = ["2010"];
 
+// Change for new dashboard
   var gage1 = {
     name: "14178000",
     wt: water_temp,
@@ -1318,14 +1318,22 @@ Promise.all([
     dchS2010: streamGage1Data2010dchSum,
   }
 
+  // Load in stream gage data for initial stream gage
   function gage1Counts(i) {
+    // Change for new dashboard
+    // Assign initial stream gage
     gageID = "14178000";
+    // Change for new dashboard
+    //  Assign name initial dropdown text to initial steam gage name
     $("#gageDropdown").text("NO SANTIAM R BLW BOULDER CRK, NR DETROIT, OR");
 
+    // Get stream gage dataset
     let streamGageData = datasets[25];
+    // itereate through stream gage dataset and assign variables by year and fields
     for (let i = 0; i < streamGageData.length; i++) {
       dateGage1Reformat = streamGageData[i].date.split("-");
       yearGage1 = dateGage1Reformat[0];
+      // Change for new dashboard
       if (streamGageData[i].usgs_site == "14178000") {
         switch (yearGage1) {
           case "2022":
@@ -1619,6 +1627,7 @@ Promise.all([
 
     }
 
+    // Check for deletion
     twt = 0;
     datasets[0].forEach(function(d) {
       var USTd = new Date(d["date"])
@@ -1634,14 +1643,13 @@ Promise.all([
         items = d.split("-");
         switch (items.length) {
           case 1:
-
             twt += +items[0];
             break;
         };
-
       }
       i["wt"].push(twt);
     });
+    // Check for deletion
     twt2020 = 0;
     datasets[21].forEach(function(d) {
       var USTd = new Date(d["date"])
@@ -1657,14 +1665,13 @@ Promise.all([
         items = d.split("-");
         switch (items.length) {
           case 1:
-
             twt2020 += +items[0];
             break;
         };
-
       }
       i["wt2020"].push(twt2020);
     });
+    // Check for deletion
     twt2021 = 0;
     datasets[22].forEach(function(d) {
       var USTd = new Date(d["date"])
@@ -1680,18 +1687,15 @@ Promise.all([
         items = d.split("-");
         switch (items.length) {
           case 1:
-
             twt2021 += +items[0];
             break;
         };
-
       }
       i["wt2021"].push(twt2021);
     });
-
-
   }
 
+  // Funcion for loading in stream gage data dynamically by selected stream gage site
   function siteCounts(i) {
     let streamGageData = datasets[25];
     for (let t = 0; t < streamGageData.length; t++) {
@@ -2004,7 +2008,7 @@ Promise.all([
     }
   }
 
-  // Water sample Data
+  // Water sample Data vars
   var wstnew = ["Date"];
   var wst = ["Date"];
   var wst2016 = ["Date"];
@@ -2041,6 +2045,7 @@ Promise.all([
   var nitrate2019 = ["2019"];
 
   var sampleLoc1 = {
+    // Change for new dashboard
     name: "Log Boom",
     a: algae,
     a2016: algae2016,
@@ -2062,6 +2067,7 @@ Promise.all([
     n2019: nitrate2019,
   }
 
+  // Water sample function to load in data
   function sample1Counts(i) {
     // algae data
     ta = 0;
@@ -2348,7 +2354,6 @@ Promise.all([
             tn2017 += +items[0];
             break;
         };
-
       }
       i["n2017"].push(tn2017);
     });
@@ -2370,7 +2375,6 @@ Promise.all([
             tn2018 += +items[0];
             break;
         };
-
       }
       i["n2018"].push(tn2018);
     });
@@ -2392,12 +2396,12 @@ Promise.all([
             tn2019 += +items[0];
             break;
         };
-
       }
       i["n2019"].push(tn2019);
     });
   }
 
+  // Dynamically load in data for water sample data depending on location
   function sampleSiteCounts(i) {
     // algae data
     ta = 0;
@@ -2418,9 +2422,7 @@ Promise.all([
             ta += +items[0];
             break;
         };
-
       } else {
-
         Object.values(current).forEach(function(d) {
           if (d == undefined) {
             d = "0"
@@ -2431,9 +2433,7 @@ Promise.all([
               ta += +items[0];
               break;
           };
-
         });
-        //
       }
       i["a"].push(ta);
     });
@@ -2455,9 +2455,7 @@ Promise.all([
             ta2016 += +items[0];
             break;
         };
-
       } else {
-
         Object.values(current).forEach(function(d) {
           if (d == undefined) {
             d = "0"
@@ -2468,9 +2466,7 @@ Promise.all([
               ta2016 += +items[0];
               break;
           };
-
         });
-        //
       }
       i["a2016"].push(ta2016);
     });
@@ -2492,9 +2488,7 @@ Promise.all([
             ta2017 += +items[0];
             break;
         };
-
       } else {
-
         Object.values(current).forEach(function(d) {
           if (d == undefined) {
             d = "0"
@@ -2505,9 +2499,7 @@ Promise.all([
               ta2017 += +items[0];
               break;
           };
-
         });
-        //
       }
       i["a2017"].push(ta2017);
     });
@@ -2529,9 +2521,7 @@ Promise.all([
             ta2018 += +items[0];
             break;
         };
-
       } else {
-
         Object.values(current).forEach(function(d) {
           if (d == undefined) {
             d = "0"
@@ -2542,9 +2532,7 @@ Promise.all([
               ta2018 += +items[0];
               break;
           };
-
         });
-        //
       }
       i["a2018"].push(ta2018);
     });
@@ -2566,9 +2554,7 @@ Promise.all([
             ta2019 += +items[0];
             break;
         };
-
       } else {
-
         Object.values(current).forEach(function(d) {
           if (d == undefined) {
             d = "0"
@@ -2579,9 +2565,7 @@ Promise.all([
               ta2019 += +items[0];
               break;
           };
-
         });
-        //
       }
       i["a2019"].push(ta2019);
     });
@@ -2604,9 +2588,7 @@ Promise.all([
             tt += +items[0];
             break;
         };
-
       } else {
-
         Object.values(current).forEach(function(d) {
           if (d == undefined) {
             d = "0"
@@ -2617,9 +2599,7 @@ Promise.all([
               tt += +items[0];
               break;
           };
-
         });
-        //
       }
       i["t"].push(tt);
     });
@@ -2641,9 +2621,7 @@ Promise.all([
             tt2016 += +items[0];
             break;
         };
-
       } else {
-
         Object.values(current).forEach(function(d) {
           if (d == undefined) {
             d = "0"
@@ -2654,9 +2632,7 @@ Promise.all([
               tt2016 += +items[0];
               break;
           };
-
         });
-        //
       }
       i["t2016"].push(tt2016);
     });
@@ -2678,9 +2654,7 @@ Promise.all([
             tt2017 += +items[0];
             break;
         };
-
       } else {
-
         Object.values(current).forEach(function(d) {
           if (d == undefined) {
             d = "0"
@@ -2691,9 +2665,7 @@ Promise.all([
               tt2017 += +items[0];
               break;
           };
-
         });
-        //
       }
       i["t2017"].push(tt2017);
     });
@@ -2715,9 +2687,7 @@ Promise.all([
             tt2018 += +items[0];
             break;
         };
-
       } else {
-
         Object.values(current).forEach(function(d) {
           if (d == undefined) {
             d = "0"
@@ -2728,9 +2698,7 @@ Promise.all([
               tt2018 += +items[0];
               break;
           };
-
         });
-        //
       }
       i["t2018"].push(tt2018);
     });
@@ -2752,9 +2720,7 @@ Promise.all([
             tt2019 += +items[0];
             break;
         };
-
       } else {
-
         Object.values(current).forEach(function(d) {
           if (d == undefined) {
             d = "0"
@@ -2765,12 +2731,11 @@ Promise.all([
               tt2019 += +items[0];
               break;
           };
-
         });
-        //
       }
       i["t2019"].push(tt2019);
     });
+
     // nitrate data
     tn = 0;
     datasets[7].forEach(function(d) {
@@ -2790,9 +2755,7 @@ Promise.all([
             tn += +items[0];
             break;
         };
-
       } else {
-
         Object.values(current).forEach(function(d) {
           if (d == undefined) {
             d = "0"
@@ -2803,12 +2766,11 @@ Promise.all([
               tn += +items[0];
               break;
           };
-
         });
-        //
       }
       i["n"].push(tn);
     });
+
     tn2016 = 0;
     datasets[17].forEach(function(d) {
       var USTd = new Date(d["t"])
@@ -2827,9 +2789,7 @@ Promise.all([
             tn2016 += +items[0];
             break;
         };
-
       } else {
-
         Object.values(current).forEach(function(d) {
           if (d == undefined) {
             d = "0"
@@ -2840,12 +2800,11 @@ Promise.all([
               tn2016 += +items[0];
               break;
           };
-
         });
-        //
       }
       i["n2016"].push(tn2016);
     });
+
     tn2017 = 0;
     datasets[18].forEach(function(d) {
       var USTd = new Date(d["t"])
@@ -2864,9 +2823,7 @@ Promise.all([
             tn2017 += +items[0];
             break;
         };
-
       } else {
-
         Object.values(current).forEach(function(d) {
           if (d == undefined) {
             d = "0"
@@ -2877,12 +2834,11 @@ Promise.all([
               tn2017 += +items[0];
               break;
           };
-
         });
-        //
       }
       i["n2017"].push(tn2017);
     });
+
     tn2018 = 0;
     datasets[19].forEach(function(d) {
       var USTd = new Date(d["t"])
@@ -2901,9 +2857,7 @@ Promise.all([
             tn2018 += +items[0];
             break;
         };
-
       } else {
-
         Object.values(current).forEach(function(d) {
           if (d == undefined) {
             d = "0"
@@ -2914,12 +2868,11 @@ Promise.all([
               tn2018 += +items[0];
               break;
           };
-
         });
-        //
       }
       i["n2018"].push(tn2018);
     });
+
     tn2019 = 0;
     datasets[20].forEach(function(d) {
       var USTd = new Date(d["t"])
@@ -2938,9 +2891,7 @@ Promise.all([
             tn2019 += +items[0];
             break;
         };
-
       } else {
-
         Object.values(current).forEach(function(d) {
           if (d == undefined) {
             d = "0"
@@ -2951,14 +2902,13 @@ Promise.all([
               tn2019 += +items[0];
               break;
           };
-
         });
-        //
       }
       i["n2019"].push(tn2019);
     });
   }
 
+  // Create style for Stream gage location points
   function style(feature) {
     return {
       fillOpacity: 0.4,
@@ -2967,9 +2917,9 @@ Promise.all([
       color: '#b4b4b4',
       dashArray: '3'
     };
-
   }
 
+  // Create style for water sample location points
   function sampleStyle(feature) {
     return {
       fillOpacity: 0.4,
@@ -2978,9 +2928,9 @@ Promise.all([
       color: '#b4b4b4',
       dashArray: '3'
     };
-
   }
 
+  // Create style for weather location point
   function weatherStyle(feature) {
     return {
       fillOpacity: 0.4,
@@ -2989,10 +2939,9 @@ Promise.all([
       color: '#b4b4b4',
       dashArray: '3'
     };
-
   }
 
-
+  // Create event for when a map point feature is hovered over with mouse
   function highlightFeature(e) {
     // e indicates the current event
     var layer = e.target; //the target capture the object which the event associates with
@@ -3007,13 +2956,10 @@ Promise.all([
     layer.bringToFront();
   }
 
-  // 3.2.2 zoom to the highlighted feature when the mouse is clicking onto it.
+  // Event when a stream gage map point is clicked on
   function zoomToFeature(e) {
-    // mymap.fitBounds(e.target.getBounds());
     L.DomEvent.stopPropagation(e);
-    // $("#hint").text("Click here to for State trend.");
-
-
+    // Stream gage data
     var t = ["Date"];
     var t2020 = ["Date"];
     var t2021 = ["Date"];
@@ -3086,7 +3032,9 @@ Promise.all([
     streamGage1Data2010dchMean = ["2010"];
     streamGage1Data2010dchSum = ["2010"];
 
+    // Update gage ID to selected stream gage site
     gageID = e.target.feature.properties.usgs_site;
+
     var siteSelect = {
       name: gageID,
       wt: water_temp,
@@ -3146,8 +3094,10 @@ Promise.all([
       dchS2010: streamGage1Data2010dchSum,
     }
 
+    // Run site counts function to collect site specific data
     siteCounts(siteSelect);
 
+    // Load stream gage data with initial years and selected stream gage site
     chart.load({
       unload: true,
       columns: [siteSelect.wtM2022, siteSelect.wtM2021, siteSelect.wtM2020],
@@ -3169,9 +3119,10 @@ Promise.all([
       columns: [siteSelect.dchS2022, siteSelect.dchS2021, siteSelect.dchS2020],
     });
     $("#gage-chart > svg > g:nth-child(2)").hide();
+    // Update stream gage dropdown title text to selected stream gage
     $("#gageDropdown").text(e.target.feature.properties.site_name);
 
-    // $("#deck-2 > div.col-lg-2 > center > div:nth-child(4) > label").css('color', 'white');
+    // deselect all other years for steam gage
     $("#gage2019").css('color', 'white');
     $("#gage2018").css('color', 'white');
     $("#gage2017").css('color', 'white');
@@ -3182,16 +3133,12 @@ Promise.all([
     $("#gage2012").css('color', 'white');
     $("#gage2011").css('color', 'white');
     $("#gage2010").css('color', 'white');
-
   }
 
+  // Event when a sample location map point is clicked on
   function sampleZoomToFeature(e) {
-    // mymap.fitBounds(e.target.getBounds());
     L.DomEvent.stopPropagation(e);
-    // $("#hint").text("Click here to for State trend.");
-
-
-    // Water sample Data
+    // Water sample Data vars
     var wst = ["Date"];
     var wst2016 = ["Date"];
     var wst2017 = ["Date"];
@@ -3242,10 +3189,10 @@ Promise.all([
       n2019: nitrate2019,
     }
 
-
+    // load water sample data collection function with selected water sample location
     sampleSiteCounts(sampleLoc);
 
-
+    // Load water sample charts with selected sample location data
     sampleSubChart.load({
       unload: true,
       columns: [sampleLoc.a2019, sampleLoc.a2018, sampleLoc.a2017],
@@ -3263,25 +3210,19 @@ Promise.all([
       columns: [sampleLoc.n2019, sampleLoc.n2018, sampleLoc.n2017],
     });
 
+    // deselect all but most current 3 years
     $("#sample2016").css('color', 'white');
-
+    // Update water sample dropdown title text to selected water sample site
     $("#sampleDropdown").text(e.target.feature.properties.site);
   }
 
-
-  // 3.2.3 reset the hightlighted feature when the mouse is out of its region.
-  function resetHighlight(e) {
-    county.resetStyle(e.target);
-
-  }
-
-  // 3.3 add these event the layer obejct.
+  // add these event the layer obejct.
+  // Stream gage map point events
   function onEachFeature(feature, layer) {
     layer.on({
-        // mouseover: highlightFeature,
         click: zoomToFeature,
-        // mouseout: resetHighlight
       }),
+      // tooltip for stream gage point layer
       layer.bindTooltip(feature.properties.site_name, {
         className: 'feature-label',
         permanent: false,
@@ -3289,13 +3230,13 @@ Promise.all([
         direction: 'auto'
       });
   }
-  // 3.3 add these event the layer obejct.
+  // add these event the layer obejct.
+  // Sample site map point events
   function sampleOnEachFeature(feature, layer) {
     layer.on({
-        // mouseover: highlightFeature,
         click: sampleZoomToFeature,
-        // mouseout: resetHighlight
       }),
+      // tooltip for sample site point layer
       layer.bindTooltip(feature.properties.site, {
         className: 'feature-label',
         permanent: false,
@@ -3303,28 +3244,23 @@ Promise.all([
         direction: 'auto'
       });
   }
-  // 3.3 add these event the layer obejct.
+  // add these event the layer obejct.
+  // Sample site map point events
   function weatherOnEachFeature(feature, layer) {
-    layer.on({
-        // mouseover: highlightFeature,
-        // click: sampleZoomToFeature,
-        // mouseout: resetHighlight
-      }),
-      layer.bindTooltip(feature.properties.site, {
-        className: 'feature-label',
-        permanent: false,
-        sticky: true,
-        direction: 'auto'
-      });
+    // tooltip for sample site point layer
+    layer.bindTooltip(feature.properties.site, {
+      className: 'feature-label',
+      permanent: false,
+      sticky: true,
+      direction: 'auto'
+    });
   }
 
   // Add geojson layers
+  // Create stream gage point layer
   var sites = new L.GeoJSON(datasets[1], {
     style: style,
     onEachFeature: onEachFeature,
-    // onEachFeature: function(feature, layer) {
-    //   layer.bindPopup('<b>Site Name: </b>' + feature.properties.usgs_site)
-    // },
     pointToLayer: function(feature, latlng) {
       return L.marker(latlng, {
         icon: L.divIcon({
@@ -3334,13 +3270,10 @@ Promise.all([
     },
   });
 
+  // Create water sample point layer
   var sampleSites = new L.GeoJSON(datasets[3], {
     style: sampleStyle,
     onEachFeature: sampleOnEachFeature,
-    // onEachFeature: function(feature, layer) {
-    //   layer.bindPopup('<b>Site Name: </b>' + feature.properties.usgs_site)
-    // },
-
     pointToLayer: function(feature, latlng) {
       return L.marker(latlng, {
         icon: L.divIcon({
@@ -3350,13 +3283,10 @@ Promise.all([
     },
   });
 
+  // Create weather location point layer
   var weatherSites = new L.GeoJSON(datasets[8], {
     style: weatherStyle,
     onEachFeature: weatherOnEachFeature,
-    // onEachFeature: function(feature, layer) {
-    //   layer.bindPopup('<b>Site Name: </b>' + feature.properties.usgs_site)
-    // },
-
     pointToLayer: function(feature, latlng) {
       return L.marker(latlng, {
         icon: L.divIcon({
@@ -3372,8 +3302,7 @@ Promise.all([
   varsCounts(weatherVars);
   nowCastCounts(nowCastVars);
 
-  chartColor = 'white'
-  // Padding settings
+  // Padding settings for charts
   var padTop = 10;
   var padRight = 30;
   var padLeft = 70;
@@ -3453,51 +3382,40 @@ Promise.all([
     },
     bindto: "#gage-chart"
   });
+  // Hide main chart for to create just subchart
   $("#gage-chart > svg > g:nth-child(2)").hide();
+  // Add colors for initially selected years for stream gage data
   var stroke2022 = chart.color('2022');
   $("#gage2022").css('color', stroke2022);
   var stroke2021 = chart.color('2021');
   $("#gage2021").css('color', stroke2021);
   var stroke2020 = chart.color('2020');
   $("#gage2020").css('color', stroke2020);
+
   // mean water temp
   chart2 = c3.generate({
+    // Choose height of chart (pixels)
     size: {
       height: 220,
     },
     data: {
+      // load initial data for charts
       x: "Date",
       columns: [t, gage1.wtM2022, gage1.wtM2021, gage1.wtM2020],
-      // onmouseover: annualUpdate,
+      // choose chart type
       type: 'spline',
-      onclick: function(d, i) {
-        console.log("onclick", d, i);
-      },
     },
-    subchart: {
-      show: false,
-      axis: {
-        x: {
-          show: false
-        }
-      },
-      size: {
-        height: 15
-      },
-    },
-    // color: {
-    //   pattern: [chartColor]
-    // },
     padding: {
-      // bottom: 10,
       top: padTop,
       right: padRight,
       left: padLeft,
     },
     axis: {
       x: {
+        // denote x axis as timeseries
         type: "timeseries",
         tick: {
+          // formate ticks to month day
           format: "%b %d",
           centered: true,
           fit: true,
@@ -3515,9 +3433,9 @@ Promise.all([
         },
         type: 'linear',
         tick: {
+          // format and rounds to 2 decimal numbers
           format: d3.format(".2s"),
           count: 5,
-          // values: [0,5000,10000,15000]
         }
       }
     },
@@ -3525,16 +3443,10 @@ Promise.all([
       r: 0,
       focus: {
         expand: {
+          // expands the radius of circle when hovering over line charts
           r: 10
         }
       }
-    },
-    zoom: {
-      // enabled: true,
-      // type: "scroll",
-      // onzoom: function(d) {
-      //   chart.zoom(chart2.zoom());
-      // }
     },
     tooltip: {
       linked: true,
@@ -3543,6 +3455,7 @@ Promise.all([
       show: false,
       position: 'inset',
       inset: {
+        // select locations of legend for line charts
         anchor: 'top-right',
         x: 20,
         y: 10,
@@ -3550,10 +3463,14 @@ Promise.all([
       }
     },
     line: {
+      // connect linchart for "null" values
       connectNull: true
     },
+    // bind chart to html element by ID
     bindto: "#gage-chart2"
   });
+
+  // sum water temp chart
   var h20SumChart = c3.generate({
     size: {
       height: 220,
@@ -3563,9 +3480,6 @@ Promise.all([
       columns: [t, gage1.wtS2022, gage1.wtS2021, gage1.wtS2020],
       type: 'spline',
     },
-    // color: {
-    //   pattern: [chartColor]
-    // },
     padding: {
       top: padTop,
       right: padRight,
@@ -3593,9 +3507,7 @@ Promise.all([
         type: 'linear',
         tick: {
           format: d3.format(".2s"),
-
           count: 5,
-          // values: [0,5000,10000,15000]
         }
       }
     },
@@ -3607,11 +3519,6 @@ Promise.all([
         }
       }
     },
-    // zoom: {
-    //   enabled: {
-    //     type: "drag"
-    //   },
-    // },
     tooltip: {
       linked: true,
     },
@@ -3623,6 +3530,8 @@ Promise.all([
     },
     bindto: "#h20Sum-chart"
   });
+
+  // mean water discharge chart
   var dchMeanChart = c3.generate({
     size: {
       height: 220,
@@ -3632,9 +3541,6 @@ Promise.all([
       columns: [t, gage1.dchM2022, gage1.dchM2021, gage1.dchM2020],
       type: 'spline',
     },
-    // color: {
-    //   pattern: [chartColor]
-    // },
     padding: {
       top: padTop,
       right: padRight,
@@ -3664,7 +3570,6 @@ Promise.all([
           format: d3.format(".2s"),
 
           count: 5,
-          // values: [0,5000,10000,15000]
         }
       }
     },
@@ -3676,11 +3581,6 @@ Promise.all([
         }
       }
     },
-    // zoom: {
-    //   enabled: {
-    //     type: "drag"
-    //   },
-    // },
     tooltip: {
       linked: true,
     },
@@ -3692,6 +3592,8 @@ Promise.all([
     },
     bindto: "#dchMean-chart"
   });
+
+  // Sum water discharge chart
   var dchSumChart = c3.generate({
     size: {
       height: 220,
@@ -3701,9 +3603,6 @@ Promise.all([
       columns: [t, gage1.dchS2022, gage1.dchS2021, gage1.dchS2020],
       type: 'spline',
     },
-    // color: {
-    //   pattern: [chartColor]
-    // },
     padding: {
       top: padTop,
       right: padRight,
@@ -3731,9 +3630,7 @@ Promise.all([
         type: 'linear',
         tick: {
           format: d3.format(".2s"),
-
           count: 5,
-          // values: [0,5000,10000,15000]
         }
       }
     },
@@ -3745,11 +3642,6 @@ Promise.all([
         }
       }
     },
-    // zoom: {
-    //   enabled: {
-    //     type: "drag"
-    //   },
-    // },
     tooltip: {
       linked: true,
     },
@@ -3766,15 +3658,11 @@ Promise.all([
   sampleSubChart = c3.generate({
     size: {
       height: 250,
-
     },
     data: {
       x: "Date",
       columns: [wst2016, sampleLoc1.a2019, sampleLoc1.a2018, sampleLoc1.a2017],
       type: 'scatter',
-    },
-    color: {
-      // pattern: [chartColor]
     },
     subchart: {
       show: true,
@@ -3793,7 +3681,6 @@ Promise.all([
       }
     },
     padding: {
-      // bottom: 10,
       top: padTop,
       right: padRight,
       left: padLeft,
@@ -3833,7 +3720,6 @@ Promise.all([
       }
     },
     zoom: {
-      // rescale: true,+
       enabled: true,
       type: "scroll",
       onzoom: function(d) {
@@ -3860,37 +3746,18 @@ Promise.all([
   $("#sample2018").css('color', stroke2018);
   var stroke2017 = sampleSubChart.color('2017');
   $("#sample2017").css('color', stroke2017);
+
   // sample algae chart
   sampleChart = c3.generate({
     size: {
       height: 220,
-
     },
     data: {
       x: "Date",
       columns: [wst2016, sampleLoc1.a2019, sampleLoc1.a2018, sampleLoc1.a2017],
       type: 'scatter',
     },
-    color: {
-      // pattern: [chartColor]
-    },
-    // subchart: {
-    //   show: true,
-    //   axis: {
-    //     x: {
-    //       show: false
-    //     }
-    //   },
-    //   size: {
-    //     height: 15
-    //   },
-    //   onbrush: function(d) {
-    //     toxinChart.zoom(sampleChart.zoom());
-    //     nitrateChart.zoom(sampleChart.zoom());
-    //   }
-    // },
     padding: {
-      // bottom: 10,
       top: padTop,
       right: padRight,
       left: padLeft,
@@ -3929,15 +3796,6 @@ Promise.all([
         }
       }
     },
-    // zoom: {
-    //   // rescale: true,+
-    //   enabled: true,
-    //   type: "scroll",
-    //   onzoom: function(d) {
-    //     toxinChart.zoom(sampleChart.zoom());
-    //     nitrateChart.zoom(sampleChart.zoom());
-    //   }
-    // },
     tooltip: {
       linked: true,
     },
@@ -3949,20 +3807,17 @@ Promise.all([
     },
     bindto: "#sample-chart"
   });
+
   // toxin chart
   toxinChart = c3.generate({
     size: {
       height: 220,
-
     },
     data: {
       x: "Date",
       columns: [wst2016, sampleLoc1.t2019, sampleLoc1.t2018, sampleLoc1.t2017],
       type: 'scatter',
     },
-    // color: {
-    //   pattern: [chartColor]
-    // },
     padding: {
       top: padTop,
       right: padRight,
@@ -3988,10 +3843,6 @@ Promise.all([
           bottom: 0
         },
         type: 'linear',
-        // tick: {
-        //   format: d3.format(".2s"),
-        //   count: 5,
-        // }
       }
     },
     point: {
@@ -4002,10 +3853,6 @@ Promise.all([
         }
       }
     },
-    // zoom: {
-    //   enabled: true,
-    //   type: "scroll",
-    // },
     tooltip: {
       linked: true,
     },
@@ -4017,6 +3864,7 @@ Promise.all([
     },
     bindto: "#toxin-chart"
   });
+
   // toxin chart
   nitrateChart = c3.generate({
     size: {
@@ -4027,9 +3875,6 @@ Promise.all([
       columns: [wst2016, sampleLoc1.n2019, sampleLoc1.n2018, sampleLoc1.n2017],
       type: 'scatter',
     },
-    // color: {
-    //   pattern: [chartColor]
-    // },
     padding: {
       top: padTop,
       right: padRight,
@@ -4055,10 +3900,6 @@ Promise.all([
           bottom: 0
         },
         type: 'linear',
-        // tick: {
-        //   format: d3.format(".2s"),
-        //   count: 5,
-        // }
       }
     },
     point: {
@@ -4069,10 +3910,6 @@ Promise.all([
         }
       }
     },
-    // zoom: {
-    //   enabled: true,
-    //   type: "scroll",
-    // },
     tooltip: {
       linked: true,
     },
@@ -4084,11 +3921,11 @@ Promise.all([
     },
     bindto: "#nitrate-chart"
   });
+
   // weather chart
   precipSubChart = c3.generate({
     size: {
       height: 250,
-
     },
     data: {
       x: "Date",
@@ -4098,9 +3935,6 @@ Promise.all([
         console.log("onclick", d, i);
       },
     },
-    // color: {
-    //   pattern: [chartColor]
-    // },
     subchart: {
       show: true,
       axis: {
@@ -4118,7 +3952,6 @@ Promise.all([
         windChart.zoom(precipSubChart.zoom());
       },
     },
-
     padding: {
       top: padTop,
       right: padRight,
@@ -4146,9 +3979,7 @@ Promise.all([
         type: 'linear',
         tick: {
           format: d3.format(".2s"),
-
           count: 5,
-          // values: [0,5000,10000,15000]
         }
       }
     },
@@ -4161,7 +3992,6 @@ Promise.all([
       }
     },
     zoom: {
-      // rescale: true,+
       enabled: true,
       type: "scroll",
       onzoom: function(d) {
@@ -4194,7 +4024,6 @@ Promise.all([
   precipChart = c3.generate({
     size: {
       height: 220,
-
     },
     data: {
       x: "Date",
@@ -4228,9 +4057,7 @@ Promise.all([
         type: 'linear',
         tick: {
           format: d3.format(".2s"),
-
           count: 5,
-          // values: [0,5000,10000,15000]
         }
       }
     },
@@ -4242,15 +4069,6 @@ Promise.all([
         }
       }
     },
-    // zoom: {
-    //   // rescale: true,+
-    //   enabled: true,
-    //   type: "scroll",
-    //   onzoom: function(d) {
-    //     aitTempChart.zoom(precipChart.zoom());
-    //     // step();
-    //   }
-    // },
     tooltip: {
       linked: true,
     },
@@ -4262,6 +4080,7 @@ Promise.all([
     },
     bindto: "#precip-chart"
   });
+
   // Air Temp Chart
   aitTempChart = c3.generate({
     size: {
@@ -4272,9 +4091,6 @@ Promise.all([
       columns: [wt, weatherVars.atempM2022, weatherVars.atempM2021, weatherVars.atempM2020],
       type: 'spline',
     },
-    // color: {
-    //   pattern: [chartColor]
-    // },
     padding: {
       top: padTop,
       right: padRight,
@@ -4302,9 +4118,7 @@ Promise.all([
         type: 'linear',
         tick: {
           format: d3.format(".2s"),
-
           count: 5,
-          // values: [0,5000,10000,15000]
         }
       }
     },
@@ -4316,11 +4130,6 @@ Promise.all([
         }
       }
     },
-    // zoom: {
-    //   enabled: {
-    //     type: "drag"
-    //   },
-    // },
     tooltip: {
       linked: true,
     },
@@ -4332,6 +4141,7 @@ Promise.all([
     },
     bindto: "#airTemp-chart"
   });
+
   // Surface downward shortwave radiation Chart
   surfChart = c3.generate({
     size: {
@@ -4342,9 +4152,6 @@ Promise.all([
       columns: [wt, weatherVars.surfM2022, weatherVars.surfM2021, weatherVars.surfM2020],
       type: 'spline',
     },
-    // color: {
-    //   pattern: [chartColor]
-    // },
     padding: {
       top: padTop,
       right: padRight,
@@ -4372,9 +4179,7 @@ Promise.all([
         type: 'linear',
         tick: {
           format: d3.format(".2s"),
-
           count: 5,
-          // values: [0,5000,10000,15000]
         }
       }
     },
@@ -4386,11 +4191,6 @@ Promise.all([
         }
       }
     },
-    // zoom: {
-    //   enabled: {
-    //     type: "drag"
-    //   },
-    // },
     tooltip: {
       linked: true,
     },
@@ -4402,6 +4202,7 @@ Promise.all([
     },
     bindto: "#surf-chart"
   });
+
   // wind velocity chart
   windChart = c3.generate({
     size: {
@@ -4412,9 +4213,6 @@ Promise.all([
       columns: [wt, weatherVars.windM2022, weatherVars.windM2021, weatherVars.windM2020],
       type: 'spline',
     },
-    // color: {
-    //   pattern: [chartColor]
-    // },
     padding: {
       top: padTop,
       right: padRight,
@@ -4442,9 +4240,7 @@ Promise.all([
         type: 'linear',
         tick: {
           format: d3.format(".2s"),
-
           count: 5,
-          // values: [0,5000,10000,15000]
         }
       }
     },
@@ -4456,11 +4252,6 @@ Promise.all([
         }
       }
     },
-    // zoom: {
-    //   enabled: {
-    //     type: "drag"
-    //   },
-    // },
     tooltip: {
       linked: true,
     },
@@ -4472,19 +4263,17 @@ Promise.all([
     },
     bindto: "#wind-chart"
   });
+
+  // Sum Precipiation weather subchart
   precipSumSubChart = c3.generate({
     size: {
       height: 250,
-
     },
     data: {
       x: "Date",
       columns: [wt, weatherVars.pcS2022, weatherVars.pcS2021, weatherVars.pcS2020],
       type: 'spline',
     },
-    // color: {
-    //   pattern: [chartColor]
-    // },
     subchart: {
       show: true,
       axis: {
@@ -4502,7 +4291,6 @@ Promise.all([
         windSumChart.zoom(precipSumSubChart.zoom());
       },
     },
-
     padding: {
       top: padTop,
       right: padRight,
@@ -4530,9 +4318,7 @@ Promise.all([
         type: 'linear',
         tick: {
           format: d3.format(".2s"),
-
           count: 5,
-          // values: [0,5000,10000,15000]
         }
       }
     },
@@ -4545,7 +4331,6 @@ Promise.all([
       }
     },
     zoom: {
-      // rescale: true,+
       enabled: true,
       type: "scroll",
       onzoom: function(d) {
@@ -4567,6 +4352,7 @@ Promise.all([
     bindto: "#precipSumSub-chart"
   });
   $("#precipSumSub-chart > svg > g:nth-child(2)").hide();
+
   // Precipitation Cum Sum Chart
   precipSumChart = c3.generate({
     size: {
@@ -4577,9 +4363,6 @@ Promise.all([
       columns: [wt, weatherVars.pcS2022, weatherVars.pcS2021, weatherVars.pcS2020],
       type: 'spline',
     },
-    // color: {
-    //   pattern: [chartColor]
-    // },
     padding: {
       top: padTop,
       right: padRight,
@@ -4607,9 +4390,7 @@ Promise.all([
         type: 'linear',
         tick: {
           format: d3.format(".2s"),
-
           count: 5,
-          // values: [0,5000,10000,15000]
         }
       }
     },
@@ -4621,11 +4402,6 @@ Promise.all([
         }
       }
     },
-    // zoom: {
-    //   enabled: {
-    //     type: "drag"
-    //   },
-    // },
     tooltip: {
       linked: true,
     },
@@ -4637,6 +4413,7 @@ Promise.all([
     },
     bindto: "#precipSum-chart"
   });
+
   // Air temp cum sum chart
   aitTempSumChart = c3.generate({
     size: {
@@ -4647,9 +4424,6 @@ Promise.all([
       columns: [wt, weatherVars.atempS2022, weatherVars.atempS2021, weatherVars.atempS2020],
       type: 'spline',
     },
-    // color: {
-    //   pattern: [chartColor]
-    // },
     padding: {
       top: padTop,
       right: padRight,
@@ -4677,9 +4451,7 @@ Promise.all([
         type: 'linear',
         tick: {
           format: d3.format(".2s"),
-
           count: 5,
-          // values: [0,5000,10000,15000]
         }
       }
     },
@@ -4691,11 +4463,6 @@ Promise.all([
         }
       }
     },
-    // zoom: {
-    //   enabled: {
-    //     type: "drag"
-    //   },
-    // },
     tooltip: {
       linked: true,
     },
@@ -4707,6 +4474,7 @@ Promise.all([
     },
     bindto: "#airTempSum-chart"
   });
+
   // Surface downward shortwave radiation cum sum chart
   surfSumChart = c3.generate({
     size: {
@@ -4717,9 +4485,6 @@ Promise.all([
       columns: [wt, weatherVars.surfS2022, weatherVars.surfS2021, weatherVars.surfS2020],
       type: 'spline',
     },
-    // color: {
-    //   pattern: [chartColor]
-    // },
     padding: {
       top: padTop,
       right: padRight,
@@ -4747,9 +4512,7 @@ Promise.all([
         type: 'linear',
         tick: {
           format: d3.format(".2s"),
-
           count: 5,
-          // values: [0,5000,10000,15000]
         }
       }
     },
@@ -4761,11 +4524,6 @@ Promise.all([
         }
       }
     },
-    // zoom: {
-    //   enabled: {
-    //     type: "drag"
-    //   },
-    // },
     tooltip: {
       linked: true,
     },
@@ -4777,6 +4535,7 @@ Promise.all([
     },
     bindto: "#surfSum-chart"
   });
+
   // wind velocity cum sum chart
   windSumChart = c3.generate({
     size: {
@@ -4787,9 +4546,6 @@ Promise.all([
       columns: [wt, weatherVars.windS2022, weatherVars.windS2021, weatherVars.windS2020],
       type: 'spline',
     },
-    // color: {
-    //   pattern: [chartColor]
-    // },
     padding: {
       top: padTop,
       right: padRight,
@@ -4817,9 +4573,7 @@ Promise.all([
         type: 'linear',
         tick: {
           format: d3.format(".2s"),
-
           count: 5,
-          // values: [0,5000,10000,15000]
         }
       }
     },
@@ -4831,11 +4585,6 @@ Promise.all([
         }
       }
     },
-    // zoom: {
-    //   enabled: {
-    //     type: "drag"
-    //   },
-    // },
     tooltip: {
       linked: true,
     },
@@ -4850,14 +4599,17 @@ Promise.all([
 
 
   // CyAN Charts
+  // CyAN Chart vard
   var cyan = ['Probability of a bloom'];
   var cyanLast = 100 * parseFloat(bloom_p.slice(-1));
   var noCyanLast = 100 - cyanLast;
   var lastModelAcc = 100 * model_accuracy.slice(-1);
   lastModelAccOther = 1 - lastModelAcc;
+  var lastBloomProp = 100 * bloom_proportion.slice(-1);
   var nocyan = ['Probability of no bloom'];
   var currentNowCastDate = nct.slice(-1);
   var previousNowCastDate;
+
   // Previous Forecast Donut
   var donutChart = c3.generate({
     data: {
@@ -4891,19 +4643,23 @@ Promise.all([
       show: false
     },
     donut: {
-      // title: lastModelAcc + "% Observed Bloom area",
-      title: lastModelAcc,
+      title: lastBloomProp,
       width: 85,
     },
     bindto: "#donut-chart"
   });
+
+  // Create tooltip for previous forcast text in middle of donut chart
+  // Assign tooltip toggle to to text inside of previous forecast donut
   $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").attr("data-toggle", "tooltipDonut1");
+  // Assign tool tip text to tooltip for text inside previous forecast donut
   $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").attr("title", "% Observed Bloom Area");
-  $(document).ready(function(){
+  // Add tooltip interaction
+  $(document).ready(function() {
     $('[data-toggle="tooltipDonut1"]').tooltip();
   });
 
-  // Historical Expectation Donut
+  // Current forecast Donut
   var donutChart2 = c3.generate({
     data: {
       columns: [
@@ -4941,18 +4697,25 @@ Promise.all([
     },
     bindto: "#donut-chart2"
   });
+  // move donut hole text doen 5 pixels
   $(".c3-chart-arcs-title").attr("dy", 5);
+  // Create tooltip for current forcast text in middle of donut chart
+  // Assign tooltip toggle to to text inside of current forecast donut
   $("#donut-chart2 > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").attr("data-toggle", "tooltipDonut2");
   $("#donut-chart2 > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").attr("title", "% Forecast Accuracy");
-  $(document).ready(function(){
+  // Add tooltip interaction
+  $(document).ready(function() {
     $('[data-toggle="tooltipDonut2"]').tooltip();
   });
+
+  // HAB Season line chart
   var splineChart = c3.generate({
     size: {
       height: 350,
     },
     data: {
       x: "Date",
+      // Load in data for chart
       columns: [
         expCyanDate,
         logCICells,
@@ -4960,49 +4723,50 @@ Promise.all([
         // nctCurrentDate,
       ],
       axes: {
+        // Create 2 y axises
         Probability_of_bloom: 'y',
         Log_CI_Cells_mL: 'y2'
       },
+      // Custom names for data
       names: {
         Probability_of_bloom: 'Probability of bloom',
         Log_CI_Cells_mL: 'Historical expectation'
       },
       type: 'spline',
-      types: {
-        Current: 'bar',
-      },
       colors: {
         Log_CI_Cells_mL: '#de2d26',
       },
       // Onclick function for CyAN line chart
       onclick: function(d, i) {
         console.log("onclick", d, i);
+        // If click on blue line then run this code
         if (d.id == 'Probability_of_bloom') {
+          // Collect Cyano probablility for selected date
           cyanoProb = 100 * parseFloat(d.value);
           cyanoProb_1 = 100 - cyanoProb;
-          nctHistoricalDate = ["Historical"];
-          for (let i = 0; i < d.index + 1; i++) {
-            if (i == d.index) {
-              nctHistoricalDate.push(parseFloat(1))
-            } else if (i !== d.index) {
-              nctHistoricalDate.push('null')
-            }
-          }
-          // $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").text(100 * model_accuracy[d.index] + "% Observed Bloom area");
-          $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").text(100 * model_accuracy[d.index]);
+          // Update previous forecast donut hole text to bloom proportion for selected date
+          $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").text(100 * bloom_proportion[d.index]);
+          // Collected selected date
           var USTdDonut = new Date(d.x);
           previousNowCastDate = d.x;
+          // Collect data information to format into date text for donut charts
           var monthDonut = USTdDonut.getMonth();
           var dayDonut = USTdDonut.getDate();
           var yearDonut = USTdDonut.getFullYear();
           var dateSelectDonut = monthDonut + 1 + "/" + dayDonut;
           var lastweekDonut = new Date(USTdDonut.getFullYear(), USTdDonut.getMonth(), USTdDonut.getDate() + 7);
+          // Reformatted date for date selected
           lastweekDonutReformatted = lastweekDonut.getMonth() + 1 + "/" + lastweekDonut.getDate();
+          // Update date text above previous forecast donut chart
           $("#dateCyan").text(dateSelectDonut + "-" + lastweekDonutReformatted);
+          // Adjust Previous and current grid line for HAB season line chart
+          // Adjust colors for grid lines
           $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > line").css('stroke', '#17e8ce');
           $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > line").css('stroke', '#ff7f0e');
+          // Adjust text placement for grid lines
           $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > text").attr("dy", "-5");
           $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > text").attr("dy", "10");
+          // Load previous forecast donut chart with data from selected date
           donutChart.load({
             unload: true,
             columns: [
@@ -5010,8 +4774,8 @@ Promise.all([
               ['Probability of no bloom', cyanoProb_1],
             ],
           });
-          splineChart.xgrids([
-            {
+          // Update gridlines on HAB season line chart with selected date
+          splineChart.xgrids([{
               value: previousNowCastDate,
               id: 'previousGrid',
               text: 'Previous'
@@ -5022,42 +4786,24 @@ Promise.all([
               text: 'Current'
             }
           ]);
-          // splineChart.load({
-          //   unload: nctHistoricalDate,
-          //   columns: [
-          //     nctHistoricalDate,
-          //   ],
-          //   type: 'spline',
-          //   types: {
-          //     Historical: 'bar',
-          //   },
-          //   colors: {
-          //     Historical: '#17e8ce',
-          //   },
-          // });
         };
       },
     },
     grid: {
       x: {
-        lines: [
+        lines: [{
+            value: currentNowCastDate,
+            id: 'previousGrid',
+            text: 'Previous'
+          },
           {
-              value: currentNowCastDate,
-              id: 'previousGrid',
-              text: 'Previous'
-            },
-            {
-              value: currentNowCastDate,
-              class: 'currentGrid',
-              text: 'Current',
-              // position: 'start'
-            },
+            value: currentNowCastDate,
+            class: 'currentGrid',
+            text: 'Current',
+          },
         ]
       }
     },
-    // color: {
-    //   pattern: [chartColor]
-    // },
     padding: {
       top: padTop,
       right: 80,
@@ -5103,10 +4849,7 @@ Promise.all([
         tick: {
           format: d3.format(".0%"),
           count: 5,
-          // values: [.25, .50, .75, 1]
         },
-        // max: .75,
-        // min: 0,
       },
     },
     point: {
@@ -5124,17 +4867,8 @@ Promise.all([
     },
     tooltip: {
       linked: true,
-      // hide: [current, nctHistoricalDate],
     },
-    // subchart: {
-    //   show: true,
-    //   size: {
-    //     height: 15
-    //   },
-    // },
     legend: {
-      // show: true,
-      // hide: [bloom_p, logCICells],
       hide: true,
     },
     line: {
@@ -5149,7 +4883,7 @@ Promise.all([
   $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > text").attr("dy", "-5");
   $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > text").attr("dy", "10");
 
-// Pie Charts inside donuts
+  // Pie Charts inside donuts
   // var pieTestchart = c3.generate({
   //   size: {
   //     height: 200,
@@ -5207,6 +4941,7 @@ Promise.all([
   //   },
   //   bindto: "#pieTestChart2"
   // });
+
   // Tab Interactions
   $("#weather-tab").on("click", function() {
     // Remove Map Layers
@@ -5215,7 +4950,7 @@ Promise.all([
     mymap.removeLayer(weatherSites);
     // Add selected geo layer for selected year
     mymap.addLayer(weatherSites);
-    mymap.fitBounds(lakeBoundsClosedMini);
+    mymap.fitBounds(lakeBoundsOpenMini);
   });
   $("#stream-tab").on("click", function() {
     // Remove Map Layers
@@ -5224,7 +4959,7 @@ Promise.all([
     mymap.removeLayer(weatherSites);
     // Add selected geo layer for selected year
     mymap.addLayer(sites);
-    mymap.fitBounds(lakeBoundsClosedMini)
+    mymap.fitBounds(lakeBoundsOpenMini)
   });
   $("#sample-tab").on("click", function() {
     // Remove Map Layers
@@ -5233,7 +4968,7 @@ Promise.all([
     mymap.removeLayer(weatherSites);
     // Add selected geo layer for selected year
     mymap.addLayer(sampleSites);
-    mymap.fitBounds(lakeBoundsClosedMini)
+    mymap.fitBounds(lakeBoundsOpenMini)
   });
   $("#cyan-tab").on("click", function() {
     // Remove Map Layers
@@ -5242,7 +4977,9 @@ Promise.all([
     mymap.removeLayer(weatherSites);
     // Add selected geo layer for selected year
     mymap.removeLayer(sampleSites);
-    mymap.fitBounds(lakeBoundsClosedMini);
+    // Zoom to layer bounds
+    mymap.fitBounds(lakeBoundsOpenMini);
+    // Load previous forecast donut chart
     donutChart.load({
       unload: true,
       columns: [
@@ -5250,6 +4987,7 @@ Promise.all([
         [nocyan, noCyanLast],
       ],
     });
+    // Load current forecast chart
     donutChart2.load({
       unload: true,
       columns: [
@@ -5271,6 +5009,8 @@ Promise.all([
     //     ['', lastModelAccOther],
     //   ],
     // });
+
+    // Load HAB season line chart
     splineChart.load({
       unload: true,
       columns: [
@@ -8661,10 +8401,10 @@ Promise.all([
     $("#CyANDatePicker").show();
     $("#CHLANDatePicker").hide();
   });
-    precipSubChart.zoom([1328630400000,1351267200000]);
-    precipSumSubChart.zoom([1328630400000,1351267200000]);
-    chart.zoom([1583078400000,1603724400000]);
-    sampleSubChart.zoom([1463537040000,1473214680000]);
+  precipSubChart.zoom([1328630400000, 1351267200000]);
+  precipSumSubChart.zoom([1328630400000, 1351267200000]);
+  chart.zoom([1583078400000, 1603724400000]);
+  sampleSubChart.zoom([1463537040000, 1473214680000]);
 });
 
 // Tab JS
@@ -8757,7 +8497,7 @@ triggerTabList.forEach(function(triggerEl) {
 function openNav() {
   $("#info").show();
   $("#openBar").hide();
-  mymap.fitBounds(lakeBoundsClosedMini);
+  mymap.fitBounds(lakeBoundsOpenMini);
 }
 
 // Close Sidebar

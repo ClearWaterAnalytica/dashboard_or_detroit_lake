@@ -33,7 +33,7 @@ html, body, main {
 }
 
 #donut-chart2 > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text {
-z-index: 1005; 
+z-index: 1005;
 }
 
 .radioText {
@@ -63,7 +63,7 @@ button {
 
 .c3-chart-arcs-title {
   dominant-baseline: middle;
-  font-size: 5em;
+  font-size: calc(1.25vw + 1.25vh + .75vmin);
 }
 
 .pieCenter {

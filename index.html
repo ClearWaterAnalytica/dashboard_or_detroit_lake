@@ -4,9 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
+  <meta name="description" content="Harmful Algal Bloom Forecasting System">
   <meta name="authors" content="Benji Antolin">
   <title>Harmful Algal Bloom Forecasting System</title>
+  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <!-- Custom fonts for this template-->
   <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
@@ -73,9 +74,6 @@
             <span id="imgLogo" class="mr-3"><img src="img\clearLogo.png"></span>
             <!-- Dashboard Title -->
             <span id="dashTitle" class="text-gray-600">
-              <!-- <div>CLRWTR Insights<sup>tm</sup></div> -->
-              <!-- </span>
-                  <span> -->
               <div>Harmful Algal Bloom</div>
               <div>Forecasting System</div>
             </span>
@@ -92,6 +90,7 @@
                   </i></a></span>
             </ul>
           </nav>
+          <!-- Change for new dashboard -->
           <!-- Lake Name -->
           <span id="placename" class="m-3">Detroit Lake, Oregon</span>
           <!-- last update -->
@@ -305,6 +304,7 @@
                           <span id="gageDropdown" class="dropdownTitle"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
+                          <!-- Change for new dashboard -->
                           <center>
                             <a class="dropdown-item" id="14178000" value="1">NO SANTIAM R BLW BOULDER CRK, NR DETROIT, OR</a>
                             <a class="dropdown-item" id="14179000" value="2">BREITENBUSH R ABV FRENCH CR NR DETROIT, OR.</a>
@@ -439,9 +439,11 @@
                       <div class="dropdown no-arrow frontSub locationTab">
                         <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <span class="mr-2 d-lg-inline text-gray-600 small">Select Location:</span>
+                          <!-- Change for new dashboard -->
                           <span id="sampleDropdown" class="dropdownTitle">Log Boom</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
+                          <!-- Change for new dashboard -->
                           <center>
                             <a class="dropdown-item" id="Log_Boom" value="1">Log Boom</a>
                             <a class="dropdown-item" id="Heater" value="2">Heater</a>
@@ -644,9 +646,9 @@
                         </center>
                         <div id="spline-chart"></div>
                         <center>
-                        <div id="clickInstruct">
-                          Click on the blue line to explore previous predictions
-                        </div>
+                          <div id="clickInstruct">
+                            Click on the blue line to explore previous predictions
+                          </div>
                         </center>
                       </div>
                     </div>
@@ -685,6 +687,7 @@
             </i></a></span>
           </ul>
         </nav>
+        <!-- Change for new dashboard -->
         <span id="placenameClosed" class="m-3">Detroit Lake, Oregon</span>
       </div>
 
@@ -785,55 +788,31 @@
               </center>
             </div>
           </div>
-
         </div>
-
       </div>
-
-      <div id="sat-data-panel">
-
-      </div>
-
+      <div id="sat-data-panel"></div>
 
       <!-- Tab Data Selection -->
-
-
       <!-- tab content -->
       <div class="tab-content" id="myMapTabContent">
         <!-- Stream tab -->
         <div id="infoMap" class="darkBackground">
-
-          <div id="map">
-
-          </div>
-
+          <div id="map"></div>
         </div>
         <ul class="nav nav-tabs " id="myMapTabButton" role="tablist">
-
           <button class="nav-link active" id="sat-button" data-bs-toggle="tab" href="#sat" data-bs-target="#sat" type="button" role="tab" aria-controls="sat" aria-selected="false">
             Satellite data <i class="fas fa-satellite"></i><a data-toggle="modal" data-target="#satInfoWindow"> <i class="nav fas fa-info-circle"></i></a>
           </button>
-
         </ul>
-
-
       </div>
-
-
-
-
-
-
     </div>
-
   </div>
-
   <!-- Sat data Panel -->
   </div>
   </div>
 
-
   <!-- Modals -->
+  <!-- Info Modal -->
   <div id="infowindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
       <div class="modal-content">
@@ -845,18 +824,17 @@
         </div>
         <div class="modal-body">
           <div id="demo" class="carousel " data-ride="carousel">
-
             Welcome to our harmful algal bloom forecasting dashboard.
             Here we use and show data collected from USGS streamgages,
             NOAA weather stations, satellite imagery, and on-the-ground
             water samples. These data are used by custom machine learning
             algorithms to forecast when and where harmful algal blooms will occur.
-
           </div>
         </div>
       </div>
     </div>
   </div>
+  <!-- About Modal -->
   <div id="resourcewindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
       <div class="modal-content">
@@ -878,6 +856,7 @@
       </div>
     </div>
   </div>
+  <!-- Weather info modal -->
   <div id="prismInfoWindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
       <div class="modal-content">
@@ -895,6 +874,7 @@
       </div>
     </div>
   </div>
+  <!-- Steam gage info modal -->
   <div id="streamInfoWindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
       <div class="modal-content">
@@ -912,6 +892,7 @@
       </div>
     </div>
   </div>
+  <!-- Water Sample info modal -->
   <div id="sampleInfoWindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
       <div class="modal-content">
@@ -930,6 +911,7 @@
       </div>
     </div>
   </div>
+  <!-- Satellite tab info modal -->
   <div id="satInfoWindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
       <div class="modal-content">
@@ -949,57 +931,19 @@
       </div>
     </div>
   </div>
-  <div id="previousForecastWindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
-      <div class="modal-content">
-        <div class="modal-header">
-          <strong class="modal-title" id="exampleModalLongTitle">Previous forecast info</strong>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div id="demo" class="carousel " data-ride="carousel">
-            <p>% Observed Bloom area</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="currentForecastWindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
-      <div class="modal-content">
-        <div class="modal-header">
-          <strong class="modal-title" id="exampleModalLongTitle">Current forecast info</strong>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div id="demo" class="carousel " data-ride="carousel">
-            <p>% Forecast Accuracy</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- <script src="awsJS.js"></script> -->
+  <!-- Load main javascript -->
   <script src="js/main.js"></script>
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DNMN1RTMV"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
     function gtag() {
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
-
     gtag('config', 'G-2DNMN1RTMV');
   </script>
-
-
 </body>
-
 </html>
