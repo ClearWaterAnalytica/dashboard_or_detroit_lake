@@ -32,8 +32,8 @@ html, body, main {
   font-size: .75rem;
 }
 
-#donut-chart2 > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text {
-z-index: 1005;
+#donut-chart2>svg>g:nth-child(2)>g.c3-chart>g.c3-chart-arcs>text {
+  z-index: 1005;
 }
 
 .radioText {
@@ -42,6 +42,15 @@ z-index: 1005;
 
 #sat-tab {
   font-size: 1.125rem;
+  border-top-left-radius: .35rem !important;
+  border-top-right-radius: .35rem !important;
+  color: #FFF !important;
+  background-color: grey !important;
+    justify-content: right;
+}
+
+#satNavBar {
+  justify-content: right;
 }
 
 #sat-button {
@@ -654,11 +663,11 @@ padding-left: 4%; */
 
 .tabInfo {
   background-color: grey !important;
-  text-align: left;
+  /* text-align: left; */
   display: flex;
-  justify-content: left;
-  align-items: left;
-  /* border-radius: 3%; */
+  justify-content: center;
+  border-top-left-radius: 0.35rem !important;
+  /* border-top-right-radius: 0.35rem !important; */
 }
 
 .infoTab {

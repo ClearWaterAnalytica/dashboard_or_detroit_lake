@@ -4,7 +4,6 @@ $(window).ready(function() {
 });
 
 // Change for new dashboard
-
 var lakeBoundsClosed = L.latLngBounds(
   L.latLng(44.6518457695288, -122.30459300466374), //Southwest
   L.latLng(44.76672930999038, -122.09269384395935), //Northeast
@@ -150,7 +149,7 @@ var options = {
 var optionsCyan = {
   radius: 20,
   opacity: .6,
-  colorRange: [colors[5], colors[4], colors[3], colors[2], colors[1], colors[0]],
+  colorRange: [colors[0], colors[4], colors[3], colors[2], colors[1], colors[0]],
   colorScaleExtent: [2.17, 8.75],
   duration: 500,
   radiusRange: [11, 11],
@@ -161,14 +160,31 @@ var hexLayer = L.hexbinLayer(options).addTo(mymap);
 
 var hexCyanLayer = L.hexbinLayer(optionsCyan);
 
-// $("#CHARadio").on("click", function() {
-//
-//   hexLayer.addTo(mymap);
-// });
-//
-// $("#CYANRadio").on("click", function() {
-//   hexCyanLayer.addTo(mymap);
-// });
+$("#CHARadio").on("click", function() {
+  hexLayer.colorScaleExtent([.53, 1.22]);
+  hexLayer.hoverHandler(L.HexbinHoverHandler.compound({
+    handlers: [
+      L.HexbinHoverHandler.resizeFill(),
+      L.HexbinHoverHandler.tooltip({
+        tooltipContent: tooltip_function
+      })
+    ]
+  }));
+  hexLayer.data(hexdata);
+});
+var emptyArray = [];
+$("#CYANRadio").on("click", function() {
+  hexLayer.colorScaleExtent([2.17, 8.75]);
+  hexLayer.hoverHandler(L.HexbinHoverHandler.compound({
+    handlers: [
+      L.HexbinHoverHandler.resizeFill(),
+      L.HexbinHoverHandler.tooltip({
+        tooltipContent: tooltip_functionCyAN
+      })
+    ]
+  }));
+  hexLayer.data(hexCyanData);
+});
 
 // Tooltip function for Chlorophyl A hexbins
 function tooltip_function(d) {
@@ -192,7 +208,7 @@ function tooltip_functionCyAN(d) {
     return (acc + parseFloat(obj["o"][2]));
   }, 0);
   avgCyan = cyan_sum / d.length;
-  avgcyan = d3.format(".3")(avgCyan);
+  avgCyan = d3.format(".3")(avgCyan);
   var tooltip_text = `Avg. CyAN: ${String(avgCyan)}`
   return tooltip_text
 }
@@ -269,16 +285,36 @@ mapMonth = m;
 mapDay = d;
 mapDateString = mapYear + '_' + mapMonth + '_' + mapDay;
 
+// dateSlider CyAN
+dateSelectCyan = $('#d0CyAN').val();
+let [yCyan, mCyan, dCyan] = dateSelectCyan.split('-');
+mapYearCyan = yCyan;
+mapMonthCyan = mCyan;
+mapDayCyan = dCyan;
+mapDateStringCyan = mapYearCyan + '_' + mapMonthCyan + '_' + mapDayCyan;
+
 // Parse date in YYYY-MM-DD format as local date
 function parseISOLocal(s) {
   let [y, m, d] = s.split('-');
   return new Date(y, m - 1, d);
 }
 
+// Parse date in YYYY-MM-DD format as local date CyAN
+function parseISOLocalCyan(sCyan) {
+  let [yCyan, mCyan, dCyan] = sCyan.split('-');
+  return new Date(yCyan, mCyan - 1, dCyan);
+}
+
 // Format date as YYYY-MM-DD
 function dateToISOLocal(date) {
   let z = n => ('0' + n).slice(-2);
   return date.getFullYear() + '-' + z(date.getMonth() + 1) + '-' + z(date.getDate());
+}
+
+// Format date as YYYY-MM-DD CYAN
+function dateToISOLocalCyan(dateCyan) {
+  let zCyan = nCyan => ('0' + nCyan).slice(-2);
+  return dateCyan.getFullYear() + '-' + zCyan(dateCyan.getMonth() + 1) + '-' + zCyan(dateCyan.getDate());
 }
 
 // Convert range slider value to date string
@@ -311,6 +347,35 @@ function range2date(evt) {
   $("#sat-title").text(titleDateString);
 }
 
+// Convert range slider value to date string CYAN
+function range2dateCyan(evtCyan) {
+  let dateInputCyan = document.querySelector('#d0CyAN');
+  let minDateCyan = parseISOLocalCyan(dateInputCyan.min);
+  minDateCyan.setDate(minDateCyan.getDate() + Number(this.value));
+  dateInputCyan.value = dateToISOLocalCyan(minDateCyan);
+  dateSelectCyan = $('#d0CyAN').val();
+  let [yCyan, mCyan, dCyan] = dateSelectCyan.split('-');
+  mapYearCyan = yCyan;
+  mapMonthCyan= mCyan;
+  mapDayCyan = dCyan;
+  mapDateStringCyan = mapYearCyan + '_' + mapMonthCyan + '_' + mapDayCyan;
+  titleDateStringCyan = mapMonthCyan + '/' + mapDayCyan + '/' + mapYearCyan;
+
+  Promise.all([
+    d3.csv('assets/cyan_map/detroit_lake_cyan_' + mapDateStringCyan + '.csv'), //datasets[0]
+  ]).then(function(datasets) {
+    hexdataCyan = [];
+    datasets[0].forEach(function(d) {
+      hexdataCyan.push([
+        d.lon,
+        d.lat,
+        d.log_CI_cells_mL,
+      ]);
+    })
+    hexLayer.data(hexdataCyan);
+  });
+}
+
 
 // Convert entered date to range
 function date2range(evt) {
@@ -339,6 +404,33 @@ function date2range(evt) {
   });
 }
 
+// Convert entered date to range CYAN
+function date2rangeCyan(evtCyan) {
+  let dateCyan = parseISOLocalCyan(this.value);
+  let numDaysCyan = (dateCyan - new Date(this.min)) / 8.64e7;
+  document.querySelector('#myRangeCyan').value = numDaysCyan;
+  dateSelectCyan = $('#d0CyAN').val();
+  let [yCyan, mCyan, dCyan] = dateSelectCyan.split('-');
+  mapYearCyan = yCyan;
+  mapMonthCyan = mCyan;
+  mapDayCyan = dCyan;
+  mapDateStringCyan = mapYearCyan + '_' + mapMonthCyan + '_' + mapDayCyan;
+
+  Promise.all([
+    d3.csv('assets/cyan_map/detroit_lake_cyan_' + mapDateStringCyan + '.csv'), //datasets[0]
+  ]).then(function(datasets) {
+    hexdataCyan = [];
+    datasets[0].forEach(function(d) {
+      hexdataCyan.push([
+        d.lon,
+        d.lat,
+        d.log_CI_cells_mL,
+      ]);
+    })
+    hexLayer.data(hexdataCyan);
+  });
+}
+
 window.onload = function() {
   let rangeInput = document.querySelector('#myRange');
   let dateInput = document.querySelector('#d0');
@@ -354,7 +446,24 @@ window.onload = function() {
   rangeInput.addEventListener('input', range2date, false);
   // Add listener to set the range input value based on the date
   dateInput.addEventListener('change', date2range, false);
+
+  // CYAN event listeners
+  let rangeInputCyan = document.querySelector('#myRangeCyan');
+  let dateInputCyan = document.querySelector('#d0CyAN');
+  // Get the number of days from the date min and max
+  // Dates in YYYY-MM-DD format are treated as UTC
+  // so will be exact whole days
+
+  let rangeMaxCyan = (new Date(dateInputCyan.max) - new Date(dateInputCyan.min)) / 8.64e7;
+  // Set the range min and max values
+  rangeInputCyan.min = 0;
+  rangeInputCyan.max = rangeMaxCyan;
+  // Add listener to set the date input value based on the slider
+  rangeInputCyan.addEventListener('input', range2dateCyan, false);
+  // Add listener to set the range input value based on the date
+  dateInputCyan.addEventListener('change', date2rangeCyan, false);
 }
+
 
 
 // Change for new dashboard
@@ -394,7 +503,7 @@ Promise.all([
   d3.csv('assets/weather_tab/detroit_lake_gridmet.csv'), //datasets[27]
   d3.csv('assets/water_sample_tab/detroit_lake_algae_2016_05_03_2019_10_30.csv'), //datasets[28]
   d3.csv('assets/now_cast_tab/or_detroit_lake_nowcast_predictions.csv'), //datasets[29]
-  d3.csv('assets/cyan_map/detroit_lake_cyan_2021_10_06.csv'), //datasets[30]
+  d3.csv('assets/cyan_map/detroit_lake_cyan_' + mapDateStringCyan + '.csv'), //datasets[30]
   d3.csv('assets/exp_cyan_tab/detroit_lake_exp_cyan.csv'), //datasets[31]
   d3.csv('assets/exp_cyan_tab/detroit_lake_exp_cyan_test.csv'), //datasets[32]
   d3.csv('assets/now_cast_tab/detroit_lake_nowcast_expected_longrun_predictions.csv'), //datasets[33]
@@ -422,6 +531,44 @@ Promise.all([
     ]);
   })
   hexCyanLayer.data(hexCyanData);
+
+
+  // //Cyan point layer
+  //   const fontAwesomeIcon = L.divIcon({
+  //     html: '<i class="fas fa-square"></i>',
+  //     iconSize: [20, 20],
+  //     className: 'myDivIcon',
+  //   });
+  //
+  //   var cyanLayer = datasets[30].forEach(function(d) {
+  //
+  //     L.marker([d.lat, d.lon], {
+  //       icon: fontAwesomeIcon
+  //     }).bindPopup(
+  //       "<b>" + d.log_CI_cells_mL + "</b> <p>",
+  //     ).addTo(mymap);
+  //
+  //     // Create cyan color intervals
+  //     const cyanMax = 8.75;
+  //     // Create equal intervals
+  //     var cyanEQInterval = cyanMax/5;
+  //
+  //     var cyanIntervals = [];
+  //
+  //     if (d.log_CI_cells_mL <= 2.17  ) {
+  //       $(".myDivIcon").css("color",colors[5])
+  //     } else if (d.log_CI_cells_mL <= 3.63) {
+  //       $(".myDivIcon").css("color",colors[4])
+  //     } else if (d.log_CI_cells_mL <= 5.09) {
+  //       $(".myDivIcon").css("color",colors[3])
+  //     } else if (d.log_CI_cells_mL <= 6.55) {
+  //       $(".myDivIcon").css("color",colors[2])
+  //     } else if (d.log_CI_cells_mL <= 8) {
+  //       $(".myDivIcon").css("color",colors[1])
+  //     } else {
+  //       $(".myDivIcon").css("color",colors[0])
+  //     }
+  //   })
 
 
   //  Expected Cyan Vars
@@ -1258,7 +1405,7 @@ Promise.all([
   streamGage1Data2010dchMean = ["2010"];
   streamGage1Data2010dchSum = ["2010"];
 
-// Change for new dashboard
+  // Change for new dashboard
   var gage1 = {
     name: "14178000",
     wt: water_temp,
@@ -3306,6 +3453,7 @@ Promise.all([
   var padTop = 10;
   var padRight = 30;
   var padLeft = 70;
+
   // Stream gage charts
   // stream gage subchart
   chart = c3.generate({
@@ -3320,7 +3468,6 @@ Promise.all([
       onclick: function(d, i) {
         console.log("onclick", d, i);
       },
-
       type: 'spline',
     },
     // color: {
@@ -3364,7 +3511,6 @@ Promise.all([
       // rescale: true,+
       enabled: true,
       type: "scroll",
-      extent: [1580832000000, 1603724400000],
       onzoom: function(d) {
         chart2.zoom(chart.zoom());
         h20SumChart.zoom(chart.zoom());
@@ -8401,10 +8547,6 @@ Promise.all([
     $("#CyANDatePicker").show();
     $("#CHLANDatePicker").hide();
   });
-  precipSubChart.zoom([1328630400000, 1351267200000]);
-  precipSumSubChart.zoom([1328630400000, 1351267200000]);
-  chart.zoom([1583078400000, 1603724400000]);
-  sampleSubChart.zoom([1463537040000, 1473214680000]);
 });
 
 // Tab JS

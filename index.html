@@ -125,7 +125,6 @@
               <div class="tab-content" id="myTabContent">
                 <!-- weather tab -->
                 <div class="tab-pane fade show" id="weather" role="tabpanel" aria-labelledby="weather-tab">
-
                   <!-- tab list -->
                   <div class="card">
                     <!-- tab list -->
@@ -200,7 +199,7 @@
                         </div>
                       </div>
                     </div>
-                    <!-- tab content -->
+                    <!-- subtab content -->
                     <div class="tab-content mt-1" id="myTabContent">
                       <!--lesson context tab -->
                       <div class="tab-pane fade show active" id="context" role="tabpanel" aria-labelledby="context-tab">
@@ -556,7 +555,7 @@
                           <span id="gageYearDropdown" class="dropdownTitle"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
-                          <center>
+                          <!-- <center>
                             <div id="gage2021" class="checkbox">
                               <label>2021</label>
                             </div>
@@ -593,7 +592,7 @@
                             <div id="gage2010" class="checkbox">
                               <label>2010</label>
                             </div>
-                          </center>
+                          </center> -->
                         </div>
                       </div>
                       <div class="frontSub infoTab">
@@ -654,7 +653,6 @@
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -692,32 +690,27 @@
       </div>
 
       <div id="infoMapLegend">
-        <ul class="nav nav-tabs " id="myMapTab" role="tablist">
-          <li class="nav-item ml-auto" role="presentation">
-            <button class="nav-link active" id="sat-tab" data-bs-toggle="tab" href="#sat" data-bs-target="#sat" type="button" role="tab" aria-controls="sat" aria-selected="false">
-              Satellite data <i class="fas fa-satellite"></i><a data-toggle="modal" data-target="#satInfoWindow"> <i class="nav fas fa-info-circle"></i></a>
-            </button>
-          </li>
-        </ul>
-        <div class="tab-content" id="myMapTabContent">
-
-          <div id="deck-2" class="counts frontSub">
-            <div class="tabInfo d-flex flex-row align-items-center  justify-content-between">
-
-              <div><span class="mr-2 text-gray-600 radioText">Hexbin variable:</span></div>
-              <!-- <div><input class="mr-2 text-gray-600 small" type="radio" name="choice" value="ChloroA" id="choice-chla" checked>Chlorophyl a</input></div>
-                  <div><input class="mr-2 text-gray-600 small" type="radio" name="choice" value="cyan" id="choice-cyan">CyAN</input></div> -->
-              <div id="CHARadio" class="form-check form-check-inline">
-                <input class="mr-2 text-gray-600 radioText" type="radio" name="choice" value="ChloroA" id="choice-chla" checked>Chlorophyl a</input>
-              </div>
-              <div id="CYANRadio" class="form-check form-check-inline">
-                <div><input class="mr-2 text-gray-600 radioText" type="radio" name="choice" value="cyan" id="choice-cyan">CyAN</input></div>
-              </div>
-
-            </div>
-
+        <div class="" id="myMapTabContent">
+          <div class="card-deck" id="satNavBar">
+            <ul class="nav nav-tabs" id="myMapTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="sat-tab" data-bs-toggle="tab" href="#sat" data-bs-target="#sat" type="button" role="tab" aria-controls="sat" aria-selected="false">
+                  Satellite data <i class="fas fa-satellite"></i><a data-toggle="modal" data-target="#satInfoWindow"> <i class="nav fas fa-info-circle"></i></a>
+                </button>
+              </li>
+            </ul>
           </div>
-
+          <div class="card-deck tabInfo">
+            <div><span class="mr-2 text-gray-600 radioText">Hexbin variable:</span></div>
+            <!-- <div><input class="mr-2 text-gray-600 small" type="radio" name="choice" value="ChloroA" id="choice-chla" checked>Chlorophyl a</input></div>
+                <div><input class="mr-2 text-gray-600 small" type="radio" name="choice" value="cyan" id="choice-cyan">CyAN</input></div> -->
+            <div id="CHARadio" class="form-check form-check-inline">
+              <input class="mr-2 text-gray-600 radioText" type="radio" name="choice" value="ChloroA" id="choice-chla" checked>Chlorophyl a</input>
+            </div>
+            <div id="CYANRadio" class="form-check form-check-inline">
+              <div><input class="mr-2 text-gray-600 radioText" type="radio" name="choice" value="cyan" id="choice-cyan">CyAN</input></div>
+            </div>
+          </div>
           <div class="card-deck legend">
             <div class="card">
               <div class="card-body legend-options legend-color-6">
@@ -755,7 +748,7 @@
           <div id="deck-2" class="card-deck counts">
             <div class="card darkBackground">
               <center>
-                <div class="timeTitle mb-1 mt-1">Slide to select opacity for hexbin layer</div>
+                <div class="timeTitle ml-3 mb-1 mt-1">Slide to select opacity for hexbin layer</div>
                 <div class="slidecontainer card-deck">
                   <div class="labelSize">
                     <div class="">
@@ -781,7 +774,7 @@
                     <input id="d0" class="timeTitle ml-1 mb-1 mt-1 " type="date" min="2018-12-14" max="2022-01-27" value="2022-01-27">
                   </div>
                   <div id="CyANDatePicker">
-                    <input type="range" min="0" max="1986" value="1986" class="slider" id="myCyANRange">
+                    <input type="range" min="0" max="1986" value="1986" class="slider" id="myRangeCyan">
                     <input id="d0CyAN" class="timeTitle ml-1 mb-1 mt-1 " type="date" min="2016-04-30" max="2021-10-06" value="2021-10-06">
                   </div>
                 </div>
@@ -939,6 +932,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DNMN1RTMV"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
+
     function gtag() {
       dataLayer.push(arguments);
     }
@@ -946,4 +940,5 @@
     gtag('config', 'G-2DNMN1RTMV');
   </script>
 </body>
+
 </html>
