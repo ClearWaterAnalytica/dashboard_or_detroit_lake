@@ -356,7 +356,7 @@ function range2dateCyan(evtCyan) {
   dateSelectCyan = $('#d0CyAN').val();
   let [yCyan, mCyan, dCyan] = dateSelectCyan.split('-');
   mapYearCyan = yCyan;
-  mapMonthCyan= mCyan;
+  mapMonthCyan = mCyan;
   mapDayCyan = dCyan;
   mapDateStringCyan = mapYearCyan + '_' + mapMonthCyan + '_' + mapDayCyan;
   titleDateStringCyan = mapMonthCyan + '/' + mapDayCyan + '/' + mapYearCyan;
@@ -4751,7 +4751,12 @@ Promise.all([
   var noCyanLast = 100 - cyanLast;
   var lastModelAcc = 100 * model_accuracy.slice(-1);
   lastModelAccOther = 1 - lastModelAcc;
-  var lastBloomProp = 100 * bloom_proportion.slice(-1);
+  // var lastBloomProp = 100 * bloom_proportion.slice(-1);
+  if (bloom_proportion.slice(-1) == "null") {
+      var lastBloomProp = "--";
+  } else {
+      var lastBloomProp = 100 * bloom_proportion.slice(-1);
+  };
   var nocyan = ['Probability of no bloom'];
   var currentNowCastDate = nct.slice(-1);
   var previousNowCastDate;
@@ -4892,6 +4897,11 @@ Promise.all([
           cyanoProb_1 = 100 - cyanoProb;
           // Update previous forecast donut hole text to bloom proportion for selected date
           $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").text(100 * bloom_proportion[d.index]);
+          if (bloom_proportion[d.index] == "null") {
+            $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").text("--");
+          } else {
+            $("#donut-chart > svg > g:nth-child(2) > g.c3-chart > g.c3-chart-arcs > text").text(100 * bloom_proportion[d.index]);
+          };
           // Collected selected date
           var USTdDonut = new Date(d.x);
           previousNowCastDate = d.x;
