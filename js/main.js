@@ -3,6 +3,7 @@ $(window).ready(function() {
   $('.loader').fadeOut("slow");
 });
 
+
 // Change for new dashboard
 var lakeBoundsClosed = L.latLngBounds(
   L.latLng(44.6518457695288, -122.30459300466374), //Southwest
@@ -474,7 +475,7 @@ var gageID = "14178000";
 // Load in datasets
 Promise.all([
   d3.csv('assets/stream_gauge_tab/gage.csv'), //datasets[0]
-  d3.json("assets/stream_gauge_tab/usgs.geojson"), //datasets[1]
+  d3.json("assets/stream_gage_tab/usgs.geojson"), //datasets[1]
   d3.csv('assets/water_sample_tab/algae.csv'), //datasets[2]
   d3.json("assets/water_sample_tab/ws.geojson"), //datasets[3]
   d3.csv('assets/satellite_map/detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[4]
@@ -519,6 +520,13 @@ Promise.all([
     ]);
   })
   hexLayer.data(hexdata);
+
+
+  var lakeName = "Detroit Lake, Oregon";
+
+  $(".lakeName").text(lakeName);
+
+
 
   // Load CyAN Map dataset
   hexCyanData = [];
@@ -1767,6 +1775,8 @@ Promise.all([
             } else {
               streamGage1Data2010dchSum.push(streamGageData[i].Discharge_cumsum);
             };
+            var USTd = new Date(streamGageData[i].date)
+            t.push(USTd.setHours(USTd.getHours() + 8));
             break;
           default:
         }
@@ -1777,8 +1787,6 @@ Promise.all([
     // Check for deletion
     twt = 0;
     datasets[0].forEach(function(d) {
-      var USTd = new Date(d["date"])
-      t.push(USTd.setHours(USTd.getHours() + 8));
       twt = 0;
       current = d;
       delete current["date"];
@@ -2224,6 +2232,7 @@ Promise.all([
       ta = 0;
       current = d;
       delete current["t"];
+      //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2246,6 +2255,7 @@ Promise.all([
       ta2016 = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2268,6 +2278,7 @@ Promise.all([
       ta2017 = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2290,6 +2301,7 @@ Promise.all([
       ta2018 = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2312,6 +2324,7 @@ Promise.all([
       ta2019 = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2335,6 +2348,7 @@ Promise.all([
       tt = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2357,6 +2371,7 @@ Promise.all([
       tt2016 = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2401,6 +2416,7 @@ Promise.all([
       tt2018 = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2423,6 +2439,7 @@ Promise.all([
       tt2019 = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2446,6 +2463,7 @@ Promise.all([
       tn = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2468,6 +2486,7 @@ Promise.all([
       tn2016 = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2490,6 +2509,7 @@ Promise.all([
       tn2017 = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2511,6 +2531,7 @@ Promise.all([
       tn2018 = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2532,6 +2553,7 @@ Promise.all([
       tn2019 = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2558,6 +2580,7 @@ Promise.all([
       ta = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2591,6 +2614,7 @@ Promise.all([
       ta2016 = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2624,6 +2648,7 @@ Promise.all([
       ta2017 = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2657,6 +2682,7 @@ Promise.all([
       ta2018 = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2690,6 +2716,7 @@ Promise.all([
       ta2019 = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -2724,6 +2751,7 @@ Promise.all([
       tt = 0;
       current = d;
       delete current["t"];
+        //Change for new dashboard
       if (i["name"] = "Log Boom") {
         d = current[i["name"]];
         if (d == undefined) {
@@ -3411,7 +3439,7 @@ Promise.all([
     pointToLayer: function(feature, latlng) {
       return L.marker(latlng, {
         icon: L.divIcon({
-          className: 'map fas fa-tachometer-alt blinking',
+          className: 'map fas fa-tachometer-alt',
         })
       });
     },
@@ -3424,7 +3452,7 @@ Promise.all([
     pointToLayer: function(feature, latlng) {
       return L.marker(latlng, {
         icon: L.divIcon({
-          className: 'map fas fa-vials blinking',
+          className: 'map fas fa-vials',
         })
       });
     },
@@ -3437,7 +3465,7 @@ Promise.all([
     pointToLayer: function(feature, latlng) {
       return L.marker(latlng, {
         icon: L.divIcon({
-          className: 'map fas fa-cloud-sun-rain blinking',
+          className: 'map fas fa-cloud-sun-rain',
         })
       });
     },
@@ -8680,7 +8708,6 @@ var today = new Date();
 var date = (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear();
 // Update LAst update text with todays date
 $("#date").text("Last update: " + date);
-
 
 ///////////////////////// Attribution at bottom ledt of map
 $(".leaflet-control-attribution")
