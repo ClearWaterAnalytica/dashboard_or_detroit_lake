@@ -4,7 +4,7 @@ date: date of observation (Unit: year-month-day)
 lat: date of observation (Unit: degree latitude)
 lon: date of observation (Unit: degree longitude)
 Chlorophyll: proportional to NIR/Red (10-day rolling max) from Sentinel (Unit: nanometers -- nm)
-Chlorophyll limits: min = 0.53 --- max = 1.22
+Chlorophyll limits: min = 0.5 --- max = 1.21
 
 
 
