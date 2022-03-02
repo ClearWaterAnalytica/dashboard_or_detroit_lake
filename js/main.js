@@ -501,7 +501,7 @@ Promise.all([
   d3.csv('assets/weather_tab/prism2021.csv'), //datasets[24]
   d3.csv('assets/stream_gage_tab/detroit_lake_usgsStreamgage.csv'), //datasets[25]
   d3.csv('assets/satellite_map/dates.csv'), //datasets[26]
-  d3.csv('assets/weather_tab/detroit_lake_gridmet.csv'), //datasets[27]
+  d3.csv('assets/weather_tab/or_detroit_lake_gridmet.csv'), //datasets[27]
   d3.csv('assets/water_sample_tab/detroit_lake_algae_2016_05_03_2019_10_30.csv'), //datasets[28]
   d3.csv('assets/now_cast_tab/or_detroit_lake_nowcast_predictions.csv'), //datasets[29]
   d3.csv('assets/cyan_map/detroit_lake_cyan_' + mapDateStringCyan + '.csv'), //datasets[30]
