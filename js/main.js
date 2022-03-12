@@ -151,7 +151,7 @@ var optionsCyan = {
   radius: 20,
   opacity: .6,
   colorRange: [colors[0], colors[4], colors[3], colors[2], colors[1], colors[0]],
-  colorScaleExtent: [2.17, 8.75],
+  colorScaleExtent: [8.75, 11.21],
   duration: 500,
   radiusRange: [11, 11],
 };
@@ -175,7 +175,7 @@ $("#CHARadio").on("click", function() {
 });
 var emptyArray = [];
 $("#CYANRadio").on("click", function() {
-  hexLayer.colorScaleExtent([2.17, 8.75]);
+  hexLayer.colorScaleExtent([8.75, 11.21]);
   hexLayer.hoverHandler(L.HexbinHoverHandler.compound({
     handlers: [
       L.HexbinHoverHandler.resizeFill(),
