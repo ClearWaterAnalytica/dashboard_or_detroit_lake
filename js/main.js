@@ -333,7 +333,7 @@ function range2date(evt) {
   titleDateString = mapMonth + '/' + mapDay + '/' + mapYear;
 
   Promise.all([
-    d3.csv('assets/satellite_map/detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[0]
+    d3.csv('assets/satellite_map/or_detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[0]
   ]).then(function(datasets) {
     hexdata = [];
     datasets[0].forEach(function(d) {
@@ -363,7 +363,7 @@ function range2dateCyan(evtCyan) {
   titleDateStringCyan = mapMonthCyan + '/' + mapDayCyan + '/' + mapYearCyan;
 
   Promise.all([
-    d3.csv('assets/cyan_map/detroit_lake_cyan_' + mapDateStringCyan + '.csv'), //datasets[0]
+    d3.csv('assets/cyan_map/or_detroit_lake_cyan_' + mapDateStringCyan + '.csv'), //datasets[0]
   ]).then(function(datasets) {
     hexdataCyan = [];
     datasets[0].forEach(function(d) {
@@ -391,7 +391,7 @@ function date2range(evt) {
   mapDateString = mapYear + '_' + mapMonth + '_' + mapDay;
 
   Promise.all([
-    d3.csv('assets/satellite_map/detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[0]
+    d3.csv('assets/satellite_map/or_detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[0]
   ]).then(function(datasets) {
     hexdata = [];
     datasets[0].forEach(function(d) {
@@ -418,7 +418,7 @@ function date2rangeCyan(evtCyan) {
   mapDateStringCyan = mapYearCyan + '_' + mapMonthCyan + '_' + mapDayCyan;
 
   Promise.all([
-    d3.csv('assets/cyan_map/detroit_lake_cyan_' + mapDateStringCyan + '.csv'), //datasets[0]
+    d3.csv('assets/cyan_map/or_detroit_lake_cyan_' + mapDateStringCyan + '.csv'), //datasets[0]
   ]).then(function(datasets) {
     hexdataCyan = [];
     datasets[0].forEach(function(d) {
