@@ -4926,9 +4926,8 @@ Promise.all([
       // Load in data for chart
       columns: [
         bloom_p,
-        expCyanDate,
         logCICells,
-        // nctCurrentDate,
+        expCyanDate
       ],
       axes: {
         // Create 2 y axises
