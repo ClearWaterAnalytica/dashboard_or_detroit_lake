@@ -5,21 +5,21 @@ $(window).ready(function() {
   $('.loader').fadeOut("slow");
 });
 
-// #####################################
+// // #####################################
 
-function get_file(bucket){
-  import('./cwa/s3setup.js').then((Module) => {
-    Module.say_hi("Mat");
-    Module.get_list(bucket)
-  }, (err) => {
-    console.log(err)
-    console.log(err.stack)
-  });
-}
+// function get_file(bucket){
+//   import('./cwa/s3setup.js').then((Module) => {
+//     Module.say_hi("Mat");
+//     Module.get_list(bucket)
+//   }, (err) => {
+//     console.log(err)
+//     console.log(err.stack)
+//   });
+// }
 
-get_file("cwa-assets")
+// get_file("cwa-assets")
 
-// #####################################
+// // #####################################
 
 // TODO: TESTING, needs removal
 // var dee = ""
@@ -518,7 +518,8 @@ Promise.all([
   d3.json("assets/water_sample_tab/ws.geojson"), //datasets[3]
   d3.csv('assets/satellite_map/or_detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[4]
   // get_object("cwa-assets", '/or_detroit_lake/assets/satellite_map/detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[4]
-  d3.csv('assets/weather_tab/or_detroit_lake_prism_2020_01_01_2021_09_15.csv'), //datasets[5]
+  // d3.csv('assets/weather_tab/detroit_lake_prism_2020_01_01_2021_09_15.csv'), //datasets[5]
+  "",
   d3.csv('assets/water_sample_tab/toxin.csv'), //datasets[6]
   d3.csv('assets/water_sample_tab/nitrate.csv'), //datasets[7]
   d3.json("assets/weather_tab/weather.geojson"), //datasets[8]
@@ -4964,7 +4965,7 @@ Promise.all([
       },
       type: 'spline',
       colors: {
-        Log_CI_Cells_mL: '#de2d26',
+         Log_CI_Cells_mL: '#de2d26',
       },
       // Onclick function for CyAN line chart
       onclick: function(d, i) {
@@ -5084,6 +5085,7 @@ Promise.all([
         tick: {
           format: d3.format(".0%"),
           count: 5,
+          values: [.25, .50, .75, 1]
         },
       },
     },
@@ -5118,64 +5120,6 @@ Promise.all([
   $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > text").attr("dy", "-5");
   $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > text").attr("dy", "10");
 
-  // Pie Charts inside donuts
-  // var pieTestchart = c3.generate({
-  //   size: {
-  //     height: 200,
-  //   },
-  //   data: {
-  //     columns: [
-  //       ['Obsereved Bloom Area', 75],
-  //       ['', 25],
-  //     ],
-  //     type: 'pie',
-  //     onclick: function(d, i) {
-  //       console.log("onclick", d, i);
-  //     },
-  //     onmouseover: function(d, i) {
-  //       console.log("onmouseover", d, i);
-  //     },
-  //     onmouseout: function(d, i) {
-  //       console.log("onmouseout", d, i);
-  //     }
-  //   },
-  //   color: {
-  //     pattern: ['#7fcdbb', '#ffffcc']
-  //   },
-  //   legend: {
-  //     hide: true,
-  //   },
-  //   bindto: "#pieTestChart"
-  // });
-  //
-  // var pieTestchart2 = c3.generate({
-  //   size: {
-  //     height: 200,
-  //   },
-  //   data: {
-  //     columns: [
-  //       ['Forecast Accuracy', 75],
-  //       ['', 25],
-  //     ],
-  //     type: 'pie',
-  //     onclick: function(d, i) {
-  //       console.log("onclick", d, i);
-  //     },
-  //     onmouseover: function(d, i) {
-  //       console.log("onmouseover", d, i);
-  //     },
-  //     onmouseout: function(d, i) {
-  //       console.log("onmouseout", d, i);
-  //     }
-  //   },
-  //   color: {
-  //     pattern: ['#fe9929', '#ffffcc']
-  //   },
-  //   legend: {
-  //     hide: true,
-  //   },
-  //   bindto: "#pieTestChart2"
-  // });
 
   // Tab Interactions
   $("#weather-tab").on("click", function() {
