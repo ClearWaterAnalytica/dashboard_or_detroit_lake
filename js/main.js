@@ -1,7 +1,46 @@
+/// <reference types="aws-sdk" />
+
 // Initial load GIF
 $(window).ready(function() {
   $('.loader').fadeOut("slow");
 });
+
+// #####################################
+
+function get_file(bucket){
+  import('./cwa/s3setup.js').then((Module) => {
+    Module.say_hi("Mat");
+    Module.get_list(bucket)
+  }, (err) => {
+    console.log(err)
+    console.log(err.stack)
+  });
+}
+
+get_file("cwa-assets")
+
+// #####################################
+
+// TODO: TESTING, needs removal
+// var dee = ""
+// var eee = "29834"
+// console.log("dee: " + dee)
+// console.log("d.split: " + dee.split("-"))
+// console.log("length of d.split: " + dee.split("-").length)
+// console.log("eee: " + eee)
+// console.log("e.split: " + eee.split("-"))
+// console.log("length of e.split: " + eee.split("-").length)
+
+// #####################################
+
+const minZoom = 11
+const defZoom = 14
+const maxZoom = 15
+
+const lat_sw =   44.65184576952880
+const lon_sw = -122.43459300466374
+const lat_ne =   44.76672930999038
+const lon_ne = -122.09269384395935
 
 // Change for new dashboard
 var lakeBoundsClosed = L.latLngBounds(
@@ -10,17 +49,17 @@ var lakeBoundsClosed = L.latLngBounds(
 );
 
 var lakeBoundsOpenMini = L.latLngBounds(
-  L.latLng(44.6518457695288, -122.43459300466374), //Southwest
-  L.latLng(44.76672930999038, -122.09269384395935), //Northeast
+  L.latLng(lat_sw, lon_sw), //Southwest
+  L.latLng(lat_ne, lon_ne), //Northeast
 );
 
 // Create map element
 var mymap = L.map('map', {
   // center: [44.70580544041939, -122.24899460193791],
   zoomControl: false,
-  zoom: 14,
-  maxZoom: 15,
-  minZoom: 11,
+  zoom: defZoom,
+  maxZoom: maxZoom,
+  minZoom: minZoom,
   // maxBounds: lakeBounds,
   // maxBoundsViscosity: .8,
 });
@@ -134,7 +173,7 @@ for (i = 0; i < 6; i++) {
 // colorScaleExtentCHL = []
 // minChlExtent = chlMinExtentSplit.split(' ');
 
-// Chlorophyl a hexbin options
+// Chlorophyll-a hexbin options
 var options = {
   radius: 12,
   opacity: .6,
@@ -155,13 +194,13 @@ var optionsCyan = {
   radiusRange: [11, 11],
 };
 
-// Add Chlorophyl A hexbin map layer
+// Add Chlorophyll-a hexbin map layer
 var hexLayer = L.hexbinLayer(options).addTo(mymap);
 
 var hexCyanLayer = L.hexbinLayer(optionsCyan);
 
 $("#CHARadio").on("click", function() {
-  hexLayer.colorScaleExtent([.53, 1.22]);
+  hexLayer.colorScaleExtent([.5, 1.21]);
   hexLayer.hoverHandler(L.HexbinHoverHandler.compound({
     handlers: [
       L.HexbinHoverHandler.resizeFill(),
@@ -174,7 +213,7 @@ $("#CHARadio").on("click", function() {
 });
 var emptyArray = [];
 $("#CYANRadio").on("click", function() {
-  hexLayer.colorScaleExtent([2.17, 8.75]);
+  hexLayer.colorScaleExtent([8.75, 11.21]);
   hexLayer.hoverHandler(L.HexbinHoverHandler.compound({
     handlers: [
       L.HexbinHoverHandler.resizeFill(),
@@ -186,15 +225,15 @@ $("#CYANRadio").on("click", function() {
   hexLayer.data(hexCyanData);
 });
 
-// Tooltip function for Chlorophyl A hexbins
+// Tooltip function for Chlorophyll-a hexbins
 function tooltip_function(d) {
-  // Collect all Chlorophyl values in given hexbin
+  // Collect all Chlorophyll values in given hexbin
   var chlA_sum = d.reduce(function(acc, obj) {
     return (acc + parseFloat(obj["o"][2]));
   }, 0);
-  // Average chlorophyl values in given hexbin
+  // Average chlorophyll values in given hexbin
   avgChl = chlA_sum / d.length;
-  // Format Chlorophyl values to 3 decimal places
+  // Format Chlorophyll values to 3 decimal places
   avgChl = d3.format(".3")(avgChl);
   // Create tooltip text
   var tooltip_text = `Avg. Chlorophyll: ${String(avgChl)}`
@@ -220,9 +259,9 @@ $('#myOpacityRange').on('input', function(value) {
   });
 });
 
-// Create Chlorophyl A hexbin layer
-hexLayer
-  // hexbin longitute value
+// Create Chlorophyll-a hexbin layer
+hexLayer // TODO: Double check that these lat/lon indices are correct
+  // hexbin longitude value
   .lng(function(d) {
     return d[0];
   })
@@ -232,7 +271,7 @@ hexLayer
   })
   // color values for hexbins
   .colorValue(
-    // assign hexbin colors to average chlorophyl A values
+    // assign hexbin colors to average chlorophyll-a values
     function(d) {
       var sum = d.reduce(function(acc, obj) {
         return (acc + parseFloat(obj["o"][2]));
@@ -332,7 +371,7 @@ function range2date(evt) {
   titleDateString = mapMonth + '/' + mapDay + '/' + mapYear;
 
   Promise.all([
-    d3.csv('assets/satellite_map/detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[0]
+    d3.csv('assets/satellite_map/or_detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[0]
   ]).then(function(datasets) {
     hexdata = [];
     datasets[0].forEach(function(d) {
@@ -362,12 +401,12 @@ function range2dateCyan(evtCyan) {
   titleDateStringCyan = mapMonthCyan + '/' + mapDayCyan + '/' + mapYearCyan;
 
   Promise.all([
-    d3.csv('assets/cyan_map/detroit_lake_cyan_' + mapDateStringCyan + '.csv'), //datasets[0]
+    d3.csv('assets/cyan_map/or_detroit_lake_cyan_' + mapDateStringCyan + '.csv'), //datasets[0]
   ]).then(function(datasets) {
     hexdataCyan = [];
     datasets[0].forEach(function(d) {
       hexdataCyan.push([
-        d.lon,
+        d.lon, // TODO: Going lon then lat to compensate for indexing order at line 244?
         d.lat,
         d.log_CI_cells_mL,
       ]);
@@ -390,7 +429,7 @@ function date2range(evt) {
   mapDateString = mapYear + '_' + mapMonth + '_' + mapDay;
 
   Promise.all([
-    d3.csv('assets/satellite_map/detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[0]
+    d3.csv('assets/satellite_map/or_detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[0]
   ]).then(function(datasets) {
     hexdata = [];
     datasets[0].forEach(function(d) {
@@ -417,7 +456,7 @@ function date2rangeCyan(evtCyan) {
   mapDateStringCyan = mapYearCyan + '_' + mapMonthCyan + '_' + mapDayCyan;
 
   Promise.all([
-    d3.csv('assets/cyan_map/detroit_lake_cyan_' + mapDateStringCyan + '.csv'), //datasets[0]
+    d3.csv('assets/cyan_map/or_detroit_lake_cyan_' + mapDateStringCyan + '.csv'), //datasets[0]
   ]).then(function(datasets) {
     hexdataCyan = [];
     datasets[0].forEach(function(d) {
@@ -477,8 +516,9 @@ Promise.all([
   d3.json("assets/stream_gauge_tab/usgs.geojson"), //datasets[1]
   d3.csv('assets/water_sample_tab/algae.csv'), //datasets[2]
   d3.json("assets/water_sample_tab/ws.geojson"), //datasets[3]
-  d3.csv('assets/satellite_map/detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[4]
-  d3.csv('assets/weather_tab/detroit_lake_prism_2020_01_01_2021_09_15.csv'), //datasets[5]
+  d3.csv('assets/satellite_map/or_detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[4]
+  // get_object("cwa-assets", '/or_detroit_lake/assets/satellite_map/detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[4]
+  d3.csv('assets/weather_tab/or_detroit_lake_prism_2020_01_01_2021_09_15.csv'), //datasets[5]
   d3.csv('assets/water_sample_tab/toxin.csv'), //datasets[6]
   d3.csv('assets/water_sample_tab/nitrate.csv'), //datasets[7]
   d3.json("assets/weather_tab/weather.geojson"), //datasets[8]
@@ -498,18 +538,20 @@ Promise.all([
   d3.csv('assets/stream_gauge_tab/gage2021.csv'), //datasets[22]
   d3.csv('assets/weather_tab/prism2020.csv'), //datasets[23]
   d3.csv('assets/weather_tab/prism2021.csv'), //datasets[24]
-  d3.csv('assets/stream_gage_tab/detroit_lake_usgsStreamgage.csv'), //datasets[25]
+  d3.csv('assets/stream_gage_tab/or_detroit_lake_usgsStreamgage.csv'), //datasets[25]
   d3.csv('assets/satellite_map/dates.csv'), //datasets[26]
-  d3.csv('assets/weather_tab/detroit_lake_gridmet.csv'), //datasets[27]
+  d3.csv('assets/weather_tab/or_detroit_lake_gridmet.csv'), //datasets[27]
   d3.csv('assets/water_sample_tab/detroit_lake_algae_2016_05_03_2019_10_30.csv'), //datasets[28]
   d3.csv('assets/now_cast_tab/or_detroit_lake_nowcast_predictions.csv'), //datasets[29]
-  d3.csv('assets/cyan_map/detroit_lake_cyan_' + mapDateStringCyan + '.csv'), //datasets[30]
-  d3.csv('assets/exp_cyan_tab/detroit_lake_exp_cyan.csv'), //datasets[31]
+  d3.csv('assets/cyan_map/or_detroit_lake_cyan_' + mapDateStringCyan + '.csv'), //datasets[30]
+  d3.csv('assets/exp_cyan_tab/or_detroit_lake_exp_cyan.csv'), //datasets[31]
   d3.csv('assets/exp_cyan_tab/detroit_lake_exp_cyan_test.csv'), //datasets[32]
-  d3.csv('assets/now_cast_tab/detroit_lake_nowcast_expected_longrun_predictions.csv'), //datasets[33]
+  d3.csv('assets/now_cast_tab/or_detroit_lake_nowcast_expected_longrun_predictions.csv'), //datasets[33]
 ]).then(function(datasets) {
 
-  // Load Chlorophyl A data into hexbin data array then into hexlayer
+  console.log(datasets[4])
+
+  // Load Chlorophyll-a data into hexbin data array then into hexlayer
   hexdata = [];
   datasets[4].forEach(function(d) {
     hexdata.push([
@@ -1332,7 +1374,7 @@ Promise.all([
     }
   }
 
-  // Stream Gage Data vars
+  // Streamgage Data vars
   var t = ["Date"];
   var t2020 = ["Date"];
   var t2021 = ["Date"];
@@ -1465,18 +1507,18 @@ Promise.all([
     dchS2010: streamGage1Data2010dchSum,
   }
 
-  // Load in stream gage data for initial stream gage
+  // Load in streamgage data for initial streamgage
   function gage1Counts(i) {
     // Change for new dashboard
-    // Assign initial stream gage
+    // Assign initial streamgage
     gageID = "14178000";
     // Change for new dashboard
-    //  Assign name initial dropdown text to initial steam gage name
+    //  Assign name initial dropdown text to initial steamgage name
     $("#gageDropdown").text("NO SANTIAM R BLW BOULDER CRK, NR DETROIT, OR");
 
-    // Get stream gage dataset
+    // Get streamgage dataset
     let streamGageData = datasets[25];
-    // itereate through stream gage dataset and assign variables by year and fields
+    // iterate through streamgage dataset and assign variables by year and fields
     for (let i = 0; i < streamGageData.length; i++) {
       dateGage1Reformat = streamGageData[i].date.split("-");
       yearGage1 = dateGage1Reformat[0];
@@ -2555,33 +2597,47 @@ Promise.all([
     datasets[2].forEach(function(d) {
       var USTd = new Date(d["t"])
       wst.push(USTd.setHours(USTd.getHours() + 8));
-      ta = 0;
+      // ta = 0;
       current = d;
+      // console.log("i[name]: ")
+      // console.log(i["name"])
+      // console.log("current: \n")
+      console.log("current: " + current)
+      console.log("current[t]: " + current["t"])
+      console.log("current[lb]: " + current["Log Boom"])
+      console.log("current[ht]: " + current["Heater"])
+      console.log("current[bo]: " + current["Blowout"])
       delete current["t"];
-      if (i["name"] = "Log Boom") {
-        d = current[i["name"]];
-        if (d == undefined) {
-          d = "0"
-        };
-        items = d.split("-");
-        switch (items.length) {
-          case 1:
-            ta += +items[0];
-            break;
-        };
-      } else {
-        Object.values(current).forEach(function(d) {
-          if (d == undefined) {
-            d = "0"
-          };
-          items = d.split("-");
-          switch (items.length) {
-            case 1:
-              ta += +items[0];
-              break;
-          };
-        });
-      }
+      // if (i["name"] = "Heater") {
+      row_data = current[i["name"]];
+      console.log("row_data: " + row_data)
+      if (row_data == undefined) {
+        row_data = "0"
+      };
+      items = row_data.split("-");
+      switch (items.length) {
+        case 1:
+          // console.log("items: " + items)
+          ta += +items[0];
+          // console.log("ta: " + ta)
+          break;
+        default:
+          console.log("weird thing happened with input data: ")
+          console.log(items)
+      };
+      // } else {
+      //   Object.values(current).forEach(function(d) {
+      //     if (d == undefined) {
+      //       d = "0"
+      //     };
+      //     items = d.split("-");
+      //     switch (items.length) {
+      //       case 1:
+      //         ta += +items[0];
+      //         break;
+      //     };
+      //   });
+      console.log("ta: " + ta)
       i["a"].push(ta);
     });
     ta2016 = 0;
@@ -2591,30 +2647,31 @@ Promise.all([
       ta2016 = 0;
       current = d;
       delete current["t"];
-      if (i["name"] = "Log Boom") {
-        d = current[i["name"]];
-        if (d == undefined) {
-          d = "0"
-        };
-        items = d.split("-");
-        switch (items.length) {
-          case 1:
-            ta2016 += +items[0];
-            break;
-        };
-      } else {
-        Object.values(current).forEach(function(d) {
-          if (d == undefined) {
-            d = "0"
-          };
-          items = d.split("-");
-          switch (items.length) {
-            case 1:
-              ta2016 += +items[0];
-              break;
-          };
-        });
-      }
+
+      // if (i["name"] = "Log Boom") {
+      d = current[i["name"]];
+      if (d == undefined) {
+        d = "0"
+      };
+      items = d.split("-");
+      switch (items.length) {
+        case 1:
+          ta2016 += +items[0];
+          break;
+      };
+      // } else {
+      //   Object.values(current).forEach(function(d) {
+      //     if (d == undefined) {
+      //       d = "0"
+      //     };
+      //     items = d.split("-");
+      //     switch (items.length) {
+      //       case 1:
+      //         ta2016 += +items[0];
+      //         break;
+      //     };
+      //   });
+      // }
       i["a2016"].push(ta2016);
     });
     ta2017 = 0;
@@ -2624,30 +2681,30 @@ Promise.all([
       ta2017 = 0;
       current = d;
       delete current["t"];
-      if (i["name"] = "Log Boom") {
-        d = current[i["name"]];
-        if (d == undefined) {
-          d = "0"
-        };
-        items = d.split("-");
-        switch (items.length) {
-          case 1:
-            ta2017 += +items[0];
-            break;
-        };
-      } else {
-        Object.values(current).forEach(function(d) {
-          if (d == undefined) {
-            d = "0"
-          };
-          items = d.split("-");
-          switch (items.length) {
-            case 1:
-              ta2017 += +items[0];
-              break;
-          };
-        });
-      }
+      // if (i["name"] = "Log Boom") {
+      d = current[i["name"]];
+      if (d == undefined) {
+        d = "0"
+      };
+      items = d.split("-");
+      switch (items.length) {
+        case 1:
+          ta2017 += +items[0];
+          break;
+      };
+      // } else {
+      //   Object.values(current).forEach(function(d) {
+      //     if (d == undefined) {
+      //       d = "0"
+      //     };
+      //     items = d.split("-");
+      //     switch (items.length) {
+      //       case 1:
+      //         ta2017 += +items[0];
+      //         break;
+      //     };
+      //   });
+      // }
       i["a2017"].push(ta2017);
     });
     ta2018 = 0;
@@ -2657,30 +2714,30 @@ Promise.all([
       ta2018 = 0;
       current = d;
       delete current["t"];
-      if (i["name"] = "Log Boom") {
-        d = current[i["name"]];
-        if (d == undefined) {
-          d = "0"
-        };
-        items = d.split("-");
-        switch (items.length) {
-          case 1:
-            ta2018 += +items[0];
-            break;
-        };
-      } else {
-        Object.values(current).forEach(function(d) {
-          if (d == undefined) {
-            d = "0"
-          };
-          items = d.split("-");
-          switch (items.length) {
-            case 1:
-              ta2018 += +items[0];
-              break;
-          };
-        });
-      }
+      // if (i["name"] = "Log Boom") {
+      d = current[i["name"]];
+      if (d == undefined) {
+        d = "0"
+      };
+      items = d.split("-");
+      switch (items.length) {
+        case 1:
+          ta2018 += +items[0];
+          break;
+      };
+      // } else {
+      //   Object.values(current).forEach(function(d) {
+      //     if (d == undefined) {
+      //       d = "0"
+      //     };
+      //     items = d.split("-");
+      //     switch (items.length) {
+      //       case 1:
+      //         ta2018 += +items[0];
+      //         break;
+      //     };
+      //   });
+      // }
       i["a2018"].push(ta2018);
     });
     ta2019 = 0;
@@ -2690,30 +2747,30 @@ Promise.all([
       ta2019 = 0;
       current = d;
       delete current["t"];
-      if (i["name"] = "Log Boom") {
-        d = current[i["name"]];
-        if (d == undefined) {
-          d = "0"
-        };
-        items = d.split("-");
-        switch (items.length) {
-          case 1:
-            ta2019 += +items[0];
-            break;
-        };
-      } else {
-        Object.values(current).forEach(function(d) {
-          if (d == undefined) {
-            d = "0"
-          };
-          items = d.split("-");
-          switch (items.length) {
-            case 1:
-              ta2019 += +items[0];
-              break;
-          };
-        });
-      }
+      // if (i["name"] = "Log Boom") {
+      d = current[i["name"]];
+      if (d == undefined) {
+        d = "0"
+      };
+      items = d.split("-");
+      switch (items.length) {
+        case 1:
+          ta2019 += +items[0];
+          break;
+      };
+      // } else {
+      //   Object.values(current).forEach(function(d) {
+      //     if (d == undefined) {
+      //       d = "0"
+      //     };
+      //     items = d.split("-");
+      //     switch (items.length) {
+      //       case 1:
+      //         ta2019 += +items[0];
+      //         break;
+      //     };
+      //   });
+      // }
       i["a2019"].push(ta2019);
     });
     // toxin data
@@ -4868,9 +4925,9 @@ Promise.all([
       x: "Date",
       // Load in data for chart
       columns: [
+        bloom_p,
         expCyanDate,
         logCICells,
-        bloom_p,
         // nctCurrentDate,
       ],
       axes: {
@@ -8678,11 +8735,11 @@ $("#CyANDatePicker").hide();
 var today = new Date();
 // Forat Todays Date
 var date = (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear();
-// Update LAst update text with todays date
+// Update last update text with todays date
 $("#date").text("Last update: " + date);
 
 
-///////////////////////// Attribution at bottom ledt of map
+///////////////////////// Attribution at bottom right of map
 $(".leaflet-control-attribution")
   .css("background-color", "transparent")
   .css("color", "white")
