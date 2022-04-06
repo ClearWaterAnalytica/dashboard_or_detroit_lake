@@ -3609,7 +3609,7 @@ Promise.all([
     },
     bindto: "#gage-chart"
   });
-  // Hide main chart for to create just subchart
+  // Hide main chart to create just subchart
   $("#gage-chart > svg > g:nth-child(2)").hide();
   // Add colors for initially selected years for stream gage data
   var stroke2022 = chart.color('2022');
@@ -4949,8 +4949,8 @@ Promise.all([
       x: "Date",
       // Load in data for chart
       columns: [
-        bloom_p,
         logCICells,
+        bloom_p,
         expCyanDate
       ],
       axes: {
@@ -5000,8 +5000,8 @@ Promise.all([
           $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > line").css('stroke', '#17e8ce');
           $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > line").css('stroke', '#ff7f0e');
           // Adjust text placement for grid lines
-          $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > text").attr("dy", "-5");
           $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > text").attr("dy", "10");
+          $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > text").attr("dy", "-5");
           // Load previous forecast donut chart with data from selected date
           donutChart.load({
             unload: true,
@@ -5113,6 +5113,11 @@ Promise.all([
     },
     bindto: "#spline-chart"
   });
+
+  // other useful call - selecting the date at the third value in data array
+  // can use this to determine whether mouse click is on dates w/ corresponding blue line (donuts can populate)
+  // d3.selectAll(".c3-line-Probability_of_bloom").data(0)[0].values[3].x
+
   // Apply orange to the current date x-axis grid line
   $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(1) > line").css('stroke', '#17e8ce');
   $("#spline-chart > svg > g:nth-child(2) > g.c3-grid.c3-grid-lines > g.c3-xgrid-lines > g:nth-child(2) > line").css('stroke', '#17e8ce');
@@ -5149,7 +5154,8 @@ Promise.all([
     mymap.addLayer(sampleSites);
     mymap.fitBounds(lakeBoundsOpenMini)
   });
-  $("#cyan-tab").on("click", function() {
+  $("#cyan-tab").on("click", async function() {
+    console.log("Cyan tab clicked.")
     // Remove Map Layers
     mymap.removeLayer(sites);
     mymap.removeLayer(sampleSites);
@@ -5174,31 +5180,15 @@ Promise.all([
         [nocyan, noCyanLast],
       ],
     });
-    // pieTestchart.load({
-    //   unload: true,
-    //   columns: [
-    //     ['Obsereved Bloom Area', lastModelAcc],
-    //     ['', lastModelAccOther],
-    //   ],
-    // });
-    // pieTestchart2.load({
-    //   unload: true,
-    //   columns: [
-    //     ['Forecast Accuracy', lastModelAcc],
-    //     ['', lastModelAccOther],
-    //   ],
-    // });
-
     // Load HAB season line chart
-    splineChart.load({
+    await splineChart.load({
       unload: true,
       columns: [
         expCyanDate,
-        bloom_p,
-        // nctCurrentDate,
         logCICells,
+        bloom_p,
       ],
-    });
+    })
 
   });
 
@@ -8659,10 +8649,8 @@ triggerTabList.forEach(function(triggerEl) {
   triggerEl.addEventListener('click', function(event) {
     event.preventDefault()
     tabTrigger.show()
-
   })
 })
-
 
 // tooltips on hover on integer in donut Charts
 
