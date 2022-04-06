@@ -21,18 +21,6 @@ $(window).ready(function() {
 
 // // #####################################
 
-// TODO: TESTING, needs removal
-// var dee = ""
-// var eee = "29834"
-// console.log("dee: " + dee)
-// console.log("d.split: " + dee.split("-"))
-// console.log("length of d.split: " + dee.split("-").length)
-// console.log("eee: " + eee)
-// console.log("e.split: " + eee.split("-"))
-// console.log("length of e.split: " + eee.split("-").length)
-
-// #####################################
-
 const minZoom = 11
 const defZoom = 14
 const maxZoom = 15
@@ -518,8 +506,8 @@ Promise.all([
   d3.json("assets/water_sample_tab/ws.geojson"), //datasets[3]
   d3.csv('assets/satellite_map/or_detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[4]
   // get_object("cwa-assets", '/or_detroit_lake/assets/satellite_map/detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[4]
-  // d3.csv('assets/weather_tab/detroit_lake_prism_2020_01_01_2021_09_15.csv'), //datasets[5]
   "",
+  // d3.csv('assets/weather_tab/detroit_lake_prism_2020_01_01_2021_09_15.csv'), //datasets[5]
   d3.csv('assets/water_sample_tab/toxin.csv'), //datasets[6]
   d3.csv('assets/water_sample_tab/nitrate.csv'), //datasets[7]
   d3.json("assets/weather_tab/weather.geojson"), //datasets[8]
